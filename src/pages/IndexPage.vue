@@ -22,11 +22,7 @@
       <div class="col-8">
         <div class="row">
           <div class="col-5">
-            <q-img
-              src="https://marketifythemes.net/wp/waxon/1/wp-content/uploads/2021/11/2-2.jpg"
-              :ratio="1"
-              class="thumbnail"
-            />
+            <q-img src="/arthur_photo.jpg" :ratio="1" class="thumbnail" />
           </div>
           <div class="col-7 q-pl-xl">
             <h2 class="text-uppercase text-bold">
