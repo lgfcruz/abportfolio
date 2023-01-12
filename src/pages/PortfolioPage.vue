@@ -43,6 +43,11 @@
       <div v-if="selected.type === 'pdf'" class="pdf-content q-pl-md q-pr-md">
         <vue-pdf-embed :source="selected.src" />
       </div>
+      <q-video
+        v-if="selected.type === 'video'"
+        :ratio="16 / 9"
+        :src="selected.src"
+      />
     </q-card>
   </q-dialog>
 </template>
@@ -99,6 +104,41 @@ export default defineComponent({
             src: '/f53bcc9b44c3f2899f5941abc044bdd8eb658da6.jpg',
             description:
               'sdghsghfsdhgfsdhgfdsgfhdsghfdsghfdsghfdgshfd dh djkshfjk dshkjgkjdf hjk',
+          },
+          {
+            type: 'video',
+            title: 'Enquadramento',
+            src: 'https://www.youtube.com/embed/7z615xAKMTY',
+            thumb: '/8e313dfbcde1c9eb99b3b1f3cd20fcb1cac011ae.jpg',
+            description: 'O enquadramento da imagem .....',
+          },
+          {
+            type: 'video',
+            title: 'Luz',
+            src: 'https://www.youtube.com/embed/ECYD_8EMmnY',
+            thumb: '/60aa59009f1dd66a0101802c4039b05067c54916.jpg',
+            description: 'b sdkjfh jksdfsd jfhsdhgfdhghh .....',
+          },
+          {
+            type: 'video',
+            title: 'Cor',
+            src: 'https://www.youtube.com/embed/22LmKyppBlw',
+            thumb: '/e47670624bc7f1b44354f61e0f7dbabb4ad43398.jpg',
+            description: 'Asd fsdghf sdkjfs fgsd sdfsd f .....',
+          },
+          {
+            type: 'video',
+            title: 'Movimento',
+            src: 'https://www.youtube.com/embed/3YGUB-g1Ec0',
+            thumb: '/afa28bd6cf4688d6002ceec1c856d57f450ab362.jpg',
+            description: 'Bujh gljfg ldfjlgjfd gjldkjkgjdkl .....',
+          },
+          {
+            type: 'video',
+            title: 'Personagem',
+            src: 'https://www.youtube.com/embed/3Mn6exLwp2w',
+            thumb: '/2b9ff67f58bd0808c4e9e6f9bfe835c20538ee3a.jpg',
+            description: 'Pio dfpgdfigpodfipgoifdopgfopdiop .....',
           },
         ],
       },
