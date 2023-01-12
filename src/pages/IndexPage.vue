@@ -1,8 +1,22 @@
 <template>
   <div class="row section-header">
     <div class="col-4 panel-left"></div>
-    <div class="col-4"></div>
-    <div class="col-2"></div>
+    <div class="col-6">
+      <q-carousel
+        animated
+        v-model="slide"
+        :navigation="false"
+        infinite
+        :autoplay="true"
+        :arrows="false"
+        transition-prev="slide-right"
+        transition-next="slide-left"
+      >
+        <q-carousel-slide :name="1" img-src="/dinos.png" />
+        <q-carousel-slide :name="2" img-src="/darth_vader_back.png" />
+        <q-carousel-slide :name="3" img-src="/man_phone.png" />
+      </q-carousel>
+    </div>
     <div class="personal">
       <div class="firstname">{{ firstname }}</div>
       <div class="surname">
@@ -202,7 +216,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue';
+import { defineComponent, ref } from 'vue';
 
 export default defineComponent({
   name: 'IndexPage',
@@ -214,7 +228,14 @@ export default defineComponent({
     const email = 'arthurbrabo5@gmail.com';
     const shortSummary = 'Estudante de Animação Digital';
 
-    return { firstname, surname, registration, email, shortSummary };
+    return {
+      firstname,
+      surname,
+      registration,
+      email,
+      shortSummary,
+      slide: ref(1),
+    };
   },
 });
 </script>
