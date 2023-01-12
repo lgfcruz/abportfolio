@@ -29,20 +29,19 @@
   </div>
 
   <q-dialog ref="dialogRef">
-    <q-card class="q-dialog-50p">
-      <div
-        :style="`background: url(${selected.src}) no-repeat center center;
-    background-repeat: no-repeat;
-    background-color: #fff;
-    background-size: contain;
-    height: 80%;
-    overflow: hidden;`"
-      ></div>
-      <div class="row content q-pt-sm">
+    <q-card :class="`q-dialog-50p ${selected.type}-dialog`">
+      <div class="row description-content q-pt-sm q-pb-md">
         <div class="col-12 text-h5 q-pl-md">{{ selected.title }}</div>
-        <div class="col-12 text-body1 q-pl-md" style="margin-top: -30px">
+        <div class="col-12 text-body1 q-pl-md">
           {{ selected.description }}
         </div>
+      </div>
+      <div
+        v-if="selected.type === 'image'"
+        :style="`background: url(${selected.src}) no-repeat center center; background-repeat: no-repeat; background-color: #fff; background-size: contain; height: 80%; overflow: hidden; margin-top: 5px;`"
+      ></div>
+      <div v-if="selected.type === 'pdf'" class="pdf-content q-pl-md q-pr-md">
+        <vue-pdf-embed :source="selected.src" />
       </div>
     </q-card>
   </q-dialog>
@@ -52,10 +51,13 @@
 import { defineComponent, ref, onBeforeMount } from 'vue';
 import { useRouter } from 'vue-router';
 import { useDialogPluginComponent } from 'quasar';
+import VuePdfEmbed from 'vue-pdf-embed';
 
 export default defineComponent({
   name: 'PortfolioPage',
-  components: {},
+  components: {
+    VuePdfEmbed,
+  },
   setup() {
     const { dialogRef } = useDialogPluginComponent();
     // type = image, video, pdf
@@ -69,6 +71,7 @@ export default defineComponent({
             title: 'Storyboard',
             src: '/d1f7a2f4ff895cdb7f04e83e46aafa53d6f176c7.pdf',
             thumb: '/69f278848aee7ecf4fd78d10394e0dc3fd264619.jpg',
+            description: 'aaaaaaaaaaaa bbbbbbbbbbbbbb ccccccccccccc',
           },
           {
             type: 'image',
@@ -107,6 +110,7 @@ export default defineComponent({
     ];
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const portfolio = ref<any>({});
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const selected = ref<any>({
       src: '/bg.jpg',
     });
