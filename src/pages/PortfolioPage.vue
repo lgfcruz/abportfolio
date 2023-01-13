@@ -158,10 +158,10 @@ export default defineComponent({
           {
             type: 'pdf',
             title: 'Storyboard Fotografia Grupo',
-            src: '/9535b2bf593d89db1b4ea5294e96282407850e18.pdf',
+            src: '/e0dd84609211851174eb5c38dc95655ac2614d4f.pdf',
             thumb: '/b6610d8d7a2bd75602eae622349d3eac06e00163.jpg',
             description:
-              'Este é um exercício com o objetivo de desenvolver um storyboard de fotografias em grupo baseado no trabalho "Storyboard Individual", em conjunto com Francisco Xia (A22204578), Maria Rendas () e Sofia ().',
+              'Este é um exercício com o objetivo de desenvolver um storyboard de fotografias em grupo baseado no trabalho "Storyboard Individual", em conjunto com Francisco Xia (A22204578), Maria Rendas (A22204228) e Sofia Baptista (A22203432).',
           },
         ],
       },
