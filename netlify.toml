@@ -20,7 +20,33 @@
   # optimizacao do next/image.
   publish = ".next"
 
-  # SEM [[plugins]]: o adaptador e automatico e atualizado; fixa-lo e regressao.
+  # O adaptador Next.js e declarado explicitamente abaixo, em [[plugins]].
+
+# ---------------------------------------------------------------------------
+# ADAPTADOR NEXT.JS — DECLARADO EXPLICITAMENTE, E NAO POR OMISSAO.
+#
+# A documentacao da Netlify diz que a deteccao automatica de framework instala o
+# adaptador sozinha e recomenda NAO fixar a versao. Neste site nao funciona: o
+# site foi criado em 2023 para um projeto Quasar, e a deteccao nao instala o
+# adaptador.
+#
+# Sintoma sem esta seccao: o build passa, o deploy diz "published", e o site
+# devolve 404 em todas as rotas. O file browser do deploy mostrava o conteudo
+# CRU de .next publicado como ficheiros estaticos — server/, cache/, types/,
+# trace, required-server-files.json — sem um unico HTML, sem funcoes e sem edge
+# functions. Ou seja: o `next build` corria, e depois ninguem transformava o
+# resultado em infraestrutura.
+#
+# Com o adaptador declarado, ele provisiona a funcao de servidor, a edge
+# function do proxy de idioma, o cache de rotas e o Image CDN.
+#
+# CONTRAPARTIDA: fixar a versao significa perder as actualizacoes automaticas.
+# Reavaliar a cada major do Next.js: se a deteccao automatica passar a funcionar
+# neste site, remover esta seccao e o pacote de package.json.
+# ---------------------------------------------------------------------------
+
+[[plugins]]
+  package = "@netlify/plugin-nextjs"
 
 [build.environment]
   NODE_VERSION = "22"
