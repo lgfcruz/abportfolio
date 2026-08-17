@@ -1,0 +1,139 @@
+{
+  "nav": {
+    "home": "Home",
+    "work": "Work",
+    "showreel": "Showreel",
+    "about": "About",
+    "contact": "Contact",
+    "cv": "CV",
+    "menu": "Menu",
+    "closeMenu": "Close menu",
+    "skipToContent": "Skip to main content",
+    "brandHome": "Arthur Brabo — home"
+  },
+  "locale": {
+    "label": "Language",
+    "pt": "Português",
+    "en": "English",
+    "switchTo": "Switch to {language}"
+  },
+  "home": {
+    "watchShowreel": "Watch showreel",
+    "viewWork": "View work",
+    "selectedWork": "Selected work",
+    "selectedWorkIntro": "A short selection. Each piece states what I did and what I did not.",
+    "allWork": "See all work",
+    "capabilities": "Capabilities",
+    "aboutHeading": "About",
+    "aboutMore": "More about me",
+    "contactHeading": "Get in touch"
+  },
+  "work": {
+    "title": "Work",
+    "intro": "Projects in 3D character animation, creatures, rigging and stop motion.",
+    "filterLegend": "Filter by category",
+    "all": "All",
+    "count": "{count, plural, =0 {No projects} one {# project} other {# projects}}",
+    "empty": "No projects in this category yet.",
+    "hasVideo": "Includes video",
+    "viewProject": "View project"
+  },
+  "project": {
+    "backToWork": "Back to work",
+    "overview": "Context",
+    "myRole": "My role",
+    "role": "Role",
+    "tools": "Tools",
+    "year": "Year",
+    "duration": "Duration",
+    "category": "Category",
+    "team": "Team",
+    "finalVideo": "Final video",
+    "process": "Process",
+    "specs": "Specifications",
+    "gallery": "Gallery",
+    "downloads": "Downloads",
+    "links": "Elsewhere",
+    "credits": "Credits",
+    "next": "Next project",
+    "previous": "Previous project",
+    "individual": "Individual project",
+    "group": "Group project",
+    "academic": "Academic project",
+    "step": "Step {n}",
+    "back": "Back"
+  },
+  "showreel": {
+    "title": "Showreel",
+    "watchOn": "Watch on {platform}",
+    "duration": "Duration",
+    "breakdownLink": "Read the shot-by-shot breakdown",
+    "breakdownTitle": "Showreel breakdown",
+    "breakdownIntro": "A text alternative to the reel: every shot, in order, with the software used and my role. Useful with a screen reader, and useful if you would rather read than watch.",
+    "shot": "Shot",
+    "timecode": "Timecode",
+    "music": "Music",
+    "download": "Download"
+  },
+  "about": {
+    "title": "About",
+    "education": "Education",
+    "skills": "Skills",
+    "tools": "Software",
+    "languages": "Languages",
+    "strengths": "Ways of working",
+    "downloadCv": "Download CV (PDF)",
+    "present": "present",
+    "exploringShort": "exploring"
+  },
+  "contact": {
+    "title": "Contact",
+    "intro": "The fastest way to reach me is email. I answer within a day.",
+    "availableFor": "Available for",
+    "email": "Email",
+    "phone": "Phone",
+    "location": "Location",
+    "elsewhere": "Elsewhere",
+    "copyEmail": "Copy email address",
+    "copied": "Copied"
+  },
+  "cv": {
+    "title": "CV",
+    "intro": "The full CV as a web page, and as a PDF for application systems.",
+    "downloadPt": "Download CV in Portuguese (PDF)",
+    "downloadEn": "Download CV in English (PDF)",
+    "updated": "Updated {date}"
+  },
+  "privacy": {
+    "title": "Privacy",
+    "intro": "What this site stores and why."
+  },
+  "media": {
+    "playVideo": "Play video: {title}",
+    "playVideoDuration": "Play video: {title}, {duration}",
+    "openImage": "Open image at full size",
+    "closeLightbox": "Close",
+    "previousImage": "Previous image",
+    "nextImage": "Next image",
+    "imageOf": "Image {index} of {total}",
+    "loadingPlayer": "Loading player…",
+    "externalNote": "Playing loads content from {provider}.",
+    "galleryViewer": "Gallery viewer"
+  },
+  "notice": {
+    "onlyInEnglish": "This text is only available in English.",
+    "onlyInPortuguese": "This text is only available in Portuguese.",
+    "placeholderContent": "Placeholder content — this site is being populated with real work."
+  },
+  "footer": {
+    "rights": "© {year} {name}",
+    "builtWith": "Built with Next.js. Content lives in JSON, not in components.",
+    "privacy": "Privacy",
+    "social": "Social"
+  },
+  "error": {
+    "notFoundTitle": "Page not found",
+    "notFoundBody": "That page does not exist, or has moved.",
+    "backHome": "Back to home"
+  }
+}

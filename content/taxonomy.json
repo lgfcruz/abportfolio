@@ -1,0 +1,128 @@
+{
+  "$comment": "Categorias e subcategorias. Os projetos referenciam estes slugs; o site gera os filtros a partir daqui.",
+  "categories": [
+    {
+      "slug": "character-animation",
+      "order": 1,
+      "label": { "pt": "Animação de Personagem", "en": "Character Animation" },
+      "short": { "pt": "Animação", "en": "Animation" },
+      "description": {
+        "pt": "Animação de personagens e criaturas em 3D: blocking, spline, timing e peso.",
+        "en": "3D character and creature animation: blocking, spline, timing and weight."
+      },
+      "subcategories": [
+        { "slug": "creature", "label": { "pt": "Criaturas", "en": "Creatures" } },
+        { "slug": "humanoid", "label": { "pt": "Humanoides", "en": "Humanoids" } },
+        { "slug": "body-mechanics", "label": { "pt": "Mecânica Corporal", "en": "Body Mechanics" } },
+        { "slug": "acting", "label": { "pt": "Interpretação", "en": "Acting" } }
+      ]
+    },
+    {
+      "slug": "stop-motion",
+      "order": 2,
+      "label": { "pt": "Stop Motion", "en": "Stop Motion" },
+      "short": { "pt": "Stop Motion", "en": "Stop Motion" },
+      "description": {
+        "pt": "Animação quadro a quadro com puppets e sets físicos, capturada em Dragonframe.",
+        "en": "Frame-by-frame animation with physical puppets and sets, captured in Dragonframe."
+      },
+      "subcategories": [
+        { "slug": "puppet", "label": { "pt": "Puppets", "en": "Puppets" } },
+        { "slug": "set-props", "label": { "pt": "Sets e Props", "en": "Sets & Props" } },
+        { "slug": "object-animation", "label": { "pt": "Animação de Objetos", "en": "Object Animation" } }
+      ]
+    },
+    {
+      "slug": "modeling",
+      "order": 3,
+      "label": { "pt": "Modelação 3D", "en": "3D Modelling" },
+      "short": { "pt": "Modelação", "en": "Modelling" },
+      "description": {
+        "pt": "Modelação, retopologia, UV mapping e texturização de personagens, criaturas e props.",
+        "en": "Modelling, retopology, UV mapping and texturing of characters, creatures and props."
+      },
+      "subcategories": [
+        { "slug": "character", "label": { "pt": "Personagens", "en": "Characters" } },
+        { "slug": "creature", "label": { "pt": "Criaturas", "en": "Creatures" } },
+        { "slug": "prop", "label": { "pt": "Props", "en": "Props" } },
+        { "slug": "environment", "label": { "pt": "Ambientes", "en": "Environments" } }
+      ]
+    },
+    {
+      "slug": "rigging",
+      "order": 4,
+      "label": { "pt": "Rigging", "en": "Rigging" },
+      "short": { "pt": "Rigging", "en": "Rigging" },
+      "description": {
+        "pt": "Construção de rigs de personagem e criatura: hierarquias, controlos e deformação.",
+        "en": "Character and creature rig construction: hierarchies, controls and deformation."
+      },
+      "subcategories": [
+        { "slug": "body-rig", "label": { "pt": "Rig Corporal", "en": "Body Rig" } },
+        { "slug": "facial-rig", "label": { "pt": "Rig Facial", "en": "Facial Rig" } },
+        { "slug": "mechanical-rig", "label": { "pt": "Rig Mecânico", "en": "Mechanical Rig" } }
+      ]
+    },
+    {
+      "slug": "motion-vfx",
+      "order": 5,
+      "label": { "pt": "Motion e VFX", "en": "Motion & VFX" },
+      "short": { "pt": "Motion / VFX", "en": "Motion / VFX" },
+      "description": {
+        "pt": "Motion graphics, composição, efeitos visuais e pós-produção audiovisual.",
+        "en": "Motion graphics, compositing, visual effects and audiovisual post-production."
+      },
+      "subcategories": [
+        { "slug": "motion-graphics", "label": { "pt": "Motion Graphics", "en": "Motion Graphics" } },
+        { "slug": "compositing", "label": { "pt": "Composição", "en": "Compositing" } },
+        { "slug": "sound-design", "label": { "pt": "Sonoplastia", "en": "Sound Design" } }
+      ]
+    },
+    {
+      "slug": "studies",
+      "order": 6,
+      "label": { "pt": "Estudos e Fundamentos", "en": "Studies & Foundations" },
+      "short": { "pt": "Estudos", "en": "Studies" },
+      "description": {
+        "pt": "Exercícios de base: storyboard, enquadramento, luz, cor e estudos de linguagem visual.",
+        "en": "Foundational exercises: storyboarding, framing, light, colour and visual language studies."
+      },
+      "subcategories": [
+        { "slug": "storyboard", "label": { "pt": "Storyboard", "en": "Storyboard" } },
+        { "slug": "cinematography", "label": { "pt": "Fotografia e Enquadramento", "en": "Cinematography & Framing" } },
+        { "slug": "light-colour", "label": { "pt": "Luz e Cor", "en": "Light & Colour" } },
+        { "slug": "2d-animation", "label": { "pt": "Animação 2D", "en": "2D Animation" } }
+      ]
+    }
+  ],
+  "roles": [
+    { "slug": "concept", "label": { "pt": "Concept", "en": "Concept" } },
+    { "slug": "modeling", "label": { "pt": "Modelação", "en": "Modelling" } },
+    { "slug": "retopology", "label": { "pt": "Retopologia", "en": "Retopology" } },
+    { "slug": "uv", "label": { "pt": "UV Mapping", "en": "UV Mapping" } },
+    { "slug": "texturing", "label": { "pt": "Texturização", "en": "Texturing" } },
+    { "slug": "lookdev", "label": { "pt": "Look Dev", "en": "Look Dev" } },
+    { "slug": "rigging", "label": { "pt": "Rigging", "en": "Rigging" } },
+    { "slug": "animation", "label": { "pt": "Animação", "en": "Animation" } },
+    { "slug": "lighting", "label": { "pt": "Iluminação", "en": "Lighting" } },
+    { "slug": "rendering", "label": { "pt": "Render", "en": "Rendering" } },
+    { "slug": "compositing", "label": { "pt": "Composição", "en": "Compositing" } },
+    { "slug": "editing", "label": { "pt": "Edição", "en": "Editing" } },
+    { "slug": "sound", "label": { "pt": "Som e Sonoplastia", "en": "Sound Design" } },
+    { "slug": "storyboard", "label": { "pt": "Storyboard", "en": "Storyboard" } },
+    { "slug": "puppet-fabrication", "label": { "pt": "Construção de Puppets", "en": "Puppet Fabrication" } }
+  ],
+  "software": [
+    { "slug": "maya", "label": "Autodesk Maya", "url": "https://www.autodesk.com/products/maya" },
+    { "slug": "substance-painter", "label": "Adobe Substance 3D Painter", "url": "https://www.adobe.com/products/substance3d/apps/painter.html" },
+    { "slug": "arnold", "label": "Arnold", "url": "https://arnoldrenderer.com/" },
+    { "slug": "dragonframe", "label": "Dragonframe", "url": "https://www.dragonframe.com/" },
+    { "slug": "after-effects", "label": "Adobe After Effects", "url": "https://www.adobe.com/products/aftereffects.html" },
+    { "slug": "premiere", "label": "Adobe Premiere Pro", "url": "https://www.adobe.com/products/premiere.html" },
+    { "slug": "davinci", "label": "DaVinci Resolve", "url": "https://www.blackmagicdesign.com/products/davinciresolve" },
+    { "slug": "photoshop", "label": "Adobe Photoshop", "url": "https://www.adobe.com/products/photoshop.html" },
+    { "slug": "krita", "label": "Krita", "url": "https://krita.org/" },
+    { "slug": "reaper", "label": "Reaper", "url": "https://www.reaper.fm/" },
+    { "slug": "blender", "label": "Blender", "url": "https://www.blender.org/" }
+  ]
+}

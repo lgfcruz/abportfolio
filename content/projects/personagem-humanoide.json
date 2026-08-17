@@ -1,0 +1,257 @@
+{
+  "$comment": "DADOS FICTICIOS. Substituir pelos reais.",
+  "slug": "personagem-humanoide",
+  "status": "published",
+  "featured": true,
+  "order": 2,
+  "surface": "dark",
+  "title": "Sela",
+  "subtitle": {
+    "pt": "Personagem humanoide estilizada, do blockout à texturização",
+    "en": "Stylised humanoid character, from blockout to texturing"
+  },
+  "year": 2025,
+  "date": "2025-03-10",
+  "durationLabel": {
+    "pt": "5 semanas",
+    "en": "5 weeks"
+  },
+  "author": "Arthur Brabo da Silva Cruz",
+  "context": "individual",
+  "institution": "Universidade Lusófona",
+  "team": null,
+  "category": "modeling",
+  "subcategories": [
+    "character"
+  ],
+  "roles": [
+    "modeling",
+    "retopology",
+    "uv",
+    "texturing",
+    "lookdev",
+    "lighting",
+    "rendering"
+  ],
+  "software": [
+    "maya",
+    "substance-painter",
+    "arnold"
+  ],
+  "summary": {
+    "pt": "Personagem humanoide com proporções estilizadas, construída para animar: topologia pensada para deformação e mapas de 4K em dois UDIMs.",
+    "en": "A humanoid character with stylised proportions, built to be animated: topology planned for deformation and 4K maps across two UDIMs."
+  },
+  "body": {
+    "en": [
+      {
+        "heading": "Brief and constraints",
+        "text": "Model a humanoid character readable at silhouette level and clean enough to be rigged by someone else. That second constraint changed everything: the mesh is not the prettiest version of the model, it is the most predictable one under deformation."
+      },
+      {
+        "heading": "The problem",
+        "text": "Stylised proportions break anatomical edge-flow rules. I kept the loops anatomically correct at the joints and let them go stylised only in the volumes between joints, which is where nobody deforms."
+      }
+    ]
+  },
+  "cover": {
+    "src": "/media/personagem-humanoide/cover.jpg",
+    "width": 1800,
+    "height": 1200,
+    "alt": {
+      "pt": "Personagem humanoide estilizada em pose neutra, luz suave lateral.",
+      "en": "Stylised humanoid character in a neutral pose, soft side light."
+    }
+  },
+  "hero": {
+    "src": "/media/personagem-humanoide/hero.jpg",
+    "width": 2560,
+    "height": 1440,
+    "alt": {
+      "pt": "Plano de três-quartos da personagem, textura de tecido visível.",
+      "en": "Three-quarter shot of the character, fabric texture visible."
+    }
+  },
+  "og": "/media/personagem-humanoide/og.jpg",
+  "video": {
+    "provider": "youtube",
+    "id": "3YGUB-g1Ec0",
+    "title": {
+      "pt": "Turntable com passes de textura",
+      "en": "Turntable with texture passes"
+    },
+    "durationSeconds": 18
+  },
+  "poster": {
+    "src": "/media/personagem-humanoide/poster.jpg",
+    "width": 1920,
+    "height": 1080,
+    "alt": {
+      "pt": "Fotograma do turntable da personagem.",
+      "en": "Frame from the character turntable."
+    }
+  },
+  "specs": [
+    {
+      "label": {
+        "pt": "Contagem de triângulos",
+        "en": "Triangle count"
+      },
+      "value": "28k"
+    },
+    {
+      "label": {
+        "pt": "Mapas",
+        "en": "Maps"
+      },
+      "value": "4K — albedo, roughness, normal"
+    },
+    {
+      "label": {
+        "pt": "UDIMs",
+        "en": "UDIMs"
+      },
+      "value": "2"
+    },
+    {
+      "label": {
+        "pt": "Render",
+        "en": "Render"
+      },
+      "value": "Arnold, 1080p"
+    }
+  ],
+  "breakdown": [
+    {
+      "step": 1,
+      "label": {
+        "pt": "Blockout e proporção",
+        "en": "Blockout and proportion"
+      },
+      "note": {
+        "pt": "Proporções fixadas em blockout com primitivas, antes de qualquer detalhe.",
+        "en": "Proportions locked in a primitive blockout before any detail."
+      },
+      "media": [
+        {
+          "type": "image",
+          "src": "/media/personagem-humanoide/process-01-blockout.jpg",
+          "width": 2000,
+          "height": 1125,
+          "alt": {
+            "pt": "Blockout da personagem em primitivas cinzentas.",
+            "en": "Character blockout in grey primitives."
+          }
+        }
+      ]
+    },
+    {
+      "step": 2,
+      "label": {
+        "pt": "Retopologia",
+        "en": "Retopology"
+      },
+      "note": {
+        "pt": "Anéis de aresta anatomicamente corretos nas articulações; estilização só nos volumes entre elas.",
+        "en": "Anatomically correct edge rings at the joints; stylisation only in the volumes between them."
+      },
+      "media": [
+        {
+          "type": "image",
+          "src": "/media/personagem-humanoide/process-02-wireframe.jpg",
+          "width": 2000,
+          "height": 1125,
+          "alt": {
+            "pt": "Wireframe da personagem com anéis de aresta a acompanhar joelho e ombro.",
+            "en": "Character wireframe with edge rings following knee and shoulder."
+          }
+        }
+      ]
+    },
+    {
+      "step": 3,
+      "label": {
+        "pt": "UV e texturização",
+        "en": "UV and texturing"
+      },
+      "note": {
+        "pt": "Costuras escondidas nas linhas de vestuário. Desgaste pintado à mão, não procedimental.",
+        "en": "Seams hidden along clothing lines. Wear painted by hand, not procedural."
+      },
+      "media": [
+        {
+          "type": "image",
+          "src": "/media/personagem-humanoide/process-03-uv.png",
+          "width": 2000,
+          "height": 2000,
+          "alt": {
+            "pt": "Layout de UV em dois UDIMs.",
+            "en": "UV layout across two UDIMs."
+          }
+        },
+        {
+          "type": "image",
+          "src": "/media/personagem-humanoide/process-04-maps.jpg",
+          "width": 2000,
+          "height": 1125,
+          "alt": {
+            "pt": "Comparação antes e depois da texturização.",
+            "en": "Before and after texturing comparison."
+          }
+        }
+      ]
+    }
+  ],
+  "gallery": [
+    {
+      "type": "image",
+      "src": "/media/personagem-humanoide/gallery-01.jpg",
+      "width": 2560,
+      "height": 1440,
+      "alt": {
+        "pt": "Render final da personagem em plano médio.",
+        "en": "Final render of the character in a medium shot."
+      }
+    },
+    {
+      "type": "image",
+      "src": "/media/personagem-humanoide/gallery-02.jpg",
+      "width": 2560,
+      "height": 1440,
+      "alt": {
+        "pt": "Close do rosto da personagem, luz de topo.",
+        "en": "Close-up of the character face, top light."
+      }
+    }
+  ],
+  "downloads": [
+    {
+      "label": {
+        "pt": "Folha de personagem em PDF",
+        "en": "Character sheet PDF"
+      },
+      "url": "https://drive.google.com/file/d/1MOCK-sela-charactersheet/view?usp=sharing",
+      "host": "drive",
+      "sizeMb": 8,
+      "placeholder": true
+    }
+  ],
+  "links": [
+    {
+      "kind": "artstation",
+      "label": "ArtStation",
+      "url": "https://www.artstation.com/artwork/MOCK-sela",
+      "placeholder": true
+    }
+  ],
+  "seo": {
+    "title": {
+      "pt": "Sela — personagem humanoide estilizada",
+      "en": "Sela — stylised humanoid character"
+    },
+    "description": {
+      "pt": "Modelação, retopologia, UV e texturização de personagem humanoide em Maya e Substance 3D Painter.",
+      "en": "Modelling, retopology, UV and texturing of a humanoid character in Maya and Substance 3D Painter."
+    }
+  }
+}

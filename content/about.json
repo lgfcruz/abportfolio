@@ -1,0 +1,95 @@
+{
+  "$comment": "Pagina Sobre. Regra: nunca publicar nivel 'iniciante'. Ferramentas em 'exploring' aparecem sem nivel.",
+  "bio": {
+    "pt": [
+      "Sou animador, a terminar a Licenciatura em Animação Digital na Universidade Lusófona, em Lisboa. Trabalho sobretudo em animação 3D de personagem e criaturas, e em stop motion.",
+      "Interessa-me o momento em que a técnica desaparece e fica só o peso de um corpo a mover-se. É por isso que gosto de criaturas: não há referência pronta, e o timing tem de ser inventado a partir de princípios.",
+      "Trabalho em Maya e Substance 3D Painter, capturo stop motion em Dragonframe, e faço a minha própria pós-produção e desenho de som. Procuro um estágio curricular onde possa aprender dentro de um pipeline real."
+    ],
+    "en": [
+      "I am an animator finishing a BA in Digital Animation at Universidade Lusófona in Lisbon. I work mainly in 3D character and creature animation, and in stop motion.",
+      "What interests me is the moment technique disappears and all that is left is the weight of a body in motion. That is why I like creatures: there is no ready-made reference, and the timing has to be invented from principles.",
+      "I work in Maya and Substance 3D Painter, shoot stop motion in Dragonframe, and handle my own post-production and sound design. I am looking for a curricular internship where I can learn inside a real pipeline."
+    ]
+  },
+  "skills": [
+    {
+      "tier": "primary",
+      "label": { "pt": "Principal", "en": "Primary" },
+      "groups": [
+        {
+          "label": { "pt": "Animação", "en": "Animation" },
+          "items": [
+            { "pt": "Animação 3D de personagem", "en": "3D character animation" },
+            { "pt": "Animação de criaturas", "en": "Creature animation" },
+            { "pt": "Mecânica corporal e peso", "en": "Body mechanics and weight" },
+            { "pt": "Stop motion", "en": "Stop motion" }
+          ]
+        },
+        {
+          "label": { "pt": "Personagem e Criatura", "en": "Character & Creature" },
+          "items": [
+            { "pt": "Modelação e retopologia", "en": "Modelling and retopology" },
+            { "pt": "UV mapping e texturização", "en": "UV mapping and texturing" },
+            { "pt": "Rigging de corpo e face", "en": "Body and facial rigging" }
+          ]
+        }
+      ]
+    },
+    {
+      "tier": "secondary",
+      "label": { "pt": "Secundário", "en": "Secondary" },
+      "groups": [
+        {
+          "label": { "pt": "Pós-produção", "en": "Post-production" },
+          "items": [
+            { "pt": "Motion graphics", "en": "Motion graphics" },
+            { "pt": "Composição e VFX", "en": "Compositing and VFX" },
+            { "pt": "Edição de vídeo", "en": "Video editing" },
+            { "pt": "Sonoplastia e SFX", "en": "Sound design and SFX" }
+          ]
+        },
+        {
+          "label": { "pt": "Pré-produção", "en": "Pre-production" },
+          "items": [
+            { "pt": "Storyboard", "en": "Storyboarding" },
+            { "pt": "Enquadramento e linguagem visual", "en": "Framing and visual language" },
+            { "pt": "Iluminação e cor", "en": "Lighting and colour" }
+          ]
+        }
+      ]
+    },
+    {
+      "tier": "exploring",
+      "label": { "pt": "A explorar", "en": "Exploring" },
+      "groups": [
+        {
+          "label": { "pt": "Em aprendizagem", "en": "Currently learning" },
+          "items": [
+            { "pt": "Ambientes e look dev em engine", "en": "Environments and in-engine look dev" },
+            { "pt": "Materiais e shading cel-shaded", "en": "Cel-shaded materials and shading" }
+          ]
+        }
+      ]
+    }
+  ],
+  "tools": [
+    { "software": "maya", "tier": "primary", "level": { "pt": "Intermédio / Avançado", "en": "Intermediate / Advanced" } },
+    { "software": "dragonframe", "tier": "primary", "level": { "pt": "Intermédio / Avançado", "en": "Intermediate / Advanced" } },
+    { "software": "substance-painter", "tier": "primary", "level": { "pt": "Intermédio", "en": "Intermediate" } },
+    { "software": "arnold", "tier": "secondary", "level": { "pt": "Intermédio", "en": "Intermediate" } },
+    { "software": "after-effects", "tier": "secondary", "level": { "pt": "Intermédio", "en": "Intermediate" } },
+    { "software": "premiere", "tier": "secondary", "level": { "pt": "Intermédio", "en": "Intermediate" } },
+    { "software": "davinci", "tier": "secondary", "level": { "pt": "Intermédio", "en": "Intermediate" } },
+    { "software": "photoshop", "tier": "secondary", "level": { "pt": "Intermédio", "en": "Intermediate" } },
+    { "software": "krita", "tier": "secondary", "level": { "pt": "Intermédio", "en": "Intermediate" } },
+    { "software": "reaper", "tier": "secondary", "level": { "pt": "Intermédio", "en": "Intermediate" } },
+    { "software": "blender", "tier": "exploring", "level": null }
+  ],
+  "strengths": [
+    { "pt": "Autonomia e iniciativa", "en": "Autonomy and initiative" },
+    { "pt": "Capacidade de aprendizagem", "en": "Fast learner" },
+    { "pt": "Trabalho em equipa e organização", "en": "Teamwork and organisation" },
+    { "pt": "Apresentação e discussão de trabalho", "en": "Presenting and discussing work" }
+  ]
+}

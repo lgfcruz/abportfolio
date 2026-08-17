@@ -1,0 +1,65 @@
+{
+  "$comment": "DADOS FICTICIOS. Projeto de GRUPO — reparar como os creditos sao declarados.",
+  "slug": "ambiente-toon-grupo",
+  "status": "published",
+  "featured": true,
+  "order": 5,
+  "surface": "light",
+  "title": "Praça Amarela",
+  "subtitle": { "pt": "Ambiente 3D com materiais toon, em equipa de quatro", "en": "3D environment with toon materials, in a team of four" },
+  "year": 2025,
+  "date": "2025-11-30",
+  "durationLabel": { "pt": "7 semanas", "en": "7 weeks" },
+  "author": "Arthur Brabo da Silva Cruz",
+  "context": "group",
+  "institution": "Universidade Lusófona",
+  "team": {
+    "size": 4,
+    "label": { "pt": "Equipa de 4", "en": "Team of 4" },
+    "myRole": { "pt": "O meu papel: look dev dos materiais toon e iluminação", "en": "My role: toon material look dev and lighting" },
+    "credits": [
+      { "name": "Arthur Brabo", "role": { "pt": "Look dev toon, iluminação, render", "en": "Toon look dev, lighting, rendering" }, "isMe": true },
+      { "name": "Francisco Xia", "role": { "pt": "Modelação de edifícios", "en": "Building modelling" }, "isMe": false },
+      { "name": "Maria Rendas", "role": { "pt": "Props e vegetação", "en": "Props and foliage" }, "isMe": false },
+      { "name": "Sofia Baptista", "role": { "pt": "Layout e composição final", "en": "Layout and final composition" }, "isMe": false }
+    ]
+  },
+  "category": "modeling",
+  "subcategories": ["environment", "prop"],
+  "roles": ["lookdev", "lighting", "rendering"],
+  "software": ["maya", "substance-painter", "photoshop"],
+  "summary": {
+    "pt": "Praça urbana estilizada com shading toon de dois tons e contornos por normal-outline. Fiz o look dev dos materiais e a iluminação; a modelação foi da equipa.",
+    "en": "A stylised urban square with two-tone toon shading and normal-based outlines. I did the material look dev and lighting; the modelling was the team's."
+  },
+  "body": {
+    "en": [
+      { "heading": "Brief and constraints", "text": "A group brief: build a readable urban environment with a flat, illustrative look. My scope was narrow and explicit — make the shading system and light the scene. I did not model the buildings, the props or the foliage." },
+      { "heading": "The problem", "text": "Two-tone toon shading collapses in a scene with many light sources: everything reads as one flat mass. I locked the scene to a single key light plus a coloured bounce, and pushed separation into the outline width instead of into the shading." }
+    ]
+  },
+  "cover": { "src": "/media/ambiente-toon-grupo/cover.jpg", "width": 1800, "height": 1200, "alt": { "pt": "Praça urbana em estilo toon, dois tons de amarelo e contornos escuros.", "en": "Toon-styled urban square in two shades of yellow with dark outlines." } },
+  "hero": { "src": "/media/ambiente-toon-grupo/hero.jpg", "width": 2560, "height": 1440, "alt": { "pt": "Plano largo da praça com sombras chapadas e céu liso.", "en": "Wide shot of the square with flat shadows and a plain sky." } },
+  "og": "/media/ambiente-toon-grupo/og.jpg",
+  "video": null,
+  "poster": null,
+  "specs": [
+    { "label": { "pt": "Objetos na cena", "en": "Objects in scene" }, "value": "312" },
+    { "label": { "pt": "Shading", "en": "Shading" }, "value": { "pt": "Toon de dois tons, contorno por normal", "en": "Two-tone toon, normal-based outline" } },
+    { "label": { "pt": "Fontes de luz", "en": "Light sources" }, "value": { "pt": "1 key + 1 bounce colorido", "en": "1 key + 1 coloured bounce" } }
+  ],
+  "breakdown": [
+    { "step": 1, "label": { "pt": "Sistema de shading toon", "en": "Toon shading system" }, "note": { "pt": "Ramp de dois tons com transição dura, e contorno em geometria invertida.", "en": "Two-tone ramp with a hard transition, and an inverted-hull outline." }, "media": [{ "type": "image", "src": "/media/ambiente-toon-grupo/process-01-shading.jpg", "width": 2000, "height": 1125, "alt": { "pt": "Esferas de teste a mostrar o ramp toon de dois tons e a espessura do contorno.", "en": "Test spheres showing the two-tone toon ramp and outline thickness." } }] },
+    { "step": 2, "label": { "pt": "Iluminação", "en": "Lighting" }, "note": { "pt": "Uma key light e um bounce violeta. A separação de planos vem da espessura do contorno, não do valor.", "en": "One key light and a violet bounce. Depth separation comes from outline thickness, not from value." }, "media": [{ "type": "image", "src": "/media/ambiente-toon-grupo/process-02-lighting.jpg", "width": 2000, "height": 1125, "alt": { "pt": "A mesma praça com e sem o bounce violeta.", "en": "The same square with and without the violet bounce." } }] }
+  ],
+  "gallery": [
+    { "type": "image", "src": "/media/ambiente-toon-grupo/gallery-01.jpg", "width": 2560, "height": 1440, "alt": { "pt": "Render final da praça ao nível do olhar, com personagens em silhueta.", "en": "Final eye-level render of the square with silhouetted figures." } },
+    { "type": "image", "src": "/media/ambiente-toon-grupo/gallery-02.jpg", "width": 2560, "height": 1440, "alt": { "pt": "Detalhe de um quiosque com contornos e sombra chapada.", "en": "Detail of a kiosk with outlines and flat shadow." } }
+  ],
+  "downloads": [],
+  "links": [],
+  "seo": {
+    "title": { "pt": "Praça Amarela — ambiente 3D com materiais toon", "en": "Praça Amarela — 3D environment with toon materials" },
+    "description": { "pt": "Look dev de materiais toon e iluminação num ambiente 3D estilizado. Projeto de grupo na Universidade Lusófona.", "en": "Toon material look dev and lighting in a stylised 3D environment. Group project at Universidade Lusófona." }
+  }
+}

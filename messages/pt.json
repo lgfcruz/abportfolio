@@ -1,0 +1,139 @@
+{
+  "nav": {
+    "home": "Início",
+    "work": "Trabalhos",
+    "showreel": "Showreel",
+    "about": "Sobre",
+    "contact": "Contacto",
+    "cv": "CV",
+    "menu": "Menu",
+    "closeMenu": "Fechar menu",
+    "skipToContent": "Saltar para o conteúdo principal",
+    "brandHome": "Arthur Brabo — página inicial"
+  },
+  "locale": {
+    "label": "Idioma",
+    "pt": "Português",
+    "en": "English",
+    "switchTo": "Mudar para {language}"
+  },
+  "home": {
+    "watchShowreel": "Ver showreel",
+    "viewWork": "Ver trabalhos",
+    "selectedWork": "Trabalhos selecionados",
+    "selectedWorkIntro": "Uma seleção curta. Cada peça diz o que fiz e o que não fiz.",
+    "allWork": "Ver todos os trabalhos",
+    "capabilities": "Competências",
+    "aboutHeading": "Sobre",
+    "aboutMore": "Mais sobre mim",
+    "contactHeading": "Falar comigo"
+  },
+  "work": {
+    "title": "Trabalhos",
+    "intro": "Projetos de animação 3D de personagem, criaturas, rigging e stop motion.",
+    "filterLegend": "Filtrar por categoria",
+    "all": "Todos",
+    "count": "{count, plural, =0 {Nenhum projeto} one {# projeto} other {# projetos}}",
+    "empty": "Ainda não há projetos nesta categoria.",
+    "hasVideo": "Inclui vídeo",
+    "viewProject": "Ver projeto"
+  },
+  "project": {
+    "backToWork": "Voltar aos trabalhos",
+    "overview": "Contexto",
+    "myRole": "O meu papel",
+    "role": "Papel",
+    "tools": "Ferramentas",
+    "year": "Ano",
+    "duration": "Duração",
+    "category": "Categoria",
+    "team": "Equipa",
+    "finalVideo": "Vídeo final",
+    "process": "Processo",
+    "specs": "Especificações",
+    "gallery": "Galeria",
+    "downloads": "Descarregar",
+    "links": "Noutros sítios",
+    "credits": "Créditos",
+    "next": "Projeto seguinte",
+    "previous": "Projeto anterior",
+    "individual": "Projeto individual",
+    "group": "Projeto de grupo",
+    "academic": "Projeto académico",
+    "step": "Etapa {n}",
+    "back": "Voltar"
+  },
+  "showreel": {
+    "title": "Showreel",
+    "watchOn": "Ver no {platform}",
+    "duration": "Duração",
+    "breakdownLink": "Ler o breakdown plano a plano",
+    "breakdownTitle": "Breakdown do showreel",
+    "breakdownIntro": "Uma alternativa textual ao reel: todos os planos, por ordem, com o software usado e o meu papel. Útil com leitor de ecrã, e útil para quem prefere ler a ver.",
+    "shot": "Plano",
+    "timecode": "Tempo",
+    "music": "Música",
+    "download": "Descarregar"
+  },
+  "about": {
+    "title": "Sobre",
+    "education": "Educação e formação",
+    "skills": "Competências",
+    "tools": "Software",
+    "languages": "Línguas",
+    "strengths": "Forma de trabalhar",
+    "downloadCv": "Descarregar CV (PDF)",
+    "present": "presente",
+    "exploringShort": "a explorar"
+  },
+  "contact": {
+    "title": "Contacto",
+    "intro": "A forma mais rápida de me contactar é por email. Respondo no prazo de um dia.",
+    "availableFor": "Disponível para",
+    "email": "Email",
+    "phone": "Telefone",
+    "location": "Localização",
+    "elsewhere": "Noutros sítios",
+    "copyEmail": "Copiar endereço de email",
+    "copied": "Copiado"
+  },
+  "cv": {
+    "title": "CV",
+    "intro": "O CV completo como página web, e em PDF para sistemas de candidatura.",
+    "downloadPt": "Descarregar CV em português (PDF)",
+    "downloadEn": "Descarregar CV em inglês (PDF)",
+    "updated": "Atualizado a {date}"
+  },
+  "privacy": {
+    "title": "Privacidade",
+    "intro": "O que este site guarda e porquê."
+  },
+  "media": {
+    "playVideo": "Reproduzir vídeo: {title}",
+    "playVideoDuration": "Reproduzir vídeo: {title}, {duration}",
+    "openImage": "Abrir imagem em tamanho real",
+    "closeLightbox": "Fechar",
+    "previousImage": "Imagem anterior",
+    "nextImage": "Imagem seguinte",
+    "imageOf": "Imagem {index} de {total}",
+    "loadingPlayer": "A carregar o reprodutor…",
+    "externalNote": "Reproduzir carrega conteúdo do {provider}.",
+    "galleryViewer": "Visualizador da galeria"
+  },
+  "notice": {
+    "onlyInEnglish": "Este texto está disponível apenas em inglês.",
+    "onlyInPortuguese": "Este texto está disponível apenas em português.",
+    "placeholderContent": "Conteúdo de exemplo — este site está a ser preenchido com trabalho real."
+  },
+  "footer": {
+    "rights": "© {year} {name}",
+    "builtWith": "Construído com Next.js. O conteúdo vive em JSON, não nos componentes.",
+    "privacy": "Privacidade",
+    "social": "Redes sociais"
+  },
+  "error": {
+    "notFoundTitle": "Página não encontrada",
+    "notFoundBody": "Essa página não existe, ou mudou de lugar.",
+    "backHome": "Voltar ao início"
+  }
+}
