@@ -21,6 +21,31 @@ import { readFileSync, writeFileSync, existsSync, readdirSync, openSync, readSyn
 import { join, basename } from 'node:path';
 
 const ROOT = process.cwd();
+
+/* ------------------------------------------------- ambiente: versao de Node */
+/**
+ * Falha alto e cedo se o build correr numa versao de Node errada.
+ *
+ * Contexto: este site foi criado em 2023 para um projeto Quasar e a UI do
+ * Netlify tinha uma versao antiga de Node gravada. Segundo os docs, o
+ * `.nvmrc` e o `NODE_VERSION` do netlify.toml sobrepoem a UI — mas "segundo os
+ * docs" nao e verificacao. Isto e: se a versao derivar, o build para com uma
+ * mensagem que diz exactamente o que se passa, em vez de falhar mais tarde de
+ * forma obscura ou de gerar um aviso de runtime que ninguem liga.
+ */
+const NODE_MIN_MAJOR = 22;
+const nodeMajor = Number(process.versions.node.split('.')[0]);
+if (Number.isNaN(nodeMajor) || nodeMajor < NODE_MIN_MAJOR) {
+  console.error(
+    `\n\x1b[31m✗ Node ${process.versions.node} — este projeto exige Node ${NODE_MIN_MAJOR} ou superior.\x1b[0m\n` +
+      `  Localmente: instala Node ${NODE_MIN_MAJOR} (o .nvmrc deste repo indica a versao).\n` +
+      `  No Netlify: confirma NODE_VERSION em netlify.toml e o .nvmrc. Ambos\n` +
+      `  sobrepoem a versao escolhida na UI; se ainda assim divergir, limpa a\n` +
+      `  cache em Deploys > Retry with clear cache, e verifica se existe uma\n` +
+      `  variavel AWS_LAMBDA_JS_RUNTIME antiga em Environment variables.\n`,
+  );
+  process.exit(1);
+}
 const FIX = process.argv.includes('--fix');
 const errors = [];
 const warnings = [];
@@ -370,7 +395,8 @@ for (const surface of ['dark', 'mid', 'light']) {
 
 const g = (s) => `\x1b[32m${s}\x1b[0m`, y = (s) => `\x1b[33m${s}\x1b[0m`, r = (s) => `\x1b[31m${s}\x1b[0m`, d = (s) => `\x1b[2m${s}\x1b[0m`;
 
-console.log(`\n${d('conteudo')}  ${files.length} ficheiros de projeto, ${published} publicados, ${seenImages.size} imagens verificadas`);
+console.log(`\n${d('ambiente')}  Node ${process.versions.node}, npm run validate`);
+console.log(`${d('conteudo')}  ${files.length} ficheiros de projeto, ${published} publicados, ${seenImages.size} imagens verificadas`);
 console.log(`${d('contraste')} ${contrast.filter(([, v, m]) => v >= m).length}/${contrast.length} pares passam AA`);
 for (const [label, v, m] of contrast) {
   console.log(`  ${v >= m ? g('ok  ') : r('FALHA')} ${String(v.toFixed(2)).padStart(6)}:1  (min ${m})  ${label}`);
