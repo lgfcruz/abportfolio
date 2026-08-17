@@ -5,7 +5,21 @@
   # "validate" corre antes do build: se o conteudo estiver invalido o deploy
   # falha e o deploy anterior mantem-se em producao.
   command = "npm run validate && npm run build"
-  # SEM "publish": o adaptador OpenNext do Netlify define o output.
+
+  # NAO REMOVER. ".next" e o publish directory documentado para o adaptador
+  # Next.js da Netlify (a deteccao automatica de framework sugere exactamente
+  # `next build` + `.next`).
+  #
+  # Tem de estar declarado AQUI e nao so na UI: este site foi criado para o
+  # projeto Quasar e a UI tinha "dist/spa" gravado. Sem esta linha, o
+  # netlify.toml nao sobrepoe esse valor obsoleto, o build passa e o deploy
+  # falha com "Deploy directory 'dist/spa' does not exist".
+  #
+  # Nao usar "out": esse seria o output de `output: 'export'`, que este projeto
+  # nao usa de proposito — quebraria o proxy de negociacao de idioma e a
+  # optimizacao do next/image.
+  publish = ".next"
+
   # SEM [[plugins]]: o adaptador e automatico e atualizado; fixa-lo e regressao.
 
 [build.environment]

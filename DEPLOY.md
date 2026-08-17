@@ -30,6 +30,16 @@ Fixado em **22**, em dois lugares que têm de concordar: `.nvmrc` e `[build.envi
 
 Se um dia o build começar a falhar sem nada ter mudado no código, a primeira hipótese é a Netlify ter mudado a imagem de build por omissão.
 
+## Erros já vistos, e a causa
+
+### `Deploy directory 'dist/spa' does not exist`
+
+O build passa, o deploy falha. `dist/spa` era o publish directory do Quasar, gravado na UI do Netlify em 2023.
+
+**Causa:** o `netlify.toml` só sobrepõe o que declara. Enquanto não declarava `publish`, o valor obsoleto da UI ganhava. Um campo omitido não é "deixado ao adaptador" — é deixado à UI.
+
+**Corrigido** com `publish = ".next"` no `netlify.toml`. Não remover essa linha, e não a trocar por `out` (esse seria o output de `output: 'export'`, que este projeto não usa).
+
 ## Reverter (rollback)
 
 **Instantâneo, sem passar pelo Git:**

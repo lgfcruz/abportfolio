@@ -119,7 +119,7 @@ Partir de `https://app.netlify.com/projects/arthurbrabo-portfolio`. Nada nesta s
   # "validate" = typecheck + verificação do frontmatter dos projetos.
   # Falha o deploy antes de gastar o build completo.
   command = "npm run validate && npm run build"
-  # SEM "publish": o adaptador OpenNext define o output. Não escrever ".next".
+  publish = ".next"   # OBRIGATÓRIO — ver a nota abaixo
 
 [build.environment]
   NODE_VERSION = "22"            # duplicar em .nvmrc para quem clona o repo localmente
@@ -177,9 +177,29 @@ Partir de `https://app.netlify.com/projects/arthurbrabo-portfolio`. Nada nesta s
 
 **Por que Report-Only primeiro:** uma CSP aplicada num site que embebe Vimeo, YouTube e um script de analytics custa uma tarde de depuração por cada integração nova. Em `Report-Only` o senhor vê as violações na consola do browser sem quebrar nada, e promove a aplicada quando estiver estável.
 
+### ⚠️ O `publish` TEM de estar no `netlify.toml` — erro confirmado em produção
+
+A primeira versão deste documento dizia *"SEM publish: o adaptador OpenNext define o output"*. **Está errado, e custou um deploy falhado.**
+
+O que aconteceu no primeiro deploy da reescrita: o build correu até ao fim, gerou as 32 páginas, e depois falhou com
+
+```
+Deploy did not succeed: Deploy directory 'dist/spa' does not exist
+```
+
+`dist/spa` era o publish directory do **Quasar**, gravado na UI quando o site foi criado em 2023. Como o `netlify.toml` não declarava `publish`, não havia nada a sobrepor esse valor — e a UI ganhou.
+
+**A regra real:** o `netlify.toml` só sobrepõe o que declara. Um campo omitido não é "deixado ao adaptador", é deixado ao que estiver na UI. Num site criado para outro framework, isso é uma mina.
+
+O valor correto é **`.next`**. É o que a deteção automática de framework da Netlify sugere para Next.js (`next build` + `.next`), e está documentado tanto nos docs da Netlify como do OpenNext.
+
+**Não usar `out`.** Esse é o output de `output: 'export'`, que este projeto não usa deliberadamente — o export estático quebraria o `proxy.ts` de negociação de idioma e a otimização do `next/image`.
+
+Com o `publish` no ficheiro, o campo da UI deixa de ser relevante. Limpá-lo é opcional e não faz mal.
+
 ### O que NÃO pôr no `netlify.toml`
 
-`publish`, `[functions] directory`, redirect SPA `/* → /index.html`, `Cache-Control` para `/_next/*`, `[[plugins]] @netlify/plugin-nextjs`, e configuração de ISR/revalidação. O adaptador OpenNext trata de tudo isso e é atualizado automaticamente — fixá-lo é uma regressão. Hosts remotos de imagem definem-se em `next.config.ts` (`images.remotePatterns`), não no `netlify.toml`.
+`[functions] directory`, redirect SPA `/* → /index.html`, `Cache-Control` para `/_next/*`, `[[plugins]] @netlify/plugin-nextjs`, e configuração de ISR/revalidação. O adaptador OpenNext trata de tudo isso e é atualizado automaticamente — fixá-lo é uma regressão. Hosts remotos de imagem definem-se em `next.config.ts` (`images.remotePatterns`), não no `netlify.toml`.
 
 ---
 
