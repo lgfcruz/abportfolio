@@ -18,6 +18,26 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   });
 }
 
+/**
+ * Nome GENERICO do fuso ("Hora da Europa Ocidental"), nao o offset.
+ *
+ * `shortOffset` daria "GMT+1" em agosto e "GMT+0" em janeiro — e como a pagina
+ * e pre-renderizada, ficaria congelado no valor da altura do build. Mesmo tipo
+ * de erro que o ano do rodape tirado de `new Date()`. O nome generico e correcto
+ * todo o ano.
+ */
+function timeZoneLabel(timeZone: string, locale: Locale): string {
+  try {
+    return (
+      new Intl.DateTimeFormat(locale === 'pt' ? 'pt-PT' : 'en-GB', { timeZone, timeZoneName: 'longGeneric' })
+        .formatToParts(new Date())
+        .find((part) => part.type === 'timeZoneName')?.value ?? timeZone
+    );
+  } catch {
+    return timeZone;
+  }
+}
+
 export default async function ContactPage({ params }: Props) {
   const { locale } = await params;
   setRequestLocale(locale);
@@ -56,7 +76,7 @@ export default async function ContactPage({ params }: Props) {
           {/* Sem iframe de mapa: nao acrescenta nada e transfere IP para a
               Google, exigindo consentimento previo. */}
           <p className="text-(--color-fg-2)">
-            {text(site.author.location, locale)} · UTC+1
+            {text(site.author.location, locale)} · {timeZoneLabel(site.author.timezone, locale)}
           </p>
 
           {socials.length > 0 ? (

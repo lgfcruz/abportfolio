@@ -157,7 +157,13 @@ Ninguém, em Lisboa ou em Londres, penaliza um breakdown técnico em inglês. Um
 
 **Não usar `output: 'export'`.** Export estático é incompatível com `proxy.ts` (não corre), com a otimização do `next/image`, e com a deteção de locale — perderíamos exatamente o requisito pedido.
 
-**Usar o output por defeito + o adaptador OpenNext do Netlify** (automático; **não** fixar `@netlify/plugin-nextjs`). Todas as páginas são pré-renderizadas no build — SSG puro na prática, porque não há dados dinâmicos — e o Netlify serve-as do Full Route Cache com cache durável.
+**Usar o output por defeito + o adaptador Next.js do Netlify.** Todas as páginas são pré-renderizadas no build — SSG puro na prática, porque não há dados dinâmicos — e o Netlify serve-as do Full Route Cache com cache durável.
+
+> **O adaptador é declarado explicitamente**, com `@netlify/plugin-nextjs` em `dependencies` e um bloco `[[plugins]]` no `netlify.toml`.
+>
+> A documentação da Netlify recomenda o contrário — deixar a deteção automática de framework instalá-lo, sem fixar a versão. **Neste site a deteção não funciona,** porque foi criado em 2023 para um projeto Quasar. O sintoma foi um deploy que dizia "published" e devolvia 404 em todas as rotas: o `next build` corria, e o que ficava publicado era o conteúdo cru de `.next` como ficheiros estáticos, sem um único HTML, sem funções e sem edge functions.
+>
+> Contrapartida: perdem-se as atualizações automáticas do adaptador. A reavaliar a cada major do Next.js — se a deteção passar a funcionar, remover o bloco `[[plugins]]` e o pacote.
 
 **Ganha-se:** a função de proxy (negociação de idioma), o Netlify Image CDN via `next/image`, headers e skew protection.
 **Perde-se:** um único salto de função na raiz, e a impossibilidade de servir o site de um bucket estático simples.
@@ -170,83 +176,39 @@ O `netlify.toml` completo está em `01_AUDITORIA_DEPLOY_NETLIFY.md`, secção 5.
 
 ## 4. Modelo de conteúdo
 
-> **⚠️ Esta secção foi substituída na implementação.** O cliente pediu explicitamente **JSON**, não MDX, e o que está construído é JSON. O guia real é `04_GUIA_DE_CONTEUDO.md`; o que se segue fica como registo da alternativa considerada.
->
-> **O que está implementado:** um ficheiro `.json` por projeto em `content/projects/`, mais `site.json`, `taxonomy.json`, `showreel.json` e `about.json`. Validado por `scripts/validate.mjs` — **sem dependências**, propositadamente, para poder ser corrido dentro de dois anos. O Zod foi dispensado: o validador escrito à mão dá mensagens de erro em português que dizem o ficheiro, o campo e a correção, o que serve melhor um dono não-programador do que um stack trace de esquema.
->
-> A taxonomia (categorias, subcategorias, papéis, software) vive num único ficheiro e os projetos referenciam slugs. O validador recusa um slug que não exista, o que impede rótulos inconsistentes e garante que tudo aparece traduzido nos dois idiomas sem ser escrito duas vezes.
+**Um ficheiro `.json` por projeto** em `content/projects/`, mais `site.json`, `taxonomy.json`, `showreel.json` e `about.json`. O guia de utilização está em `04_GUIA_DE_CONTEUDO.md`.
 
-### Alternativa considerada (não implementada)
-
-**Um ficheiro MDX por projeto + uma pasta de imagens com o mesmo slug.** Frontmatter validado por um esquema Zod mínimo (~40 linhas) que corre no build.
-
-O critério que decidiu isto não foi elegância. Foi este teste:
+A escolha foi JSON, não MDX. O critério não foi elegância, foi este teste:
 
 > **O Arthur consegue acrescentar um projeto sozinho, num sábado, dentro de dois anos, sem se lembrar de nenhum comando?**
 
-Se a resposta exigir um script gerador, um JSON Schema e um editor configurado, a arquitetura está errada — e o portfólio dele passou a ser propriedade operacional de outra pessoa. Arrastar ficheiros para uma pasta e escrever texto num `.mdx` passa o teste.
+Se a resposta exigisse um gerador de scaffolding, um JSON Schema e um editor configurado, a arquitetura estaria errada — e o portfólio dele passaria a ser propriedade operacional de outra pessoa. Copiar um ficheiro, mudar o slug e escrever texto passa o teste.
 
-```
-content/projects/
-  criatura-quadrupede.mdx
-  personagem-humanoide.mdx
-public/media/
-  criatura-quadrupede/
-    cover.jpg  hero.jpg  og.jpg
-    process-01-concept.jpg  process-02-topology.jpg  ...
-```
+**Zod e sharp foram dispensados.** O `scripts/validate.mjs` não tem dependências: lê as dimensões reais de JPEG e PNG interpretando os cabeçalhos, e valida a estrutura à mão, com mensagens em português que dizem o ficheiro, o campo e a correção. Isso serve melhor um dono não-programador do que um stack trace de esquema — e é uma coisa a menos a envelhecer.
 
-### Frontmatter
+**A taxonomia é referenciada, não repetida.** Categorias, subcategorias, papéis e software vivem em `taxonomy.json`; os projetos referenciam slugs. O validador recusa um slug inexistente, o que impede rótulos inconsistentes e garante tradução nos dois idiomas sem escrever nada duas vezes.
 
-```yaml
----
-slug: criatura-quadrupede
-status: published                 # published | draft
-title: "Nome da criatura"          # não traduz
-year: 2025
-order: 1
-featured: true
-surface: dark                      # dark | mid | light  (ver secção 6)
-context: individual                # individual | grupo
-team: "Equipa de 4"                # opcional
-duration: "6 semanas"
-institution: "Universidade Lusófona"
-role: [modeling, uv, texturing, rigging, animation]   # enum, traduzido na UI
-software: ["Autodesk Maya", "Substance 3D Painter", "Arnold"]
-summary:
-  pt: "Criatura quadrúpede não humanoide, do concept ao ciclo de locomoção."
-  en: "Non-humanoid quadruped creature, from concept to locomotion cycle."
-cover: {src: cover.jpg, w: 1800, h: 1200, alt: {pt: "...", en: "..."}}
-hero:  {src: hero.jpg,  w: 2560, h: 1440, alt: {pt: "...", en: "..."}}
-og:    og.jpg
-video: {provider: vimeo, id: "000000000"}
-poster: {src: poster.jpg, w: 1920, h: 1080}
-specs:
-  tris: "42k"
-  maps: "4K albedo, roughness, normal, height"
-  rig: "58 controlos, 6 blendshapes"
-links:
-  - {kind: artstation, url: "https://..."}
----
-```
+### Todo o campo declarado tem de fazer algo
 
-O corpo do MDX é Markdown normal — sem componentes React — com as secções: **Contexto → O meu papel → Vídeo final → O problema e a decisão → Processo → Especificações → O que faria diferente**.
+Um campo que nenhum componente lê é uma pergunta que o Arthur vai fazer dentro de dois anos. Sete campos foram removidos ou ligados nessa revisão: `author.timezone`, `cv.*.sizeKb` e `showreel.mirrors` passaram a ser usados; `seo.twitterHandle`, `downloads[].host`, `links[].kind` e `project.author` foram apagados.
+
+A exceção documentada é `showreel.captions`: o `.vtt` existe para ser **carregado no Vimeo e no YouTube**, não para o site — não se anexam legendas a um iframe de terceiros. O `$comment` no JSON diz isso, e o `validate` confirma que o ficheiro existe.
 
 ### Validação em build (`npm run validate`)
 
 Corre antes do `next build` no `netlify.toml`. Falha (exit 1) se:
 
-1. O frontmatter não passar o esquema Zod (erros formatados com `z.prettifyError`)
-2. Existirem slugs duplicados
-3. Uma imagem referenciada não existir em disco, ou as dimensões declaradas não baterem com o ficheiro real (`sharp.metadata()`), com `--fix` para reescrever
-4. Um projeto `published` não tiver `cover`, `summary` em pelo menos um idioma, ou `poster` quando tem vídeo
-5. Uma chave em `messages/pt.json` não existir em `messages/en.json`, ou vice-versa
+1. Faltar uma lista obrigatória (`gallery`, `breakdown`, `specs`…) ou uma chave estrutural — apagar `"gallery": []` dava antes um `TypeError` no log da Netlify
+2. Existirem slugs duplicados, ou o slug não corresponder ao nome do ficheiro
+3. Uma categoria, subcategoria, papel ou software não existir na taxonomia
+4. Uma imagem referenciada não existir em disco, ou as dimensões declaradas não baterem com o ficheiro real (`--fix` reescreve-as)
+5. Um projeto publicado não tiver `cover`, `summary`, ou `poster` quando tem vídeo — um vídeo sem poster não aparecia no site, em silêncio
+6. Um URL não começar por `https://` ou `/` (bloqueia `javascript:`)
+7. Faltar uma chave em `messages/pt.json` ou `messages/en.json`
+8. Um dos 25 pares de contraste das três superfícies descer abaixo de AA
+9. O Node do build for inferior a 22
 
-Avisa, mas não falha, quando falta uma tradução opcional.
-
-Se o `validate` falhar, o deploy da Netlify falha e **o deploy anterior mantém-se em produção**.
-
----
+Avisa, sem falhar, sobre traduções em falta e sobre itens marcados `"placeholder": true`.
 
 ## 5. Estrutura de diretórios
 
@@ -639,7 +601,7 @@ Não obfuscar o email com JS (quebra leitores de ecrã e copy-paste). Mitigar sp
 
 1. **O matcher do `proxy.ts` cobrir apenas `/` significa que o cookie deixa de ser escrito pelo `next-intl`.** Se alguém o alargar "para o cookie funcionar", mata o cache de HTML no CDN. *Mitigação:* comentário explícito no ficheiro, seletor a escrever o cookie via Server Action, e smoke test a verificar `Cache-Status: hit` em `/pt/work`.
 2. **`proxy.ts` vs. `middleware.ts`.** O ficheiro foi renomeado no Next 16; o nome antigo está deprecado e emite aviso, mas ainda funciona — o que torna fácil ficar num caminho de migração incompleto. *Mitigação:* documentar em `DEPLOY.md`; o smoke test verifica que `/` redireciona.
-3. **Netlify + major do Next.js.** O adaptador é testado a cada release, mas o histórico de i18n + middleware na Netlify tem arestas (a ordem de headers e redirects difere do standalone). *Mitigação:* não fixar o adaptador; testar em Deploy Preview antes de merge; manter o site funcional mesmo se o proxy falhar — a raiz também tem links visíveis para `/pt` e `/en`.
+3. **Netlify + major do Next.js.** O adaptador está **fixado** neste projeto (a deteção automática não funciona neste site — ver secção 3), o que significa que uma atualização do Next.js pode passar à frente do adaptador. *Mitigação:* ao subir de major do Next.js, subir também `@netlify/plugin-nextjs` no mesmo PR; testar em Deploy Preview antes de merge; manter o site funcional mesmo se o proxy falhar — a raiz tem links visíveis para `/pt` e `/en`.
 4. **Fallback bilíngue degenera em site meio-inglês.** *Mitigação:* a decisão de conteúdo (secção 2) já resolve isto por desenho — breakdowns longos são monolíngues EN por regra, não por acidente. O `validate` lista o que falta no fim do build.
 5. **Cache Components e o fim do modelo atual.** O Next 16 move-se para caching explícito (`use cache`); um site 100% estático não é afetado hoje. *Mitigação:* zero dependências de caching implícito, `npx @next/codemod upgrade` a cada major, e um `CHANGELOG.md` de decisões para explicar porque é que o matcher é `['/']`.
 6. **Abandono.** É o risco mais provável de todos, e não é técnico. Tratado na secção 3 do `00_PLANO_MESTRE_v2.md`.

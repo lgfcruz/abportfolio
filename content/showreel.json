@@ -1,7 +1,10 @@
 {
   "$comment": "Showreel. O ID do video vive AQUI, nunca num componente — trocar o reel é editar este ficheiro.",
   "status": "placeholder",
-  "title": { "pt": "Showreel 2026", "en": "Showreel 2026" },
+  "title": {
+    "pt": "Showreel 2026",
+    "en": "Showreel 2026"
+  },
   "year": 2026,
   "date": "2026-06-15",
   "durationSeconds": 65,
@@ -10,9 +13,18 @@
     "pt": "Animação 3D de personagem e criaturas, rigging e stop motion. Maya, Substance 3D Painter e Dragonframe.",
     "en": "3D character and creature animation, rigging and stop motion. Maya, Substance 3D Painter and Dragonframe."
   },
-  "primary": { "provider": "youtube", "id": "7z615xAKMTY" },
+  "primary": {
+    "provider": "youtube",
+    "id": "7z615xAKMTY"
+  },
   "mirrors": [
-    { "provider": "vimeo", "id": "000000000", "label": "Vimeo", "placeholder": true, "note": "Exigido pelo regulamento DCAM, art. 9.o" }
+    {
+      "provider": "vimeo",
+      "id": "000000000",
+      "label": "Vimeo",
+      "placeholder": true,
+      "note": "Exigido pelo regulamento DCAM, art. 9.o"
+    }
   ],
   "poster": {
     "src": "/media/showreel/poster.jpg",
@@ -23,21 +35,104 @@
       "en": "Opening frame of the showreel: a backlit quadruped creature."
     }
   },
-  "music": { "title": "—", "artist": "—", "licence": "royalty-free", "placeholder": true },
-  "captions": { "src": "/media/showreel/showreel-2026.vtt", "placeholder": true },
+  "music": {
+    "title": "—",
+    "artist": "—",
+    "licence": "royalty-free",
+    "placeholder": true
+  },
+  "captions": {
+    "$comment": "Ficheiro .vtt para CARREGAR no Vimeo e no YouTube. Nao e usado pelo site: nao se anexam legendas a um iframe de terceiros. O validate confirma que existe.",
+    "src": "/media/showreel/showreel-2026.vtt",
+    "placeholder": true
+  },
   "download": {
     "url": "https://drive.google.com/file/d/1MOCK-showreel-2026-1080p/view?usp=sharing",
-    "label": { "pt": "Descarregar showreel (1080p, MP4)", "en": "Download showreel (1080p, MP4)" },
+    "label": {
+      "pt": "Descarregar showreel (1080p, MP4)",
+      "en": "Download showreel (1080p, MP4)"
+    },
     "sizeMb": 148,
     "placeholder": true
   },
   "shots": [
-    { "at": 0, "label": { "pt": "Cartela de abertura", "en": "Opening title card" }, "project": null, "roles": [] },
-    { "at": 3, "label": { "pt": "Criatura quadrúpede — ciclo de locomoção", "en": "Quadruped creature — locomotion cycle" }, "project": "criatura-quadrupede", "roles": ["animation", "rigging"] },
-    { "at": 15, "label": { "pt": "Criatura quadrúpede — turntable com wireframe", "en": "Quadruped creature — turntable with wireframe" }, "project": "criatura-quadrupede", "roles": ["modeling", "uv", "texturing"] },
-    { "at": 28, "label": { "pt": "Personagem humanoide — turntable e passes de textura", "en": "Humanoid character — turntable and texture passes" }, "project": "personagem-humanoide", "roles": ["modeling", "texturing"] },
-    { "at": 40, "label": { "pt": "Rig facial em deformação", "en": "Facial rig deforming" }, "project": "rig-facial-modular", "roles": ["rigging"] },
-    { "at": 48, "label": { "pt": "Stop motion — plano de mesa em Dragonframe", "en": "Stop motion — tabletop shot in Dragonframe" }, "project": "stop-motion-oficina", "roles": ["animation", "puppet-fabrication"] },
-    { "at": 58, "label": { "pt": "Cartela final e contactos", "en": "End card and contact details" }, "project": null, "roles": [] }
+    {
+      "at": 0,
+      "label": {
+        "pt": "Cartela de abertura",
+        "en": "Opening title card"
+      },
+      "project": null,
+      "roles": []
+    },
+    {
+      "at": 3,
+      "label": {
+        "pt": "Criatura quadrúpede — ciclo de locomoção",
+        "en": "Quadruped creature — locomotion cycle"
+      },
+      "project": "criatura-quadrupede",
+      "roles": [
+        "animation",
+        "rigging"
+      ]
+    },
+    {
+      "at": 15,
+      "label": {
+        "pt": "Criatura quadrúpede — turntable com wireframe",
+        "en": "Quadruped creature — turntable with wireframe"
+      },
+      "project": "criatura-quadrupede",
+      "roles": [
+        "modeling",
+        "uv",
+        "texturing"
+      ]
+    },
+    {
+      "at": 28,
+      "label": {
+        "pt": "Personagem humanoide — turntable e passes de textura",
+        "en": "Humanoid character — turntable and texture passes"
+      },
+      "project": "personagem-humanoide",
+      "roles": [
+        "modeling",
+        "texturing"
+      ]
+    },
+    {
+      "at": 40,
+      "label": {
+        "pt": "Rig facial em deformação",
+        "en": "Facial rig deforming"
+      },
+      "project": "rig-facial-modular",
+      "roles": [
+        "rigging"
+      ]
+    },
+    {
+      "at": 48,
+      "label": {
+        "pt": "Stop motion — plano de mesa em Dragonframe",
+        "en": "Stop motion — tabletop shot in Dragonframe"
+      },
+      "project": "stop-motion-oficina",
+      "roles": [
+        "animation",
+        "puppet-fabrication"
+      ]
+    },
+    {
+      "at": 58,
+      "label": {
+        "pt": "Cartela final e contactos",
+        "en": "End card and contact details"
+      },
+      "project": null,
+      "roles": []
+    }
   ]
 }

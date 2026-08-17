@@ -77,7 +77,7 @@ Partir de `https://app.netlify.com/projects/arthurbrabo-portfolio`. Nada nesta s
 | 6 | *Dependency management* | Versão de Node selecionada | Versão suportada | Versão fora de suporte |
 | 7 | *Build image selection* | Imagem de build | Imagem atual | Ubuntu Focal / Xenial |
 | 8 | *Environment variables* | Nomes (não valores) | Nenhuma, ou só `NODE_VERSION` | Chaves de API — verificar se ainda são válidas e se estão *scoped* |
-| 9 | *Build plugins* / *Extensions* | Plugins instalados | Nenhum | `@netlify/plugin-nextjs` fixado, ou plugins de runtime antigo |
+| 9 | *Build plugins* / *Extensions* | Plugins instalados | Nenhum instalado pela UI — o adaptador Next.js é declarado no `netlify.toml` (ver secção 5) | Plugins de runtime antigo, ou um `@netlify/plugin-nextjs` instalado pela UI a duplicar o do `netlify.toml` |
 | 10 | *Deploys → Auto publishing* | Estado da publicação automática | Ativo | "Locked to a specific deploy" / *Stopped* — explica um site congelado |
 | 11 | *Project configuration → Notifications* | Notificações configuradas | **Deploy failed → email** | Lista vazia |
 | 12 | *Domain management* | Domínio primário, `www`, HTTPS | Certificado Let's Encrypt válido, *Force HTTPS* ativo | "Awaiting external DNS"; certificado a expirar |
@@ -197,9 +197,38 @@ O valor correto é **`.next`**. É o que a deteção automática de framework da
 
 Com o `publish` no ficheiro, o campo da UI deixa de ser relevante. Limpá-lo é opcional e não faz mal.
 
+### ⚠️ O adaptador Next.js também tem de estar declarado — segundo erro confirmado em produção
+
+Depois de corrigir o `publish`, o deploy passou a dizer "published" e o site devolvia **404 em todas as rotas**.
+
+O *Deploy file browser* mostrou a causa: o que estava publicado era o conteúdo **cru** de `.next` como ficheiros estáticos — `build/`, `cache/`, `server/`, `types/`, `trace`, `required-server-files.json`. Vinte e três entradas, 542 ficheiros, 61,7 MB, e nem um único HTML. Nenhuma função, nenhuma edge function.
+
+Ou seja: o `next build` corria, e depois ninguém transformava o resultado em infraestrutura. **O adaptador Next.js não estava a correr.**
+
+Não era o `netlify.toml` — confirmei que o template oficial (`netlify-templates/next-platform-starter`) declara exatamente `publish = ".next"` e `command`, e nada mais. E o `next` está em `dependencies`, como a deteção exige.
+
+A causa é a **deteção automática de framework não instalar o adaptador neste site**, criado em 2023 para o Quasar. Correção:
+
+```bash
+npm install @netlify/plugin-nextjs
+```
+
+```toml
+[[plugins]]
+  package = "@netlify/plugin-nextjs"
+```
+
+Fica em `dependencies` e não em `devDependencies` de propósito: se alguém definir `NODE_ENV=production`, as devDependencies não são instaladas e o site voltaria ao 404.
+
+**Contrapartida:** fixar o adaptador faz perder as suas atualizações automáticas, contra a recomendação da Netlify. Mas aqui não havia atualizações a perder — o adaptador não corria. A reavaliar a cada major do Next.js.
+
+> **Nota de segurança:** enquanto o `.next` cru esteve publicado, ficaram publicamente acessíveis `/server` (15 MB de bundles do servidor), `/cache` (48 MB) e os manifestos de rotas, no URL do branch deploy. Produção não foi afetada. Vale apagar esse deploy no painel depois de o novo passar.
+
 ### O que NÃO pôr no `netlify.toml`
 
-`[functions] directory`, redirect SPA `/* → /index.html`, `Cache-Control` para `/_next/*`, `[[plugins]] @netlify/plugin-nextjs`, e configuração de ISR/revalidação. O adaptador OpenNext trata de tudo isso e é atualizado automaticamente — fixá-lo é uma regressão. Hosts remotos de imagem definem-se em `next.config.ts` (`images.remotePatterns`), não no `netlify.toml`.
+`[functions] directory`, redirect SPA `/* → /index.html`, `Cache-Control` para `/_next/*`, e configuração de ISR/revalidação — o adaptador trata disso. Hosts remotos de imagem definem-se em `next.config.ts` (`images.remotePatterns`), não no `netlify.toml`.
+
+E **nunca** o redirect `/* → /index.html` com status 200 que aparece nos fóruns: é conselho para SPAs e neste site quebraria o proxy de idioma, o SSR e o 404 real.
 
 ---
 

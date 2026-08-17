@@ -16,7 +16,6 @@
     "pt": "5 semanas",
     "en": "5 weeks"
   },
-  "author": "Arthur Brabo da Silva Cruz",
   "context": "individual",
   "institution": "Universidade Lusófona",
   "team": null,
@@ -231,14 +230,12 @@
         "en": "Character sheet PDF"
       },
       "url": "https://drive.google.com/file/d/1MOCK-sela-charactersheet/view?usp=sharing",
-      "host": "drive",
       "sizeMb": 8,
       "placeholder": true
     }
   ],
   "links": [
     {
-      "kind": "artstation",
       "label": "ArtStation",
       "url": "https://www.artstation.com/artwork/MOCK-sela",
       "placeholder": true
