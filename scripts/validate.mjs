@@ -323,30 +323,47 @@ const ratio = (a, b) => {
   return (l1 + 0.05) / (l2 + 0.05);
 };
 
-// [nome, fg, bg, minimo]. 4.5 = texto normal AA; 3 = texto grande / componente.
-const PAIRS = [
-  ['fg / bg', 'fg', 'bg', 4.5],
-  ['fg / surface', 'fg', 'surface', 4.5],
-  ['fg / surface-up', 'fg', 'surface-up', 4.5],
-  ['fg-2 / bg', 'fg-2', 'bg', 4.5],
-  ['fg-2 / surface-up', 'fg-2', 'surface-up', 4.5],
-  ['fg-muted / bg', 'fg-muted', 'bg', 4.5],
-  ['fg-muted / surface-up', 'fg-muted', 'surface-up', 4.5],
-  ['accent / bg', 'accent', 'bg', 4.5],
-  ['accent / surface-up', 'accent', 'surface-up', 4.5],
-  ['accent-on / accent (texto sobre o laranja)', 'accent-on', 'accent', 4.5],
-  ['light-fg / light-bg', 'light-fg', 'light-bg', 4.5],
-  ['accent-dim / light-bg', 'accent-dim', 'light-bg', 4.5],
-  ['border-strong / bg (componentes)', 'border-strong', 'bg', 3],
-  ['border-strong / surface-up (componentes)', 'border-strong', 'surface-up', 3],
-];
+// Resolve um token dentro de um bloco [data-surface='x'] { ... }, seguindo
+// var(--color-y) ate um valor hexadecimal.
+function surfaceToken(surface, name) {
+  const block = css.match(new RegExp(`\\[data-surface='${surface}'\\]\\s*\\{([^}]*)\\}`, 's'))?.[1];
+  if (!block) return null;
+  const raw = block.match(new RegExp(`--surface-${name}:\\s*([^;]+);`))?.[1]?.trim();
+  if (!raw) return null;
+  if (raw.startsWith('#')) return raw.length === 7 ? raw : null;
+  const ref = raw.match(/var\(\s*(--color-[\w-]+)\s*\)/)?.[1];
+  if (!ref) return null; // rgb(...) com alfa: nao comparavel, ignora-se
+  return css.match(new RegExp(`${ref}:\\s*(#[0-9a-fA-F]{6})`))?.[1] ?? null;
+}
+
 const contrast = [];
-for (const [label, fg, bg, min] of PAIRS) {
-  const a = tok(fg), b = tok(bg);
-  if (!a || !b) { err('globals.css', `token nao encontrado: --color-${!a ? fg : bg}`); continue; }
-  const r = ratio(a, b);
+function pair(label, fg, bg, min) {
+  if (!fg || !bg) { err('globals.css', `token nao encontrado em "${label}"`); return; }
+  const r = ratio(fg, bg);
   contrast.push([label, r, min]);
   if (r < min) err('globals.css', `contraste insuficiente em ${label}: ${r.toFixed(2)}:1 (minimo ${min}:1)`);
+}
+
+// Paleta global
+for (const [label, fg, bg, min] of [
+  ['fg / bg', 'fg', 'bg', 4.5],
+  ['fg / surface', 'fg', 'surface', 4.5],
+  ['fg-2 / bg', 'fg-2', 'bg', 4.5],
+  ['fg-muted / bg', 'fg-muted', 'bg', 4.5],
+  ['accent / bg', 'accent', 'bg', 4.5],
+  ['accent-on / accent (texto sobre o laranja)', 'accent-on', 'accent', 4.5],
+  ['border-strong / bg (componentes)', 'border-strong', 'bg', 3],
+]) pair(label, tok(fg), tok(bg), min);
+
+// AS TRES SUPERFICIES, com o conjunto COMPLETO de tokens. Foi esta verificacao
+// que faltava: a superficie clara herdava tokens escuros e dava 1,05:1 no
+// texto primario e 2,80:1 nos metadados, sem nada a acusar.
+for (const surface of ['dark', 'mid', 'light']) {
+  const bg = surfaceToken(surface, 'bg');
+  for (const [name, min] of [['fg', 4.5], ['fg-2', 4.5], ['fg-muted', 4.5], ['accent', 4.5], ['border-strong', 3]]) {
+    pair(`[${surface}] ${name}`, surfaceToken(surface, name), bg, min);
+  }
+  pair(`[${surface}] accent-on / accent (texto sobre o realce)`, surfaceToken(surface, 'accent-on'), surfaceToken(surface, 'accent'), 4.5);
 }
 
 /* ----------------------------------------------------------------------- saida */

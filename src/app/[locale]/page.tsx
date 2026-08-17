@@ -88,7 +88,7 @@ export default async function HomePage({ params }: Props) {
           <p className="meta">
             {text(showreel.title, locale)} · {humanDuration(showreel.durationSeconds, locale)}
           </p>
-          <Link href="/showreel/breakdown" className="text-sm text-(--color-accent) underline underline-offset-4">
+          <Link href="/showreel/breakdown" className="link-target text-sm text-(--color-accent) underline underline-offset-4">
             {ts('breakdownLink')}
           </Link>
         </div>
@@ -99,7 +99,7 @@ export default async function HomePage({ params }: Props) {
         <SectionHeading
           eyebrow={t('selectedWork')}
           action={
-            <Link href="/work" className="text-sm text-(--color-accent) underline underline-offset-4">
+            <Link href="/work" className="link-target text-sm text-(--color-accent) underline underline-offset-4">
               {t('allWork')}
             </Link>
           }
@@ -159,7 +159,7 @@ export default async function HomePage({ params }: Props) {
             ))}
             <Link
               href="/about"
-              className="mt-4 inline-block text-sm text-(--color-accent) underline underline-offset-4"
+              className="link-target mt-4 text-sm text-(--color-accent) underline underline-offset-4"
             >
               {t('aboutMore')}
             </Link>

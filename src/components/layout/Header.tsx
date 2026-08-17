@@ -18,7 +18,11 @@ export async function Header({ locale }: { locale: Locale }) {
   return (
     <header className="sticky top-0 z-40 border-b border-(--color-border) bg-(--color-bg)/85 backdrop-blur-md">
       <div className="container-page flex h-16 items-center justify-between gap-4">
-        <Link href="/" aria-label={t('brandHome')} className="font-display text-sm tracking-tight uppercase md:text-base">
+        <Link
+          href="/"
+          aria-label={t('brandHome')}
+          className="link-target font-display text-sm tracking-tight uppercase md:text-base"
+        >
           {site.author.shortName}
         </Link>
         <div className="flex items-center gap-2 md:gap-4">

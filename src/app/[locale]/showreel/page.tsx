@@ -62,10 +62,10 @@ export default async function ShowreelPage({ params }: Props) {
       {/* Alternativa textual imediatamente sob o video: cumpre WCAG 1.2.3 e e
           conteudo indexavel e legivel por recrutadores. Dois coelhos. */}
       <div className="mt-6 flex flex-wrap items-center gap-x-6 gap-y-3">
-        <Link href="/showreel/breakdown" className="text-(--color-accent) underline underline-offset-4">
+        <Link href="/showreel/breakdown" className="link-target text-(--color-accent) underline underline-offset-4">
           {t('breakdownLink')}
         </Link>
-        <a href={watchUrl} target="_blank" rel="noopener noreferrer" className="text-sm text-(--color-fg-2) underline underline-offset-4">
+        <a href={watchUrl} target="_blank" rel="noopener noreferrer" className="link-target text-sm text-(--color-fg-2) underline underline-offset-4">
           {t('watchOn', { platform })}
         </a>
         {showreel.download ? (
@@ -73,7 +73,7 @@ export default async function ShowreelPage({ params }: Props) {
             href={showreel.download.url}
             target="_blank"
             rel="noopener noreferrer"
-            className="text-sm text-(--color-fg-2) underline underline-offset-4"
+            className="link-target text-sm text-(--color-fg-2) underline underline-offset-4"
           >
             {text(showreel.download.label, locale)}
           </a>

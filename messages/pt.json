@@ -60,7 +60,8 @@
     "individual": "Projeto individual",
     "group": "Projeto de grupo",
     "academic": "Projeto académico",
-    "step": "Etapa {n}"
+    "step": "Etapa {n}",
+    "back": "Voltar"
   },
   "showreel": {
     "title": "Showreel",

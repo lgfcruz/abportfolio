@@ -26,7 +26,7 @@ export default async function BreakdownPage({ params }: Props) {
 
   return (
     <div className="container-page py-16 md:py-24">
-      <Link href="/showreel" className="meta inline-flex min-h-11 items-center">
+      <Link href="/showreel" className="meta link-target">
         ← {t('title')}
       </Link>
       <h1 className="mt-4 text-4xl md:text-5xl">{t('breakdownTitle')}</h1>
@@ -46,7 +46,7 @@ export default async function BreakdownPage({ params }: Props) {
                   <p>{shot.roles.map((r) => roleLabel(r, locale)).join(' · ')}</p>
                 ) : null}
                 {project ? (
-                  <Link href={`/work/${project.slug}`} className="text-(--color-accent) underline underline-offset-4">
+                  <Link href={`/work/${project.slug}`} className="link-target text-(--color-accent) underline underline-offset-4">
                     {project.title}
                   </Link>
                 ) : null}

@@ -16,7 +16,7 @@ export async function Footer({ locale }: { locale: Locale }) {
             <p className="mt-1 text-sm text-(--color-fg-2)">{text(site.author.location, locale)}</p>
             <a
               href={`mailto:${site.author.email}`}
-              className="mt-3 inline-block text-sm text-(--color-accent) underline decoration-(--color-accent)/40 underline-offset-4 hover:decoration-(--color-accent)"
+              className="link-target mt-3 text-sm text-(--color-accent) underline decoration-(--color-accent)/40 underline-offset-4 hover:decoration-(--color-accent)"
             >
               {site.author.email}
             </a>
@@ -43,7 +43,7 @@ export async function Footer({ locale }: { locale: Locale }) {
           {/* launchYear vem do JSON: `new Date()` numa pagina estatica congelaria
               no ano do build e diria 2026 em 2028. */}
           <p>{t('rights', { year: site.site.launchYear, name: site.author.name })}</p>
-          <Link href="/privacy" className="hover:text-(--color-fg-2)">
+          <Link href="/privacy" className="link-target self-start hover:text-(--color-fg-2)">
             {t('privacy')}
           </Link>
         </div>

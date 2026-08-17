@@ -31,37 +31,59 @@
   --spacing-section: 7rem;
 }
 
-/* Superficie por projeto: o involucro e sempre escuro, cada pagina de projeto
-   herda a luz que a obra pede. Os tres pares texto/fundo passam AAA. */
+/* ---------------------------------------------------------------------------
+   Superficie por projeto: o involucro e sempre escuro, cada pagina de projeto
+   herda a luz que a obra pede.
+
+   O CONJUNTO TEM DE SER COMPLETO. Sobrepor apenas bg/fg deixava .meta, as
+   badges e as bordas a ler os tokens escuros: sobre #F2F1EE, --color-fg dava
+   1,05:1 (invisivel) e --color-fg-muted 2,80:1. Todos os valores abaixo estao
+   verificados pelo `npm run validate`.
+   --------------------------------------------------------------------------- */
+:root,
 [data-surface='dark'] {
   --surface-bg: var(--color-bg);
-  --surface-fg: var(--color-fg);
-  --surface-fg-2: var(--color-fg-2);
-  --surface-accent: var(--color-accent);
+  --surface-fg: var(--color-fg);            /* 18.44:1 */
+  --surface-fg-2: var(--color-fg-2);        /*  8.68:1 */
+  --surface-fg-muted: var(--color-fg-muted);/*  6.26:1 */
+  --surface-accent: var(--color-accent);    /*  6.96:1 */
+  --surface-accent-on: var(--color-accent-on);
+  --surface-border: var(--color-border);
+  --surface-border-strong: var(--color-border-strong); /* 4.28:1 */
 }
 [data-surface='mid'] {
   --surface-bg: var(--color-surface-up);
-  --surface-fg: var(--color-fg);
-  --surface-fg-2: var(--color-fg-2);
-  --surface-accent: var(--color-accent);
+  --surface-fg: var(--color-fg);            /* 16.00:1 */
+  --surface-fg-2: var(--color-fg-2);        /*  7.53:1 */
+  --surface-fg-muted: var(--color-fg-muted);/*  5.43:1 */
+  --surface-accent: var(--color-accent);    /*  6.03:1 */
+  --surface-accent-on: var(--color-accent-on);
+  --surface-border: rgb(255 255 255 / 0.09);
+  --surface-border-strong: var(--color-border-strong); /* 3.71:1 */
 }
 [data-surface='light'] {
   --surface-bg: var(--color-light-bg);
-  --surface-fg: var(--color-light-fg);
-  --surface-fg-2: #4a4d55;
-  --surface-accent: var(--color-accent-dim);
+  --surface-fg: var(--color-light-fg);      /* 15.87:1 */
+  --surface-fg-2: #4a4d55;                  /*  7.49:1 */
+  --surface-fg-muted: #5c6069;              /*  5.58:1 */
+  --surface-accent: var(--color-accent-dim);/*  4.58:1 */
+  --surface-accent-on: #ffffff;             /*  5.18:1 sobre #C2410C */
+  --surface-border: rgb(22 23 26 / 0.14);
+  --surface-border-strong: #787b83;         /*  3.75:1 */
 }
 
 @layer base {
   *,
   ::before,
   ::after {
-    border-color: var(--color-border);
+    border-color: var(--surface-border, var(--color-border));
   }
 
   html {
-    scroll-behavior: smooth;
-    /* Compensa o header fixo quando o foco salta para uma ancora (WCAG 2.4.11) */
+    /* SEM `scroll-behavior: smooth` aqui: em html quebra o restauro da posicao
+       de scroll do App Router — voltar da pagina de um projeto deixava o
+       visitante no topo, tendo perdido o lugar. O scroll suave fica so nas
+       ancoras internas (ver .smooth-anchor abaixo). */
     scroll-padding-top: 6rem;
     -webkit-text-size-adjust: 100%;
   }
@@ -91,12 +113,9 @@
 
   /* Anel de foco visivel e consistente (WCAG 2.4.7 / 2.4.13) */
   :focus-visible {
-    outline: 2px solid var(--color-accent);
+    outline: 2px solid var(--surface-accent, var(--color-accent));
     outline-offset: 2px;
     border-radius: 2px;
-  }
-  [data-surface='light'] :focus-visible {
-    outline-color: var(--color-accent-dim);
   }
 
   ::selection {
@@ -113,9 +132,6 @@
   /* Sem movimento para quem o pediu (WCAG 2.3.3). Nao usar display:none:
      os elementos entram JA VISIVEIS, so sem animacao. */
   @media (prefers-reduced-motion: reduce) {
-    html {
-      scroll-behavior: auto;
-    }
     *,
     ::before,
     ::after {
@@ -149,7 +165,7 @@
     font-size: 0.75rem;
     letter-spacing: 0.06em;
     text-transform: uppercase;
-    color: var(--color-fg-muted);
+    color: var(--surface-fg-muted, var(--color-fg-muted));
   }
 
   .prose-body p {
@@ -159,6 +175,15 @@
   .prose-body h3 {
     margin-top: 2.5rem;
     font-size: 1.125rem;
+  }
+
+  /* Link autonomo (nao inline num paragrafo): garante 24px de altura de alvo,
+     que e o minimo AA da WCAG 2.5.8. Os links inline em prosa estao isentos. */
+  .link-target {
+    display: inline-flex;
+    align-items: center;
+    min-height: 1.75rem;
+    padding-block: 0.25rem;
   }
 
   /* Cartao inteiro clicavel com UM SO tab stop: o ::after vem do <a> dentro do
@@ -189,6 +214,34 @@
       opacity: 1;
       transform: none;
     }
+  }
+}
+
+/* ---------------------------------------------------------------------------
+   Transicoes de pagina. View Transitions API nativa: sem biblioteca, sem JS.
+   Cross-fade curto (180ms) — nunca fazer o visitante esperar pelo conteudo.
+   --------------------------------------------------------------------------- */
+@media (prefers-reduced-motion: no-preference) {
+  @view-transition {
+    navigation: auto;
+  }
+
+  ::view-transition-old(root) {
+    animation: vt-out 120ms cubic-bezier(0.4, 0, 1, 1) both;
+  }
+  ::view-transition-new(root) {
+    animation: vt-in 180ms cubic-bezier(0, 0, 0.2, 1) both;
+  }
+}
+
+@keyframes vt-out {
+  to {
+    opacity: 0;
+  }
+}
+@keyframes vt-in {
+  from {
+    opacity: 0;
   }
 }
 

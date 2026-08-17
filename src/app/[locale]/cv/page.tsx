@@ -129,7 +129,7 @@ function Row({ label, value, href }: { label: string; value: string; href?: stri
       <dt className="text-(--color-fg-muted) uppercase">{label}</dt>
       <dd className="text-right">
         {href ? (
-          <a href={href} className="text-(--color-accent) underline underline-offset-4">
+          <a href={href} className="link-target text-(--color-accent) underline underline-offset-4">
             {value}
           </a>
         ) : (

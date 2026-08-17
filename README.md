@@ -34,6 +34,17 @@ npm run dev          # http://localhost:3000 → redireciona para /pt ou /en
 | `npm run validate -- --fix` | Corrige as dimensões de imagem declaradas no JSON |
 | `npm run typecheck` | TypeScript |
 | `npm run lint` | ESLint (o `next lint` foi removido no Next 16) |
+| `npm run test:ui` | Testes num browser real: responsividade, navegação, alvos de toque |
+
+Os testes de UI precisam de um browser, que **não** está nas devDependencies de propósito (são 67 MB que não fazem falta num `npm install` normal):
+
+```bash
+npm run build && npm start                              # noutro terminal
+npm i --no-save puppeteer-core @sparticuz/chromium
+npm run test:ui
+```
+
+Verificam 70 combinações de largura × rota, os percursos de navegação e a área clicável efetiva. Valeu a pena: apanharam três bugs que nenhuma verificação estática apanha.
 
 ## Stack
 

@@ -25,7 +25,7 @@ export function ProjectCard({
 
   return (
     <article className="group relative isolate">
-      <div className="overflow-hidden bg-(--color-surface)">
+      <div className="overflow-hidden bg-(--surface-bg)">
         <Picture
           image={project.cover}
           locale={locale}
@@ -42,13 +42,13 @@ export function ProjectCard({
               {project.title}
             </Link>
           </h3>
-          <p className="mt-1 max-w-prose text-sm text-(--color-fg-2)">{text(project.subtitle, locale)}</p>
+          <p className="mt-1 max-w-prose text-sm text-(--surface-fg-2)">{text(project.subtitle, locale)}</p>
         </div>
         <p className="meta shrink-0 pt-1">{project.year}</p>
       </div>
 
       <p className="meta mt-3 flex flex-wrap items-center gap-x-2 gap-y-1">
-        {category ? <span className="text-(--color-accent)">{text(category.short, locale)}</span> : null}
+        {category ? <span className="text-(--surface-accent)">{text(category.short, locale)}</span> : null}
         {project.video ? (
           <>
             <span aria-hidden="true">·</span>

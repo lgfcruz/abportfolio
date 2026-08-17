@@ -16,6 +16,7 @@ import { Lightbox, type LightboxImage } from '@/components/media/Lightbox';
 import { JsonLd } from '@/components/ui/JsonLd';
 import { Fallback } from '@/components/ui/Fallback';
 import { Badge } from '@/components/ui/Badge';
+import { BackLink } from '@/components/layout/BackLink';
 
 type Props = { params: Promise<{ locale: Locale; slug: string }> };
 
@@ -69,9 +70,7 @@ export default async function ProjectPage({ params }: Props) {
     <div data-surface={project.surface} className="bg-(--surface-bg) text-(--surface-fg)">
       {/* ------------------------------------------------------------ topo */}
       <div className="container-page pt-10">
-        <Link href="/work" className="meta inline-flex min-h-11 items-center hover:text-(--surface-fg)">
-          ← {t('backToWork')}
-        </Link>
+        <BackLink />
       </div>
 
       <header className="container-page pt-6 pb-10">
@@ -132,7 +131,7 @@ export default async function ProjectPage({ params }: Props) {
         </div>
 
         {/* Bloco de metadados em mono: credibilidade tecnica sem neon */}
-        <aside className="space-y-8 border-t border-(--color-border) pt-8 md:border-t-0 md:pt-0">
+        <aside className="space-y-8 border-t border-(--surface-border) pt-8 md:border-t-0 md:pt-0">
           <MetaList label={t('myRole')} items={project.roles.map((r) => roleLabel(r, locale))} />
           <MetaList label={t('tools')} items={project.software.map(softwareLabel)} />
           <dl className="space-y-4">
@@ -162,8 +161,8 @@ export default async function ProjectPage({ params }: Props) {
               <h2 className="meta mb-3">{t('specs')}</h2>
               <dl className="space-y-2 font-mono text-xs">
                 {project.specs.map((s) => (
-                  <div key={text(s.label, locale)} className="flex justify-between gap-4 border-b border-(--color-border) pb-1.5">
-                    <dt className="text-(--color-fg-muted)">{text(s.label, locale)}</dt>
+                  <div key={text(s.label, locale)} className="flex justify-between gap-4 border-b border-(--surface-border) pb-1.5">
+                    <dt className="text-(--surface-fg-muted)">{text(s.label, locale)}</dt>
                     <dd className="text-right text-(--surface-fg-2)">{specValue(s.value, locale)}</dd>
                   </div>
                 ))}
@@ -196,7 +195,7 @@ export default async function ProjectPage({ params }: Props) {
 
       {/* --------------------------------------------------------- processo */}
       {project.breakdown.length > 0 ? (
-        <section className="container-page border-t border-(--color-border) py-16">
+        <section className="container-page border-t border-(--surface-border) py-16">
           <h2 className="mb-12 text-3xl">{t('process')}</h2>
           <ol className="space-y-20">
             {project.breakdown.map((step) => (
@@ -231,7 +230,7 @@ export default async function ProjectPage({ params }: Props) {
 
       {/* --------------------------------------------------------- galeria */}
       {galleryImages.length > 0 || galleryVideos.length > 0 ? (
-        <section className="container-page border-t border-(--color-border) py-16">
+        <section className="container-page border-t border-(--surface-border) py-16">
           <h2 className="mb-8 text-3xl">{t('gallery')}</h2>
           {galleryImages.length > 0 ? <Lightbox images={galleryImages} /> : null}
           {galleryVideos.length > 0 ? (
@@ -246,7 +245,7 @@ export default async function ProjectPage({ params }: Props) {
 
       {/* ------------------------------------------- downloads + links */}
       {project.downloads.length > 0 || project.links.length > 0 ? (
-        <section className="container-page border-t border-(--color-border) py-16">
+        <section className="container-page border-t border-(--surface-border) py-16">
           <div className="grid gap-12 md:grid-cols-2">
             {project.downloads.length > 0 ? (
               <div>
@@ -258,10 +257,10 @@ export default async function ProjectPage({ params }: Props) {
                         href={d.url}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="inline-flex min-h-11 items-center text-(--surface-accent) underline underline-offset-4"
+                        className="link-target text-(--surface-accent) underline underline-offset-4"
                       >
                         {text(d.label, locale)}
-                        {d.sizeMb ? <span className="ml-2 font-mono text-xs text-(--color-fg-muted)">{d.sizeMb} MB</span> : null}
+                        {d.sizeMb ? <span className="ml-2 font-mono text-xs text-(--surface-fg-muted)">{d.sizeMb} MB</span> : null}
                       </a>
                     </li>
                   ))}
@@ -278,7 +277,7 @@ export default async function ProjectPage({ params }: Props) {
                         href={l.url}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="inline-flex min-h-11 items-center text-(--surface-accent) underline underline-offset-4"
+                        className="link-target text-(--surface-accent) underline underline-offset-4"
                       >
                         {l.label}
                       </a>
@@ -292,7 +291,7 @@ export default async function ProjectPage({ params }: Props) {
       ) : null}
 
       {/* ----------------------------------------------------- navegacao */}
-      <nav className="container-page flex items-stretch justify-between gap-4 border-t border-(--color-border) py-12">
+      <nav className="container-page flex items-stretch justify-between gap-4 border-t border-(--surface-border) py-12">
         {prev ? (
           <Link href={`/work/${prev.slug}`} className="group max-w-[48%]">
             <span className="meta block">← {t('previous')}</span>
@@ -373,7 +372,7 @@ function MetaList({ label, items }: { label: string; items: string[] }) {
 
 function MetaRow({ label, value }: { label: string; value: string }) {
   return (
-    <div className="flex justify-between gap-4 border-b border-(--color-border) pb-2">
+    <div className="flex justify-between gap-4 border-b border-(--surface-border) pb-2">
       <dt className="meta">{label}</dt>
       <dd className="text-right text-sm text-(--surface-fg-2)">{value}</dd>
     </div>

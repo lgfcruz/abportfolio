@@ -55,7 +55,7 @@ export default async function PrivacyPage({ params }: Props) {
           {pt
             ? `Se me escreveres por email, guardo essa mensagem apenas para te responder. Para qualquer questão sobre dados: `
             : `If you email me, I keep that message only in order to reply. For any question about data: `}
-          <a href={`mailto:${site.author.email}`} className="text-(--color-accent) underline underline-offset-4">
+          <a href={`mailto:${site.author.email}`} className="link-target text-(--color-accent) underline underline-offset-4">
             {site.author.email}
           </a>
         </p>

@@ -9,6 +9,7 @@ import { personJsonLd } from '@/lib/seo';
 import { Header } from '@/components/layout/Header';
 import { Footer } from '@/components/layout/Footer';
 import { SkipLink } from '@/components/layout/SkipLink';
+import { NavigationTracker } from '@/components/layout/NavigationTracker';
 import { JsonLd } from '@/components/ui/JsonLd';
 
 /**
@@ -99,6 +100,7 @@ export default async function LocaleLayout({
     <html lang={l === 'pt' ? 'pt-PT' : 'en'} className={`${display.variable} ${body.variable} ${mono.variable}`}>
       <body className="min-h-dvh antialiased">
         <NextIntlClientProvider>
+          <NavigationTracker />
           <SkipLink />
           <Header locale={l} />
           <main id="main" tabIndex={-1}>

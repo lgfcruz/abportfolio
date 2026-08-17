@@ -69,7 +69,7 @@ export default async function ContactPage({ params }: Props) {
                       href={s.url}
                       target="_blank"
                       rel="noopener noreferrer me"
-                      className="inline-flex min-h-11 items-center text-(--color-accent) underline underline-offset-4"
+                      className="link-target text-(--color-accent) underline underline-offset-4"
                     >
                       {s.label}
                     </a>
