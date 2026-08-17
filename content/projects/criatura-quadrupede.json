@@ -12,59 +12,325 @@
   },
   "year": 2025,
   "date": "2025-05-20",
-  "durationLabel": { "pt": "6 semanas", "en": "6 weeks" },
-  "author": "Arthur Brabo da Silva Cruz",
+  "durationLabel": {
+    "pt": "6 semanas",
+    "en": "6 weeks"
+  },
   "context": "individual",
   "institution": "Universidade Lusófona",
   "team": null,
   "category": "character-animation",
-  "subcategories": ["creature", "body-mechanics"],
-  "roles": ["concept", "modeling", "retopology", "uv", "texturing", "rigging", "animation", "lighting"],
-  "software": ["maya", "substance-painter", "arnold"],
+  "subcategories": [
+    "creature",
+    "body-mechanics"
+  ],
+  "roles": [
+    "concept",
+    "modeling",
+    "retopology",
+    "uv",
+    "texturing",
+    "rigging",
+    "animation",
+    "lighting"
+  ],
+  "software": [
+    "maya",
+    "substance-painter",
+    "arnold"
+  ],
   "summary": {
     "pt": "Uma criatura de emboscada com quatro membros de comprimento desigual, desenhada para que o andar fosse assimétrico por construção. Entreguei turntable, ciclo de locomoção e pose de ataque.",
     "en": "An ambush predator with four limbs of unequal length, designed so that its gait would be asymmetric by construction. Delivered a turntable, a locomotion cycle and an attack pose."
   },
   "body": {
     "en": [
-      { "heading": "Brief and constraints", "text": "The brief asked for a creature that could not be read as human nor as any existing animal, modelled, rigged and animated by a single person in six weeks. I started from the silhouette of an ambush predator with four limbs of unequal length, so that the walk would be asymmetric by design rather than by accident." },
-      { "heading": "The problem", "text": "Invented anatomy has no locomotion reference, so every cycle I blocked looked like it was floating. The decision that unlocked it: reduce each limb to three joints, anchor the weight on a single contact point per step, and use hyena reference for weight transfer only — never for form." },
-      { "heading": "What I would do differently", "text": "Block the rig before locking the silhouette. I lost three days fixing shoulder topology that the rig then had to fight." }
+      {
+        "heading": "Brief and constraints",
+        "text": "The brief asked for a creature that could not be read as human nor as any existing animal, modelled, rigged and animated by a single person in six weeks. I started from the silhouette of an ambush predator with four limbs of unequal length, so that the walk would be asymmetric by design rather than by accident."
+      },
+      {
+        "heading": "The problem",
+        "text": "Invented anatomy has no locomotion reference, so every cycle I blocked looked like it was floating. The decision that unlocked it: reduce each limb to three joints, anchor the weight on a single contact point per step, and use hyena reference for weight transfer only — never for form."
+      },
+      {
+        "heading": "What I would do differently",
+        "text": "Block the rig before locking the silhouette. I lost three days fixing shoulder topology that the rig then had to fight."
+      }
     ]
   },
-  "cover": { "src": "/media/criatura-quadrupede/cover.jpg", "width": 1800, "height": 1200, "alt": { "pt": "Criatura quadrúpede em pose de emboscada, contraluz azul sobre fundo escuro.", "en": "Quadruped creature in an ambush pose, blue backlight against a dark background." } },
-  "hero": { "src": "/media/criatura-quadrupede/hero.jpg", "width": 2560, "height": 1440, "alt": { "pt": "Plano largo da criatura quadrúpede num ambiente rochoso, iluminação lateral fria.", "en": "Wide shot of the quadruped creature in a rocky environment, cold side lighting." } },
+  "cover": {
+    "src": "/media/criatura-quadrupede/cover.jpg",
+    "width": 1800,
+    "height": 1200,
+    "alt": {
+      "pt": "Criatura quadrúpede em pose de emboscada, contraluz azul sobre fundo escuro.",
+      "en": "Quadruped creature in an ambush pose, blue backlight against a dark background."
+    }
+  },
+  "hero": {
+    "src": "/media/criatura-quadrupede/hero.jpg",
+    "width": 2560,
+    "height": 1440,
+    "alt": {
+      "pt": "Plano largo da criatura quadrúpede num ambiente rochoso, iluminação lateral fria.",
+      "en": "Wide shot of the quadruped creature in a rocky environment, cold side lighting."
+    }
+  },
   "og": "/media/criatura-quadrupede/og.jpg",
-  "video": { "provider": "youtube", "id": "ECYD_8EMmnY", "title": { "pt": "Turntable e ciclo de locomoção", "en": "Turntable and locomotion cycle" }, "durationSeconds": 22 },
-  "poster": { "src": "/media/criatura-quadrupede/poster.jpg", "width": 1920, "height": 1080, "alt": { "pt": "Fotograma do turntable da criatura.", "en": "Frame from the creature turntable." } },
+  "video": {
+    "provider": "youtube",
+    "id": "ECYD_8EMmnY",
+    "title": {
+      "pt": "Turntable e ciclo de locomoção",
+      "en": "Turntable and locomotion cycle"
+    },
+    "durationSeconds": 22
+  },
+  "poster": {
+    "src": "/media/criatura-quadrupede/poster.jpg",
+    "width": 1920,
+    "height": 1080,
+    "alt": {
+      "pt": "Fotograma do turntable da criatura.",
+      "en": "Frame from the creature turntable."
+    }
+  },
   "specs": [
-    { "label": { "pt": "Contagem de triângulos", "en": "Triangle count" }, "value": "42k" },
-    { "label": { "pt": "Mapas", "en": "Maps" }, "value": "4K — albedo, roughness, normal, height" },
-    { "label": { "pt": "UDIMs", "en": "UDIMs" }, "value": "3" },
-    { "label": { "pt": "Rig", "en": "Rig" }, "value": { "pt": "58 controlos, 6 blendshapes faciais", "en": "58 controls, 6 facial blendshapes" } },
-    { "label": { "pt": "Render", "en": "Render" }, "value": "Arnold, 1080p, ~4 min/frame" }
+    {
+      "label": {
+        "pt": "Contagem de triângulos",
+        "en": "Triangle count"
+      },
+      "value": "42k"
+    },
+    {
+      "label": {
+        "pt": "Mapas",
+        "en": "Maps"
+      },
+      "value": "4K — albedo, roughness, normal, height"
+    },
+    {
+      "label": {
+        "pt": "UDIMs",
+        "en": "UDIMs"
+      },
+      "value": "3"
+    },
+    {
+      "label": {
+        "pt": "Rig",
+        "en": "Rig"
+      },
+      "value": {
+        "pt": "58 controlos, 6 blendshapes faciais",
+        "en": "58 controls, 6 facial blendshapes"
+      }
+    },
+    {
+      "label": {
+        "pt": "Render",
+        "en": "Render"
+      },
+      "value": "Arnold, 1080p, ~4 min/frame"
+    }
   ],
   "breakdown": [
-    { "step": 1, "label": { "pt": "Concept e referência", "en": "Concept and reference" }, "note": { "pt": "Explorei nove silhuetas antes de fixar a assimetria dos membros. A referência de peso veio de hienas; a forma, de nada em particular.", "en": "I explored nine silhouettes before locking the limb asymmetry. Weight reference came from hyenas; the form came from nothing in particular." }, "media": [{ "type": "image", "src": "/media/criatura-quadrupede/process-01-silhouettes.jpg", "width": 2000, "height": 1125, "alt": { "pt": "Folha com nove silhuetas de criatura em tinta preta.", "en": "Sheet with nine creature silhouettes in black ink." } }] },
-    { "step": 2, "label": { "pt": "Modelação e topologia", "en": "Modelling and topology" }, "note": { "pt": "O ombro foi refeito três vezes. A densidade de malha está concentrada onde há deformação real.", "en": "The shoulder was rebuilt three times. Mesh density is concentrated where actual deformation happens." }, "media": [ { "type": "image", "src": "/media/criatura-quadrupede/process-02-wireframe.jpg", "width": 2000, "height": 1125, "alt": { "pt": "Wireframe da criatura em três-quartos, malha quad limpa.", "en": "Three-quarter wireframe of the creature, clean quad mesh." } }, { "type": "image", "src": "/media/criatura-quadrupede/process-03-topology.jpg", "width": 2000, "height": 1125, "alt": { "pt": "Close da topologia do ombro, com anéis de aresta a acompanhar a articulação.", "en": "Close-up of shoulder topology, edge rings following the joint." } } ] },
-    { "step": 3, "label": { "pt": "UV e texturização", "en": "UV and texturing" }, "note": { "pt": "Três UDIMs para manter densidade de texéis constante entre cabeça e membros.", "en": "Three UDIMs to keep texel density constant between head and limbs." }, "media": [ { "type": "image", "src": "/media/criatura-quadrupede/process-04-uv.png", "width": 2000, "height": 2000, "alt": { "pt": "Layout de UV em três UDIMs, ilhas separadas por cabeça, torso e membros.", "en": "UV layout across three UDIMs, islands split by head, torso and limbs." } }, { "type": "image", "src": "/media/criatura-quadrupede/process-05-maps.jpg", "width": 2000, "height": 1125, "alt": { "pt": "Grelha com os quatro mapas de textura: albedo, roughness, normal e height.", "en": "Grid of the four texture maps: albedo, roughness, normal and height." } } ] },
-    { "step": 4, "label": { "pt": "Rig e animação", "en": "Rig and animation" }, "note": { "pt": "Ciclo de 24 frames com um único ponto de contacto por passo. O peso resolve-se na pélvis, não nas patas.", "en": "A 24-frame cycle with a single contact point per step. Weight is resolved at the pelvis, not at the feet." }, "media": [ { "type": "video", "provider": "youtube", "id": "22LmKyppBlw", "title": { "pt": "Rig em deformação com controlos visíveis", "en": "Rig deforming with controls visible" }, "durationSeconds": 12, "poster": { "src": "/media/criatura-quadrupede/process-06-rig.jpg", "width": 1920, "height": 1080, "alt": { "pt": "Fotograma do rig da criatura com os controlos à vista.", "en": "Frame of the creature rig with controls visible." } } } ] }
+    {
+      "step": 1,
+      "label": {
+        "pt": "Concept e referência",
+        "en": "Concept and reference"
+      },
+      "note": {
+        "pt": "Explorei nove silhuetas antes de fixar a assimetria dos membros. A referência de peso veio de hienas; a forma, de nada em particular.",
+        "en": "I explored nine silhouettes before locking the limb asymmetry. Weight reference came from hyenas; the form came from nothing in particular."
+      },
+      "media": [
+        {
+          "type": "image",
+          "src": "/media/criatura-quadrupede/process-01-silhouettes.jpg",
+          "width": 2000,
+          "height": 1125,
+          "alt": {
+            "pt": "Folha com nove silhuetas de criatura em tinta preta.",
+            "en": "Sheet with nine creature silhouettes in black ink."
+          }
+        }
+      ]
+    },
+    {
+      "step": 2,
+      "label": {
+        "pt": "Modelação e topologia",
+        "en": "Modelling and topology"
+      },
+      "note": {
+        "pt": "O ombro foi refeito três vezes. A densidade de malha está concentrada onde há deformação real.",
+        "en": "The shoulder was rebuilt three times. Mesh density is concentrated where actual deformation happens."
+      },
+      "media": [
+        {
+          "type": "image",
+          "src": "/media/criatura-quadrupede/process-02-wireframe.jpg",
+          "width": 2000,
+          "height": 1125,
+          "alt": {
+            "pt": "Wireframe da criatura em três-quartos, malha quad limpa.",
+            "en": "Three-quarter wireframe of the creature, clean quad mesh."
+          }
+        },
+        {
+          "type": "image",
+          "src": "/media/criatura-quadrupede/process-03-topology.jpg",
+          "width": 2000,
+          "height": 1125,
+          "alt": {
+            "pt": "Close da topologia do ombro, com anéis de aresta a acompanhar a articulação.",
+            "en": "Close-up of shoulder topology, edge rings following the joint."
+          }
+        }
+      ]
+    },
+    {
+      "step": 3,
+      "label": {
+        "pt": "UV e texturização",
+        "en": "UV and texturing"
+      },
+      "note": {
+        "pt": "Três UDIMs para manter densidade de texéis constante entre cabeça e membros.",
+        "en": "Three UDIMs to keep texel density constant between head and limbs."
+      },
+      "media": [
+        {
+          "type": "image",
+          "src": "/media/criatura-quadrupede/process-04-uv.png",
+          "width": 2000,
+          "height": 2000,
+          "alt": {
+            "pt": "Layout de UV em três UDIMs, ilhas separadas por cabeça, torso e membros.",
+            "en": "UV layout across three UDIMs, islands split by head, torso and limbs."
+          }
+        },
+        {
+          "type": "image",
+          "src": "/media/criatura-quadrupede/process-05-maps.jpg",
+          "width": 2000,
+          "height": 1125,
+          "alt": {
+            "pt": "Grelha com os quatro mapas de textura: albedo, roughness, normal e height.",
+            "en": "Grid of the four texture maps: albedo, roughness, normal and height."
+          }
+        }
+      ]
+    },
+    {
+      "step": 4,
+      "label": {
+        "pt": "Rig e animação",
+        "en": "Rig and animation"
+      },
+      "note": {
+        "pt": "Ciclo de 24 frames com um único ponto de contacto por passo. O peso resolve-se na pélvis, não nas patas.",
+        "en": "A 24-frame cycle with a single contact point per step. Weight is resolved at the pelvis, not at the feet."
+      },
+      "media": [
+        {
+          "type": "video",
+          "provider": "youtube",
+          "id": "22LmKyppBlw",
+          "title": {
+            "pt": "Rig em deformação com controlos visíveis",
+            "en": "Rig deforming with controls visible"
+          },
+          "durationSeconds": 12,
+          "poster": {
+            "src": "/media/criatura-quadrupede/process-06-rig.jpg",
+            "width": 1920,
+            "height": 1080,
+            "alt": {
+              "pt": "Fotograma do rig da criatura com os controlos à vista.",
+              "en": "Frame of the creature rig with controls visible."
+            }
+          }
+        }
+      ]
+    }
   ],
   "gallery": [
-    { "type": "image", "src": "/media/criatura-quadrupede/gallery-01.jpg", "width": 2560, "height": 1440, "alt": { "pt": "Render final da criatura em pose de ataque, luz vermelha lateral.", "en": "Final render of the creature in an attack pose, red side light." } },
-    { "type": "image", "src": "/media/criatura-quadrupede/gallery-02.jpg", "width": 2560, "height": 1440, "alt": { "pt": "Close da cabeça da criatura, pele escamada e olhos sem pupila.", "en": "Close-up of the creature head, scaled skin and pupil-less eyes." } },
-    { "type": "image", "src": "/media/criatura-quadrupede/gallery-03.jpg", "width": 2560, "height": 1440, "alt": { "pt": "Clay render da criatura sem textura, iluminação neutra de três pontos.", "en": "Untextured clay render of the creature, neutral three-point lighting." } }
+    {
+      "type": "image",
+      "src": "/media/criatura-quadrupede/gallery-01.jpg",
+      "width": 2560,
+      "height": 1440,
+      "alt": {
+        "pt": "Render final da criatura em pose de ataque, luz vermelha lateral.",
+        "en": "Final render of the creature in an attack pose, red side light."
+      }
+    },
+    {
+      "type": "image",
+      "src": "/media/criatura-quadrupede/gallery-02.jpg",
+      "width": 2560,
+      "height": 1440,
+      "alt": {
+        "pt": "Close da cabeça da criatura, pele escamada e olhos sem pupila.",
+        "en": "Close-up of the creature head, scaled skin and pupil-less eyes."
+      }
+    },
+    {
+      "type": "image",
+      "src": "/media/criatura-quadrupede/gallery-03.jpg",
+      "width": 2560,
+      "height": 1440,
+      "alt": {
+        "pt": "Clay render da criatura sem textura, iluminação neutra de três pontos.",
+        "en": "Untextured clay render of the creature, neutral three-point lighting."
+      }
+    }
   ],
   "downloads": [
-    { "label": { "pt": "Breakdown em PDF", "en": "Breakdown PDF" }, "url": "https://drive.google.com/file/d/1MOCK-vora-breakdown/view?usp=sharing", "host": "drive", "sizeMb": 12, "placeholder": true },
-    { "label": { "pt": "Turntable em 1080p", "en": "1080p turntable" }, "url": "https://drive.google.com/file/d/1MOCK-vora-turntable/view?usp=sharing", "host": "drive", "sizeMb": 64, "placeholder": true }
+    {
+      "label": {
+        "pt": "Breakdown em PDF",
+        "en": "Breakdown PDF"
+      },
+      "url": "https://drive.google.com/file/d/1MOCK-vora-breakdown/view?usp=sharing",
+      "sizeMb": 12,
+      "placeholder": true
+    },
+    {
+      "label": {
+        "pt": "Turntable em 1080p",
+        "en": "1080p turntable"
+      },
+      "url": "https://drive.google.com/file/d/1MOCK-vora-turntable/view?usp=sharing",
+      "sizeMb": 64,
+      "placeholder": true
+    }
   ],
   "links": [
-    { "kind": "artstation", "label": "ArtStation", "url": "https://www.artstation.com/artwork/MOCK-vora", "placeholder": true },
-    { "kind": "sketchfab", "label": "Sketchfab", "url": "https://sketchfab.com/3d-models/MOCK-vora", "placeholder": true }
+    {
+      "label": "ArtStation",
+      "url": "https://www.artstation.com/artwork/MOCK-vora",
+      "placeholder": true
+    },
+    {
+      "label": "Sketchfab",
+      "url": "https://sketchfab.com/3d-models/MOCK-vora",
+      "placeholder": true
+    }
   ],
   "seo": {
-    "title": { "pt": "Vora — criatura quadrúpede em Maya", "en": "Vora — quadruped creature in Maya" },
-    "description": { "pt": "Modelação, rigging e animação de uma criatura não humanoide em Maya, Substance 3D Painter e Arnold. Projeto individual, 6 semanas.", "en": "Modelling, rigging and animation of a non-humanoid creature in Maya, Substance 3D Painter and Arnold. Individual project, 6 weeks." }
+    "title": {
+      "pt": "Vora — criatura quadrúpede em Maya",
+      "en": "Vora — quadruped creature in Maya"
+    },
+    "description": {
+      "pt": "Modelação, rigging e animação de uma criatura não humanoide em Maya, Substance 3D Painter e Arnold. Projeto individual, 6 semanas.",
+      "en": "Modelling, rigging and animation of a non-humanoid creature in Maya, Substance 3D Painter and Arnold. Individual project, 6 weeks."
+    }
   }
 }

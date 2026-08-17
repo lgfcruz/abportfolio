@@ -50,7 +50,9 @@ export default async function CvPage({ params }: Props) {
           {locale === 'pt' ? t('downloadEn') : t('downloadPt')}
         </a>
       </div>
-      <p className="meta mt-3">{t('updated', { date: site.cv[locale].updated })}</p>
+      <p className="meta mt-3">
+        {t('updated', { date: site.cv[locale].updated })} · PDF, {site.cv[locale].sizeKb} KB
+      </p>
 
       <div className="mt-16 space-y-14 border-t border-(--color-border) pt-12">
         <section>

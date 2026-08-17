@@ -68,6 +68,22 @@ export default async function ShowreelPage({ params }: Props) {
         <a href={watchUrl} target="_blank" rel="noopener noreferrer" className="link-target text-sm text-(--color-fg-2) underline underline-offset-4">
           {t('watchOn', { platform })}
         </a>
+        {/* Espelhos: o Vimeo e exigido pelo regulamento da Lusofona (art. 9.o).
+            Enquanto o ID for de exemplo, "placeholder": true esconde o link —
+            a mesma regra das redes sociais. */}
+        {showreel.mirrors
+          .filter((m) => !m.placeholder)
+          .map((m) => (
+            <a
+              key={m.provider}
+              href={m.provider === 'vimeo' ? `https://vimeo.com/${m.id}` : `https://www.youtube.com/watch?v=${m.id}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="link-target text-sm text-(--color-fg-2) underline underline-offset-4"
+            >
+              {t('watchOn', { platform: m.label })}
+            </a>
+          ))}
         {showreel.download ? (
           <a
             href={showreel.download.url}

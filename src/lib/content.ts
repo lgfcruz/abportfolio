@@ -51,13 +51,11 @@ export type ProjectVideo = {
 export type Download = {
   label: I18nText;
   url: string;
-  host: 'drive' | 'site' | 'other';
   sizeMb?: number;
   placeholder?: boolean;
 };
 
 export type ExternalLink = {
-  kind: string;
   label: string;
   url: string;
   placeholder?: boolean;
@@ -87,7 +85,6 @@ export type Project = {
   year: number;
   date: string;
   durationLabel: I18nText | null;
-  author: string;
   context: 'individual' | 'group';
   institution: string | null;
   team: {
@@ -157,7 +154,6 @@ export type Site = {
   analytics: { provider: string; domain: string; enabled: boolean };
   seo: {
     defaultOgImage: MediaImage;
-    twitterHandle: string | null;
     keywords: I18nList;
   };
   education: {

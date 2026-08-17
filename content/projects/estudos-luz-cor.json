@@ -6,46 +6,186 @@
   "order": 10,
   "surface": "light",
   "title": "Estudos de Luz, Cor e Enquadramento",
-  "subtitle": { "pt": "Exercícios de linguagem visual do primeiro e segundo anos", "en": "Visual language exercises from the first and second years" },
+  "subtitle": {
+    "pt": "Exercícios de linguagem visual do primeiro e segundo anos",
+    "en": "Visual language exercises from the first and second years"
+  },
   "year": 2024,
   "date": "2024-06-01",
-  "durationLabel": { "pt": "Semestre", "en": "One semester" },
-  "author": "Arthur Brabo da Silva Cruz",
+  "durationLabel": {
+    "pt": "Semestre",
+    "en": "One semester"
+  },
   "context": "individual",
   "institution": "Universidade Lusófona",
   "team": null,
   "category": "studies",
-  "subcategories": ["light-colour", "cinematography", "storyboard"],
-  "roles": ["storyboard", "lighting", "compositing"],
-  "software": ["maya", "photoshop", "krita", "after-effects"],
+  "subcategories": [
+    "light-colour",
+    "cinematography",
+    "storyboard"
+  ],
+  "roles": [
+    "storyboard",
+    "lighting",
+    "compositing"
+  ],
+  "software": [
+    "maya",
+    "photoshop",
+    "krita",
+    "after-effects"
+  ],
   "summary": {
     "pt": "Série de exercícios curtos sobre como luz, cor, enquadramento e movimento dirigem o olhar. Agrupados aqui como fundamentos, não como peças autónomas.",
     "en": "A series of short exercises on how light, colour, framing and movement direct the eye. Grouped here as foundations rather than as standalone pieces."
   },
   "body": {
     "en": [
-      { "heading": "Why these are grouped", "text": "These are class exercises, not portfolio pieces, and presenting them as such would be misleading. They are here because they show where the reading of light and framing in the later work comes from." }
+      {
+        "heading": "Why these are grouped",
+        "text": "These are class exercises, not portfolio pieces, and presenting them as such would be misleading. They are here because they show where the reading of light and framing in the later work comes from."
+      }
     ]
   },
-  "cover": { "src": "/media/estudos-luz-cor/cover.jpg", "width": 1800, "height": 1200, "alt": { "pt": "Grelha de quatro estudos de iluminação da mesma cena em quatro atmosferas.", "en": "Grid of four lighting studies of the same scene in four moods." } },
-  "hero": { "src": "/media/estudos-luz-cor/hero.jpg", "width": 2560, "height": 1440, "alt": { "pt": "Estudo de ambiente sinistro: luz vermelha agressiva e foco na figura em primeiro plano.", "en": "Sinister mood study: aggressive red light with focus on the foreground figure." } },
+  "cover": {
+    "src": "/media/estudos-luz-cor/cover.jpg",
+    "width": 1800,
+    "height": 1200,
+    "alt": {
+      "pt": "Grelha de quatro estudos de iluminação da mesma cena em quatro atmosferas.",
+      "en": "Grid of four lighting studies of the same scene in four moods."
+    }
+  },
+  "hero": {
+    "src": "/media/estudos-luz-cor/hero.jpg",
+    "width": 2560,
+    "height": 1440,
+    "alt": {
+      "pt": "Estudo de ambiente sinistro: luz vermelha agressiva e foco na figura em primeiro plano.",
+      "en": "Sinister mood study: aggressive red light with focus on the foreground figure."
+    }
+  },
   "og": "/media/estudos-luz-cor/og.jpg",
-  "video": { "provider": "youtube", "id": "7z615xAKMTY", "title": { "pt": "Estudo de enquadramento e movimento", "en": "Framing and movement study" }, "durationSeconds": 15 },
-  "poster": { "src": "/media/estudos-luz-cor/poster.jpg", "width": 1920, "height": 1080, "alt": { "pt": "Fotograma do estudo de enquadramento.", "en": "Frame from the framing study." } },
+  "video": {
+    "provider": "youtube",
+    "id": "7z615xAKMTY",
+    "title": {
+      "pt": "Estudo de enquadramento e movimento",
+      "en": "Framing and movement study"
+    },
+    "durationSeconds": 15
+  },
+  "poster": {
+    "src": "/media/estudos-luz-cor/poster.jpg",
+    "width": 1920,
+    "height": 1080,
+    "alt": {
+      "pt": "Fotograma do estudo de enquadramento.",
+      "en": "Frame from the framing study."
+    }
+  },
   "specs": [],
   "breakdown": [
-    { "step": 1, "label": { "pt": "Luz e cor como atmosfera", "en": "Light and colour as mood" }, "note": { "pt": "A mesma cena em quatro atmosferas — neutra, tranquila, dinâmica e sinistra — mudando apenas luz e cor.", "en": "The same scene in four moods — neutral, calm, dynamic and sinister — changing only light and colour." }, "media": [ { "type": "image", "src": "/media/estudos-luz-cor/process-01-neutral.jpg", "width": 2000, "height": 1125, "alt": { "pt": "Estudo de ambiente neutro: fundo branco e luz difusa.", "en": "Neutral mood study: white background and diffuse light." } }, { "type": "image", "src": "/media/estudos-luz-cor/process-02-calm.jpg", "width": 2000, "height": 1125, "alt": { "pt": "Estudo de ambiente tranquilo: luz violeta e azul suaves.", "en": "Calm mood study: soft violet and blue light." } }, { "type": "image", "src": "/media/estudos-luz-cor/process-03-sinister.jpg", "width": 2000, "height": 1125, "alt": { "pt": "Estudo de ambiente sinistro: luz vermelha e secundária violeta.", "en": "Sinister mood study: red key with a violet secondary." } } ] },
-    { "step": 2, "label": { "pt": "Storyboard", "en": "Storyboard" }, "note": { "pt": "Expansão de um guião de aula em storyboard com tempos, movimentos de câmara e variação de planos.", "en": "Expanding a class script into a storyboard with timings, camera moves and shot variation." }, "media": [{ "type": "image", "src": "/media/estudos-luz-cor/process-04-storyboard.jpg", "width": 2000, "height": 1125, "alt": { "pt": "Página de storyboard com nove vinhetas e anotações de câmara.", "en": "Storyboard page with nine panels and camera notes." } }] }
+    {
+      "step": 1,
+      "label": {
+        "pt": "Luz e cor como atmosfera",
+        "en": "Light and colour as mood"
+      },
+      "note": {
+        "pt": "A mesma cena em quatro atmosferas — neutra, tranquila, dinâmica e sinistra — mudando apenas luz e cor.",
+        "en": "The same scene in four moods — neutral, calm, dynamic and sinister — changing only light and colour."
+      },
+      "media": [
+        {
+          "type": "image",
+          "src": "/media/estudos-luz-cor/process-01-neutral.jpg",
+          "width": 2000,
+          "height": 1125,
+          "alt": {
+            "pt": "Estudo de ambiente neutro: fundo branco e luz difusa.",
+            "en": "Neutral mood study: white background and diffuse light."
+          }
+        },
+        {
+          "type": "image",
+          "src": "/media/estudos-luz-cor/process-02-calm.jpg",
+          "width": 2000,
+          "height": 1125,
+          "alt": {
+            "pt": "Estudo de ambiente tranquilo: luz violeta e azul suaves.",
+            "en": "Calm mood study: soft violet and blue light."
+          }
+        },
+        {
+          "type": "image",
+          "src": "/media/estudos-luz-cor/process-03-sinister.jpg",
+          "width": 2000,
+          "height": 1125,
+          "alt": {
+            "pt": "Estudo de ambiente sinistro: luz vermelha e secundária violeta.",
+            "en": "Sinister mood study: red key with a violet secondary."
+          }
+        }
+      ]
+    },
+    {
+      "step": 2,
+      "label": {
+        "pt": "Storyboard",
+        "en": "Storyboard"
+      },
+      "note": {
+        "pt": "Expansão de um guião de aula em storyboard com tempos, movimentos de câmara e variação de planos.",
+        "en": "Expanding a class script into a storyboard with timings, camera moves and shot variation."
+      },
+      "media": [
+        {
+          "type": "image",
+          "src": "/media/estudos-luz-cor/process-04-storyboard.jpg",
+          "width": 2000,
+          "height": 1125,
+          "alt": {
+            "pt": "Página de storyboard com nove vinhetas e anotações de câmara.",
+            "en": "Storyboard page with nine panels and camera notes."
+          }
+        }
+      ]
+    }
   ],
   "gallery": [
-    { "type": "image", "src": "/media/estudos-luz-cor/gallery-01.jpg", "width": 2560, "height": 1440, "alt": { "pt": "Estudo de ambiente dinâmico com enquadramento inclinado.", "en": "Dynamic mood study with a canted frame." } }
+    {
+      "type": "image",
+      "src": "/media/estudos-luz-cor/gallery-01.jpg",
+      "width": 2560,
+      "height": 1440,
+      "alt": {
+        "pt": "Estudo de ambiente dinâmico com enquadramento inclinado.",
+        "en": "Dynamic mood study with a canted frame."
+      }
+    }
   ],
   "downloads": [
-    { "label": { "pt": "Storyboard completo (PDF)", "en": "Full storyboard (PDF)" }, "url": "https://drive.google.com/file/d/1MOCK-storyboard-individual/view?usp=sharing", "host": "drive", "sizeMb": 6, "placeholder": true }
+    {
+      "label": {
+        "pt": "Storyboard completo (PDF)",
+        "en": "Full storyboard (PDF)"
+      },
+      "url": "https://drive.google.com/file/d/1MOCK-storyboard-individual/view?usp=sharing",
+      "sizeMb": 6,
+      "placeholder": true
+    }
   ],
   "links": [],
   "seo": {
-    "title": { "pt": "Estudos de luz, cor e enquadramento", "en": "Light, colour and framing studies" },
-    "description": { "pt": "Exercícios de linguagem visual sobre luz, cor, enquadramento e movimento. Universidade Lusófona.", "en": "Visual language exercises on light, colour, framing and movement. Universidade Lusófona." }
+    "title": {
+      "pt": "Estudos de luz, cor e enquadramento",
+      "en": "Light, colour and framing studies"
+    },
+    "description": {
+      "pt": "Exercícios de linguagem visual sobre luz, cor, enquadramento e movimento. Universidade Lusófona.",
+      "en": "Visual language exercises on light, colour, framing and movement. Universidade Lusófona."
+    }
   }
 }

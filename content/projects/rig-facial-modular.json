@@ -6,53 +6,223 @@
   "order": 4,
   "surface": "dark",
   "title": "Rig Facial Modular",
-  "subtitle": { "pt": "Sistema de rig facial reutilizável para personagens estilizadas", "en": "Reusable facial rig system for stylised characters" },
+  "subtitle": {
+    "pt": "Sistema de rig facial reutilizável para personagens estilizadas",
+    "en": "Reusable facial rig system for stylised characters"
+  },
   "year": 2026,
   "date": "2026-01-18",
-  "durationLabel": { "pt": "4 semanas", "en": "4 weeks" },
-  "author": "Arthur Brabo da Silva Cruz",
+  "durationLabel": {
+    "pt": "4 semanas",
+    "en": "4 weeks"
+  },
   "context": "individual",
   "institution": "Universidade Lusófona",
   "team": null,
   "category": "rigging",
-  "subcategories": ["facial-rig", "body-rig"],
-  "roles": ["rigging", "animation"],
-  "software": ["maya"],
+  "subcategories": [
+    "facial-rig",
+    "body-rig"
+  ],
+  "roles": [
+    "rigging",
+    "animation"
+  ],
+  "software": [
+    "maya"
+  ],
   "summary": {
     "pt": "Rig facial construído em módulos independentes, para poder ser transplantado entre personagens com topologia diferente. 34 controlos, sem plugins.",
     "en": "A facial rig built as independent modules so it can be transplanted between characters with different topology. 34 controls, no plugins."
   },
   "body": {
     "en": [
-      { "heading": "Brief and constraints", "text": "Build a facial rig an animator can pick up without reading documentation, and that survives being moved onto a second head. No third-party plugins, because the lab machines do not have them." },
-      { "heading": "The problem", "text": "Blendshape-only faces break as soon as the mesh changes. I split the rig into a joint-driven base layer for the jaw and eyelids and a corrective blendshape layer on top, so only the corrective layer needs rebuilding per character." }
+      {
+        "heading": "Brief and constraints",
+        "text": "Build a facial rig an animator can pick up without reading documentation, and that survives being moved onto a second head. No third-party plugins, because the lab machines do not have them."
+      },
+      {
+        "heading": "The problem",
+        "text": "Blendshape-only faces break as soon as the mesh changes. I split the rig into a joint-driven base layer for the jaw and eyelids and a corrective blendshape layer on top, so only the corrective layer needs rebuilding per character."
+      }
     ]
   },
-  "cover": { "src": "/media/rig-facial-modular/cover.jpg", "width": 1800, "height": 1200, "alt": { "pt": "Cabeça de personagem com controlos de rig facial sobrepostos em amarelo.", "en": "Character head with facial rig controls overlaid in yellow." } },
-  "hero": { "src": "/media/rig-facial-modular/hero.jpg", "width": 2560, "height": 1440, "alt": { "pt": "Grelha de nove poses faciais extremas da mesma personagem.", "en": "Grid of nine extreme facial poses of the same character." } },
+  "cover": {
+    "src": "/media/rig-facial-modular/cover.jpg",
+    "width": 1800,
+    "height": 1200,
+    "alt": {
+      "pt": "Cabeça de personagem com controlos de rig facial sobrepostos em amarelo.",
+      "en": "Character head with facial rig controls overlaid in yellow."
+    }
+  },
+  "hero": {
+    "src": "/media/rig-facial-modular/hero.jpg",
+    "width": 2560,
+    "height": 1440,
+    "alt": {
+      "pt": "Grelha de nove poses faciais extremas da mesma personagem.",
+      "en": "Grid of nine extreme facial poses of the same character."
+    }
+  },
   "og": "/media/rig-facial-modular/og.jpg",
-  "video": { "provider": "youtube", "id": "22LmKyppBlw", "title": { "pt": "Demonstração do rig", "en": "Rig demo" }, "durationSeconds": 30 },
-  "poster": { "src": "/media/rig-facial-modular/poster.jpg", "width": 1920, "height": 1080, "alt": { "pt": "Fotograma da demonstração do rig facial.", "en": "Frame from the facial rig demo." } },
+  "video": {
+    "provider": "youtube",
+    "id": "22LmKyppBlw",
+    "title": {
+      "pt": "Demonstração do rig",
+      "en": "Rig demo"
+    },
+    "durationSeconds": 30
+  },
+  "poster": {
+    "src": "/media/rig-facial-modular/poster.jpg",
+    "width": 1920,
+    "height": 1080,
+    "alt": {
+      "pt": "Fotograma da demonstração do rig facial.",
+      "en": "Frame from the facial rig demo."
+    }
+  },
   "specs": [
-    { "label": { "pt": "Controlos", "en": "Controls" }, "value": "34" },
-    { "label": { "pt": "Blendshapes corretivos", "en": "Corrective blendshapes" }, "value": "22" },
-    { "label": { "pt": "Módulos", "en": "Modules" }, "value": { "pt": "Mandíbula, pálpebras, lábios, sobrancelhas", "en": "Jaw, eyelids, lips, brows" } },
-    { "label": { "pt": "Dependências", "en": "Dependencies" }, "value": { "pt": "Nenhuma — só nós nativos do Maya", "en": "None — native Maya nodes only" } }
+    {
+      "label": {
+        "pt": "Controlos",
+        "en": "Controls"
+      },
+      "value": "34"
+    },
+    {
+      "label": {
+        "pt": "Blendshapes corretivos",
+        "en": "Corrective blendshapes"
+      },
+      "value": "22"
+    },
+    {
+      "label": {
+        "pt": "Módulos",
+        "en": "Modules"
+      },
+      "value": {
+        "pt": "Mandíbula, pálpebras, lábios, sobrancelhas",
+        "en": "Jaw, eyelids, lips, brows"
+      }
+    },
+    {
+      "label": {
+        "pt": "Dependências",
+        "en": "Dependencies"
+      },
+      "value": {
+        "pt": "Nenhuma — só nós nativos do Maya",
+        "en": "None — native Maya nodes only"
+      }
+    }
   ],
   "breakdown": [
-    { "step": 1, "label": { "pt": "Camada base por juntas", "en": "Joint-driven base layer" }, "note": { "pt": "Mandíbula e pálpebras em juntas, porque precisam de rotação real e não de interpolação.", "en": "Jaw and eyelids on joints, because they need real rotation rather than interpolation." }, "media": [{ "type": "image", "src": "/media/rig-facial-modular/process-01-joints.jpg", "width": 2000, "height": 1125, "alt": { "pt": "Hierarquia de juntas faciais visível sobre a malha em wireframe.", "en": "Facial joint hierarchy visible over the wireframe mesh." } }] },
-    { "step": 2, "label": { "pt": "Camada corretiva", "en": "Corrective layer" }, "note": { "pt": "Vinte e dois blendshapes acionados por ângulo de junta, não por slider manual.", "en": "Twenty-two blendshapes driven by joint angle, not by manual sliders." }, "media": [{ "type": "image", "src": "/media/rig-facial-modular/process-02-correctives.jpg", "width": 2000, "height": 1125, "alt": { "pt": "Comparação da mesma pose com e sem a camada corretiva.", "en": "The same pose with and without the corrective layer." } }] },
-    { "step": 3, "label": { "pt": "Interface de animação", "en": "Animation interface" }, "note": { "pt": "Controlos no viewport, sobre a face, e não numa janela separada. Nomeação consistente para poder ser guionizada.", "en": "Controls in the viewport, over the face, not in a separate window. Consistent naming so it can be scripted." }, "media": [{ "type": "image", "src": "/media/rig-facial-modular/process-03-controls.jpg", "width": 2000, "height": 1125, "alt": { "pt": "Controlos de animação em forma de anéis sobre a face da personagem.", "en": "Ring-shaped animation controls over the character face." } }] }
+    {
+      "step": 1,
+      "label": {
+        "pt": "Camada base por juntas",
+        "en": "Joint-driven base layer"
+      },
+      "note": {
+        "pt": "Mandíbula e pálpebras em juntas, porque precisam de rotação real e não de interpolação.",
+        "en": "Jaw and eyelids on joints, because they need real rotation rather than interpolation."
+      },
+      "media": [
+        {
+          "type": "image",
+          "src": "/media/rig-facial-modular/process-01-joints.jpg",
+          "width": 2000,
+          "height": 1125,
+          "alt": {
+            "pt": "Hierarquia de juntas faciais visível sobre a malha em wireframe.",
+            "en": "Facial joint hierarchy visible over the wireframe mesh."
+          }
+        }
+      ]
+    },
+    {
+      "step": 2,
+      "label": {
+        "pt": "Camada corretiva",
+        "en": "Corrective layer"
+      },
+      "note": {
+        "pt": "Vinte e dois blendshapes acionados por ângulo de junta, não por slider manual.",
+        "en": "Twenty-two blendshapes driven by joint angle, not by manual sliders."
+      },
+      "media": [
+        {
+          "type": "image",
+          "src": "/media/rig-facial-modular/process-02-correctives.jpg",
+          "width": 2000,
+          "height": 1125,
+          "alt": {
+            "pt": "Comparação da mesma pose com e sem a camada corretiva.",
+            "en": "The same pose with and without the corrective layer."
+          }
+        }
+      ]
+    },
+    {
+      "step": 3,
+      "label": {
+        "pt": "Interface de animação",
+        "en": "Animation interface"
+      },
+      "note": {
+        "pt": "Controlos no viewport, sobre a face, e não numa janela separada. Nomeação consistente para poder ser guionizada.",
+        "en": "Controls in the viewport, over the face, not in a separate window. Consistent naming so it can be scripted."
+      },
+      "media": [
+        {
+          "type": "image",
+          "src": "/media/rig-facial-modular/process-03-controls.jpg",
+          "width": 2000,
+          "height": 1125,
+          "alt": {
+            "pt": "Controlos de animação em forma de anéis sobre a face da personagem.",
+            "en": "Ring-shaped animation controls over the character face."
+          }
+        }
+      ]
+    }
   ],
   "gallery": [
-    { "type": "image", "src": "/media/rig-facial-modular/gallery-01.jpg", "width": 2560, "height": 1440, "alt": { "pt": "Nove poses faciais extremas em grelha, sem controlos visíveis.", "en": "Nine extreme facial poses in a grid, controls hidden." } }
+    {
+      "type": "image",
+      "src": "/media/rig-facial-modular/gallery-01.jpg",
+      "width": 2560,
+      "height": 1440,
+      "alt": {
+        "pt": "Nove poses faciais extremas em grelha, sem controlos visíveis.",
+        "en": "Nine extreme facial poses in a grid, controls hidden."
+      }
+    }
   ],
   "downloads": [
-    { "label": { "pt": "Documentação do rig (PDF)", "en": "Rig documentation (PDF)" }, "url": "https://drive.google.com/file/d/1MOCK-rig-docs/view?usp=sharing", "host": "drive", "sizeMb": 3, "placeholder": true }
+    {
+      "label": {
+        "pt": "Documentação do rig (PDF)",
+        "en": "Rig documentation (PDF)"
+      },
+      "url": "https://drive.google.com/file/d/1MOCK-rig-docs/view?usp=sharing",
+      "sizeMb": 3,
+      "placeholder": true
+    }
   ],
   "links": [],
   "seo": {
-    "title": { "pt": "Rig Facial Modular em Maya", "en": "Modular Facial Rig in Maya" },
-    "description": { "pt": "Sistema de rig facial modular em Maya, com camada base por juntas e blendshapes corretivos. 34 controlos, sem plugins.", "en": "Modular facial rig system in Maya, with a joint-driven base layer and corrective blendshapes. 34 controls, no plugins." }
+    "title": {
+      "pt": "Rig Facial Modular em Maya",
+      "en": "Modular Facial Rig in Maya"
+    },
+    "description": {
+      "pt": "Sistema de rig facial modular em Maya, com camada base por juntas e blendshapes corretivos. 34 controlos, sem plugins.",
+      "en": "Modular facial rig system in Maya, with a joint-driven base layer and corrective blendshapes. 34 controls, no plugins."
+    }
   }
 }

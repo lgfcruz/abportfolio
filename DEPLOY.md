@@ -32,6 +32,25 @@ Se um dia o build começar a falhar sem nada ter mudado no código, a primeira h
 
 ## Erros já vistos, e a causa
 
+### Aviso de descontinuação do Node 16 nas funções
+
+Se aparecer *"You're using the build time Node.js version 16.x"*, **verificar primeiro a data na mensagem.** A descontinuação referida é de 25 de abril de 2024 — se a data for antiga, o aviso vem de um deploy antigo, do tempo do Quasar, quando não havia `.nvmrc` e a versão vinha apenas da UI.
+
+Este repositório declara Node 22 em três lugares: `.nvmrc`, `NODE_VERSION` no `netlify.toml`, e `engines` no `package.json`. Segundo a [documentação da Netlify](https://docs.netlify.com/build/configure-builds/manage-dependencies/), o `.nvmrc` e o `NODE_VERSION` **sobrepõem** a versão escolhida na UI — ao contrário do `publish`, que só ganha se estiver declarado.
+
+Para confirmar qual a versão realmente usada, o `npm run validate` imprime-a na primeira linha do log de cada deploy:
+
+```
+ambiente  Node 22.x.x, npm run validate
+```
+
+E falha o build se for inferior a 22, com instruções. Se um deploy novo mesmo indicar 16:
+
+1. *Deploys* → **Retry with clear cache** (a versão de Node é cacheada entre builds)
+2. *Environment variables* → procurar um `AWS_LAMBDA_JS_RUNTIME` antigo, que força a versão das funções independentemente do build
+3. *Build image selection* → uma imagem antiga não oferece Node 22
+
+
 ### `Deploy directory 'dist/spa' does not exist`
 
 O build passa, o deploy falha. `dist/spa` era o publish directory do Quasar, gravado na UI do Netlify em 2023.
