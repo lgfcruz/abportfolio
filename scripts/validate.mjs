@@ -32,10 +32,14 @@ const read = (p) => JSON.parse(readFileSync(join(ROOT, p), 'utf8'));
 
 /* ------------------------------------------------- dimensoes de imagem, sem deps */
 
+const SIZEABLE = /\.(jpe?g|png)$/i; // formatos cujas dimensoes sabemos ler aqui
+
 function imageSize(file) {
+  // 1 MB: um JPEG com perfil ICC grande pode ter o marcador SOF muito para
+  // dentro do ficheiro, e ler so 64 KB devolvia null em silencio.
   const fd = openSync(file, 'r');
-  const buf = Buffer.alloc(65536);
-  const len = readSync(fd, buf, 0, 65536, 0);
+  const buf = Buffer.alloc(1_048_576);
+  const len = readSync(fd, buf, 0, buf.length, 0);
   closeSync(fd);
 
   // PNG: IHDR width/height nos bytes 16..24
@@ -47,8 +51,11 @@ function imageSize(file) {
     let o = 2;
     while (o < len - 9) {
       if (buf[o] !== 0xff) { o++; continue; }
+      // bytes de preenchimento FF FF: avancar um, senao o salto descarrila
+      if (buf[o + 1] === 0xff) { o++; continue; }
       const marker = buf[o + 1];
       const size = buf.readUInt16BE(o + 2);
+      if (size < 2) break;
       if (marker >= 0xc0 && marker <= 0xcf && ![0xc4, 0xc8, 0xcc].includes(marker)) {
         return { height: buf.readUInt16BE(o + 5), width: buf.readUInt16BE(o + 7) };
       }
@@ -83,17 +90,43 @@ function checkI18n(where, field, name, { required = true } = {}) {
   }
 }
 
+/** Valida uma lista de Media (imagem ou video), venha do breakdown ou da galeria. */
+function checkMedia(where, list) {
+  for (const m of list) {
+    if (m?.type === 'video') {
+      if (!['youtube', 'vimeo'].includes(m.provider)) err(where, `provider de video invalido: "${m.provider}"`);
+      if (!m.id) err(where, 'video sem "id"');
+      else if (/^https?:/.test(String(m.id))) err(where, `"id" do video tem de ser so o identificador, nao o URL: ${m.id}`);
+      if (!m.poster) err(where, `video ${m.id} sem "poster" — a fachada clicavel precisa dele, e sem ele o video NAO APARECE`);
+      checkI18n(where, m.title, 'title do video');
+    } else if (m && !m.src) {
+      err(where, 'item de media sem "src" nem "type": "video"');
+    }
+  }
+}
+
+/** So https absoluto ou caminho interno. Bloqueia javascript: e data:. */
+function checkUrl(where, url, name) {
+  if (typeof url !== 'string' || !/^(https:\/\/|\/)/.test(url)) {
+    err(where, `${name} tem de comecar por "https://" ou "/" — recebido: ${JSON.stringify(url)}`);
+  }
+}
+
 const seenImages = new Map(); // src -> {width,height}
 function collectImages(where, node, patch) {
   if (Array.isArray(node)) return node.forEach((n) => collectImages(where, n, patch));
   if (!node || typeof node !== 'object') return;
-  if (typeof node.src === 'string' && node.src.startsWith('/media/') && /\.(jpe?g|png|webp|avif)$/i.test(node.src)) {
+  if (typeof node.src === 'string' && node.src.startsWith('/media/') && !/\.vtt$/i.test(node.src)) {
     const file = join(ROOT, 'public', node.src);
     if (!existsSync(file)) {
       err(where, `imagem inexistente em disco: ${node.src}`);
+    } else if (!SIZEABLE.test(node.src)) {
+      notes.push(`${where}: ${node.src} — dimensoes nao verificadas (so JPEG e PNG sao lidos)`);
     } else {
       const real = imageSize(file);
-      if (real && (node.width !== real.width || node.height !== real.height)) {
+      if (!real) {
+        warn(where, `${node.src}: nao foi possivel ler as dimensoes do ficheiro`);
+      } else if (node.width !== real.width || node.height !== real.height) {
         if (FIX) {
           node.width = real.width;
           node.height = real.height;
@@ -140,6 +173,16 @@ for (const f of files) {
     slugs.add(p.slug);
   }
 
+  // BLOQUEADOR se faltar: as paginas desreferenciam estas listas sem guarda.
+  // Apagar `"gallery": []` do JSON dava um TypeError no log da Netlify.
+  for (const k of ['subcategories', 'roles', 'software', 'specs', 'breakdown', 'gallery', 'downloads', 'links']) {
+    if (!Array.isArray(p[k])) err(where, `"${k}" tem de ser uma lista — usar [] se estiver vazia`);
+  }
+  for (const k of ['cover', 'hero', 'poster', 'video', 'team', 'body', 'durationLabel', 'institution', 'og', 'seo']) {
+    if (!(k in p)) err(where, `falta a chave "${k}" — copiar de rascunho-exemplo.json e usar null se nao se aplica`);
+  }
+  if (p.seo != null && typeof p.seo !== 'object') err(where, '"seo" tem de ser um objeto (pode ser {})');
+
   if (!['published', 'draft'].includes(p.status)) err(where, 'status tem de ser "published" ou "draft"');
   if (!SURFACES.has(p.surface)) err(where, `surface invalida: "${p.surface}" (usar dark, mid ou light)`);
   if (typeof p.title !== 'string' || !p.title.trim()) err(where, 'falta o title');
@@ -157,6 +200,30 @@ for (const f of files) {
 
   checkI18n(where, p.subtitle, 'subtitle');
   checkI18n(where, p.summary, 'summary');
+  if (p.durationLabel != null) checkI18n(where, p.durationLabel, 'durationLabel');
+  for (const sp of p.specs ?? []) {
+    checkI18n(where, sp.label, 'specs[].label');
+    if (sp.value == null || (typeof sp.value === 'object' && !Object.keys(sp.value).length)) {
+      err(where, 'specs[] com "value" vazio');
+    } else if (typeof sp.value === 'object') {
+      checkI18n(where, sp.value, 'specs[].value');
+    }
+  }
+  if (p.team) {
+    checkI18n(where, p.team.label, 'team.label');
+    checkI18n(where, p.team.myRole, 'team.myRole');
+    if (!Array.isArray(p.team.credits) || p.team.credits.length === 0) err(where, 'team sem "credits"');
+    else {
+      for (const c of p.team.credits) {
+        if (!c.name) err(where, 'credito de equipa sem "name"');
+        checkI18n(where, c.role, `team.credits[${c.name}].role`);
+      }
+      if (!p.team.credits.some((c) => c.isMe === true)) err(where, 'nenhum credito de equipa com "isMe": true');
+    }
+  }
+  for (const k of ['title', 'description']) {
+    if (p.seo?.[k] != null) checkI18n(where, p.seo[k], `seo.${k}`);
+  }
 
   if (p.status === 'published') {
     published++;
@@ -168,19 +235,29 @@ for (const f of files) {
 
   for (const step of p.breakdown ?? []) {
     const w = `${where} › etapa ${step.step}`;
+    if (!Number.isInteger(step.step)) err(w, 'etapa sem "step" numerico');
     checkI18n(w, step.label, 'label');
-    for (const m of step.media ?? []) {
-      if (m.type === 'video') {
-        if (!m.poster) err(w, `video ${m.id} sem poster`);
-        checkI18n(w, m.title, 'title do video');
-      }
-    }
+    if (step.note != null) checkI18n(w, step.note, 'note');
+    if (!Array.isArray(step.media)) err(w, '"media" tem de ser uma lista');
+    checkMedia(w, step.media ?? []);
+  }
+  // A galeria aceita imagens E videos. Um video de galeria sem poster nao dava
+  // erro e simplesmente NAO APARECIA no site (MediaBlock devolve null).
+  checkMedia(`${where} › galeria`, p.gallery ?? []);
+
+  for (const d of p.downloads ?? []) {
+    checkI18n(where, d.label, 'downloads[].label');
+    checkUrl(where, d.url, 'downloads[].url');
+  }
+  for (const l of p.links ?? []) {
+    if (!l.label) err(where, 'links[] sem "label"');
+    checkUrl(where, l.url, 'links[].url');
   }
 
   collectImages(where, p, patch);
   if (patch.changed) {
     writeFileSync(join(ROOT, where), `${JSON.stringify(p, null, 2)}\n`);
-    notes.push(`${where}: dimensoes de imagem corrigidas`);
+    notes.push(`${where}: dimensoes de imagem corrigidas (o ficheiro foi reformatado)`);
   }
 
   const ph = countPlaceholders(p).n;
@@ -200,6 +277,16 @@ for (const [where, doc] of [['content/site.json', site], ['content/showreel.json
   if (ph > 0) warn(where, `${ph} item(ns) marcados "placeholder": true`);
 }
 if (!site.site.url?.startsWith('https://')) err('content/site.json', 'site.url tem de ser um URL https absoluto');
+for (const soc of site.social ?? []) checkUrl('content/site.json', soc.url, `social[${soc.kind}].url`);
+for (const l of LOCALES) if (site.cv?.[l]?.url) checkUrl('content/site.json', site.cv[l].url, `cv.${l}.url`);
+if (showreel.download) checkUrl('content/showreel.json', showreel.download.url, 'download.url');
+if (!Number.isInteger(showreel.durationSeconds) || showreel.durationSeconds <= 0) {
+  err('content/showreel.json', 'durationSeconds tem de ser um inteiro positivo');
+}
+if (!['youtube', 'vimeo'].includes(showreel.primary?.provider)) err('content/showreel.json', 'primary.provider invalido');
+if (!/^Showreel \d{4}$/.test(showreel.title?.en ?? '')) {
+  warn('content/showreel.json', 'o titulo devia estar datado ("Showreel 2026") — um reel sem data le-se como negligencia');
+}
 for (const l of LOCALES) if (!site.cv?.[l]?.url) err('content/site.json', `falta o CV em "${l}"`);
 for (const shot of showreel.shots ?? []) {
   if (shot.project && !slugs.has(shot.project)) err('content/showreel.json', `o plano em ${shot.at}s aponta para o projeto inexistente "${shot.project}"`);

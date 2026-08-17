@@ -82,7 +82,8 @@
     "languages": "Languages",
     "strengths": "Ways of working",
     "downloadCv": "Download CV (PDF)",
-    "present": "present"
+    "present": "present",
+    "exploringShort": "exploring"
   },
   "contact": {
     "title": "Contact",
@@ -115,7 +116,8 @@
     "nextImage": "Next image",
     "imageOf": "Image {index} of {total}",
     "loadingPlayer": "Loading player…",
-    "externalNote": "Playing loads content from {provider}."
+    "externalNote": "Playing loads content from {provider}.",
+    "galleryViewer": "Gallery viewer"
   },
   "notice": {
     "onlyInEnglish": "This text is only available in English.",
@@ -125,7 +127,8 @@
   "footer": {
     "rights": "© {year} {name}",
     "builtWith": "Built with Next.js. Content lives in JSON, not in components.",
-    "privacy": "Privacy"
+    "privacy": "Privacy",
+    "social": "Social"
   },
   "error": {
     "notFoundTitle": "Page not found",

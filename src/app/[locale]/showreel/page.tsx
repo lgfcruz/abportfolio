@@ -55,7 +55,7 @@ export default async function ShowreelPage({ params }: Props) {
           height: showreel.poster.height,
           alt: text(showreel.poster.alt, locale),
         }}
-        sizes="(max-width: 1440px) 100vw, 1344px"
+        sizes="(max-width: 1424px) 100vw, 1264px"
         priority
       />
 

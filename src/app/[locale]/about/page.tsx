@@ -1,10 +1,11 @@
 import type { Metadata } from 'next';
 import { getTranslations, setRequestLocale } from 'next-intl/server';
-import { about, site, taxonomy, text, pickList } from '@/lib/content';
+import { about, site, taxonomy, text, pickList, absolute } from '@/lib/content';
 import type { Locale } from '@/i18n/routing';
-import { pageMetadata } from '@/lib/seo';
+import { pageMetadata, personJsonLd } from '@/lib/seo';
 import { Picture } from '@/components/media/Picture';
 import { Badge } from '@/components/ui/Badge';
+import { JsonLd } from '@/components/ui/JsonLd';
 
 type Props = { params: Promise<{ locale: Locale }> };
 
@@ -42,7 +43,7 @@ export default async function AboutPage({ params }: Props) {
           <Picture
             image={site.author.portrait}
             locale={locale}
-            sizes="(max-width: 768px) 100vw, 35vw"
+            sizes="(max-width: 768px) 100vw, 384px"
             priority
             className="h-auto w-full"
           />
@@ -100,7 +101,7 @@ export default async function AboutPage({ params }: Props) {
                 {tool.level ? (
                   <span className="font-mono text-xs text-(--color-fg-muted)">{text(tool.level, locale)}</span>
                 ) : (
-                  <Badge>{text({ pt: 'a explorar', en: 'exploring' }, locale)}</Badge>
+                  <Badge>{t('exploringShort')}</Badge>
                 )}
               </li>
             );
@@ -149,6 +150,18 @@ export default async function AboutPage({ params }: Props) {
           </section>
         </div>
       </div>
+
+      <JsonLd
+        data={{
+          '@context': 'https://schema.org',
+          '@type': 'ProfilePage',
+          '@id': `${absolute(`/${locale}/about`)}#profilepage`,
+          url: absolute(`/${locale}/about`),
+          inLanguage: locale === 'pt' ? 'pt-PT' : 'en',
+          name: `${site.author.shortName} — ${t('title')}`,
+          mainEntity: personJsonLd(locale),
+        }}
+      />
     </div>
   );
 }

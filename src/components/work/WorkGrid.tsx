@@ -1,6 +1,7 @@
 'use client';
 
 import { useMemo, useState } from 'react';
+import { useSearchParams } from 'next/navigation';
 import { useTranslations } from 'next-intl';
 import type { ReactNode } from 'react';
 
@@ -22,7 +23,15 @@ export function WorkGrid({
   initial?: string;
 }) {
   const t = useTranslations('work');
-  const [active, setActive] = useState(initial);
+
+  // ?cat= e derivado, nao copiado para estado num efeito: um link partilhado
+  // abre ja filtrado, e o clique do utilizador tem prioridade a partir dai.
+  // useSearchParams num componente cliente mantem a pagina estatica (o valor
+  // chega na hidratacao) — por isso o pai envolve isto em <Suspense>.
+  const fromUrl = useSearchParams().get('cat');
+  const valid = (slug: string | null) => slug === 'all' || options.some((o) => o.slug === slug);
+  const [override, setOverride] = useState<string | null>(null);
+  const active = override ?? (valid(fromUrl) ? (fromUrl as string) : initial);
 
   const visible = useMemo(
     () => (active === 'all' ? cards : cards.filter((c) => c.category === active)),
@@ -30,7 +39,7 @@ export function WorkGrid({
   );
 
   function select(slug: string) {
-    setActive(slug);
+    setOverride(slug);
     if (typeof window !== 'undefined') {
       const url = new URL(window.location.href);
       if (slug === 'all') url.searchParams.delete('cat');

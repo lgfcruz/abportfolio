@@ -94,7 +94,6 @@ export default async function LocaleLayout({
 
   // Necessario para que as paginas continuem estaticamente renderizadas.
   setRequestLocale(l);
-  const t = await getTranslations({ locale: l, namespace: 'nav' });
 
   return (
     <html lang={l === 'pt' ? 'pt-PT' : 'en'} className={`${display.variable} ${body.variable} ${mono.variable}`}>
@@ -107,17 +106,10 @@ export default async function LocaleLayout({
           </main>
           <Footer locale={l} />
         </NextIntlClientProvider>
-        <JsonLd
-          data={{
-            '@context': 'https://schema.org',
-            '@type': 'ProfilePage',
-            '@id': `${absolute(`/${l}/about`)}#profilepage`,
-            url: absolute(`/${l}/about`),
-            inLanguage: l === 'pt' ? 'pt-PT' : 'en',
-            name: `${site.author.shortName} — ${t('about')}`,
-            mainEntity: personJsonLd(l),
-          }}
-        />
+{/* Apenas o no Person, referenciavel por @id. A ProfilePage vive em /about —
+            declarar aqui uma ProfilePage cujo url e /about seria contraditorio
+            em 30 das 32 paginas. */}
+        <JsonLd data={{ '@context': 'https://schema.org', ...personJsonLd(l) }} />
       </body>
     </html>
   );

@@ -32,12 +32,26 @@ export function Nav({ items, cta }: { items: NavItem[]; cta: { href: string; lab
         toggle.current?.focus();
       }
     };
+    // Passar para desktop esconde o painel (md:hidden) mas deixaria o scroll
+    // bloqueado e o foco preso — fechar explicitamente.
+    const desktop = window.matchMedia('(min-width: 768px)');
+    const onResize = () => desktop.matches && setOpen(false);
+
+    // `inert` no resto da pagina: sem isto o Tab sai do painel para o conteudo
+    // por baixo, que esta visualmente escondido.
+    const outside = Array.from(document.querySelectorAll('main, footer'));
+    for (const el of outside) el.setAttribute('inert', '');
+
     document.addEventListener('keydown', onKey);
+    desktop.addEventListener('change', onResize);
     document.body.style.overflow = 'hidden';
     panel.current?.querySelector<HTMLAnchorElement>('a')?.focus();
+
     return () => {
       document.removeEventListener('keydown', onKey);
+      desktop.removeEventListener('change', onResize);
       document.body.style.overflow = '';
+      for (const el of outside) el.removeAttribute('inert');
     };
   }, [open, setOpen]);
 

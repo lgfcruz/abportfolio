@@ -82,7 +82,8 @@
     "languages": "Línguas",
     "strengths": "Forma de trabalhar",
     "downloadCv": "Descarregar CV (PDF)",
-    "present": "presente"
+    "present": "presente",
+    "exploringShort": "a explorar"
   },
   "contact": {
     "title": "Contacto",
@@ -115,7 +116,8 @@
     "nextImage": "Imagem seguinte",
     "imageOf": "Imagem {index} de {total}",
     "loadingPlayer": "A carregar o reprodutor…",
-    "externalNote": "Reproduzir carrega conteúdo do {provider}."
+    "externalNote": "Reproduzir carrega conteúdo do {provider}.",
+    "galleryViewer": "Visualizador da galeria"
   },
   "notice": {
     "onlyInEnglish": "Este texto está disponível apenas em inglês.",
@@ -125,7 +127,8 @@
   "footer": {
     "rights": "© {year} {name}",
     "builtWith": "Construído com Next.js. O conteúdo vive em JSON, não nos componentes.",
-    "privacy": "Privacidade"
+    "privacy": "Privacidade",
+    "social": "Redes sociais"
   },
   "error": {
     "notFoundTitle": "Página não encontrada",

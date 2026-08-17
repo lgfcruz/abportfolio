@@ -27,6 +27,7 @@ export default async function CvPage({ params }: Props) {
   setRequestLocale(locale);
   const t = await getTranslations('cv');
   const ta = await getTranslations('about');
+  const tc = await getTranslations('contact');
   const bio = pickList(about.bio, locale);
   const primary = about.skills.find((s) => s.tier === 'primary');
 
@@ -56,9 +57,9 @@ export default async function CvPage({ params }: Props) {
           <h2 className="text-2xl">{site.author.name}</h2>
           <p className="mt-1 text-(--color-accent)">{text(site.author.jobTitle, locale)}</p>
           <dl className="mt-5 grid max-w-xl gap-2 font-mono text-xs">
-            <Row label="Email" value={site.author.email} href={`mailto:${site.author.email}`} />
-            <Row label="Tel." value={site.author.phoneDisplay} href={`tel:${site.author.phone}`} />
-            <Row label="Local" value={text(site.author.location, locale)} />
+            <Row label={tc('email')} value={site.author.email} href={`mailto:${site.author.email}`} />
+            <Row label={tc('phone')} value={site.author.phoneDisplay} href={`tel:${site.author.phone}`} />
+            <Row label={tc('location')} value={text(site.author.location, locale)} />
           </dl>
           {bio ? <p className="mt-6 max-w-prose text-(--color-fg-2)">{bio.value[0]}</p> : null}
         </section>

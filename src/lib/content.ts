@@ -63,7 +63,7 @@ export type ExternalLink = {
   placeholder?: boolean;
 };
 
-export type Spec = { label: I18nText; value: string | I18nText };
+export type Spec = { label: I18nText; value: string | number | I18nText };
 
 export type BreakdownStep = {
   step: number;
@@ -226,11 +226,13 @@ export function getProject(slug: string): Project | undefined {
 
 export function getProjectNeighbours(slug: string): { prev: Project | null; next: Project | null } {
   const i = projects.findIndex((p) => p.slug === slug);
-  if (i === -1) return { prev: null, next: null };
-  return {
-    prev: projects[i - 1] ?? projects[projects.length - 1] ?? null,
-    next: projects[i + 1] ?? projects[0] ?? null,
-  };
+  // Com 0 ou 1 projeto nao ha vizinhos; com 2, prev e next seriam o MESMO
+  // projeto — mostrar so um evita dois links iguais lado a lado.
+  if (i === -1 || projects.length < 2) return { prev: null, next: null };
+  const at = (n: number) => projects[(n + projects.length) % projects.length] ?? null;
+  const prev = at(i - 1);
+  const next = at(i + 1);
+  return { prev, next: next && next.slug === prev?.slug ? null : next };
 }
 
 /** Categorias que tem pelo menos um projeto publicado. Categoria vazia nao existe. */
@@ -309,6 +311,7 @@ export function softwareLabel(slug: string): string {
 }
 
 export function specValue(value: Spec['value'], locale: Locale): string {
+  if (typeof value === 'number') return String(value);
   return typeof value === 'string' ? value : text(value, locale);
 }
 

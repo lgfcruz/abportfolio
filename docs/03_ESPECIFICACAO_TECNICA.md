@@ -9,16 +9,32 @@
 
 Versões confirmadas no registry npm em 17/08/2026:
 
-| Pacote | Versão | Nota |
+| Pacote | Versão instalada | Nota |
 |---|---|---|
 | `next` | 16.3.1 | App Router |
 | `react` / `react-dom` | 19.2.8 | |
-| `typescript` | 7.0.2 | `strict` + `noUncheckedIndexedAccess` |
+| `typescript` | **6.0.3** | `strict` + `noUncheckedIndexedAccess`. **Não 7.0.2** — ver abaixo |
 | `tailwindcss` | 4.3.3 | Config em CSS (`@theme`), não em JS |
 | `next-intl` | 4.13.7 | i18n |
-| `zod` | 4.4.3 | Validação de frontmatter, uso mínimo |
-| `sharp` | 0.35.3 | Pipeline de imagem no build |
-| Node | 22 LTS | Fixar em `.nvmrc` **e** em `netlify.toml` |
+| `eslint` | **9.39.1** | **Não 10.x** — ver abaixo |
+| `eslint-config-next` | 16.3.1 | Flat config nativa, sem `FlatCompat` |
+| Node | 22 LTS | Fixado em `.nvmrc` **e** em `netlify.toml` |
+| Fontes | Archivo, Inter, JetBrains Mono | **Auto-hospedadas** em `src/fonts/`, via `next/font/local` |
+
+**Zod e sharp foram dispensados.** O `scripts/validate.mjs` não tem dependências: lê as dimensões reais de JPEG e PNG interpretando os cabeçalhos (~30 linhas) e valida a estrutura à mão, com mensagens em português. Menos uma coisa a envelhecer, e mensagens de erro úteis para quem não programa.
+
+### Onde "a versão mais nova" não funciona
+
+Duas escolhas que parecem desatualizadas e não são — em ambos os casos o bloqueio está na ferramenta a jusante, não no compilador:
+
+- **TypeScript 6.0.3, não 7.0.2.** O TS 7 (o port nativo em Go) já é o `latest`, mas o `typescript-eslint` recusa-o: `typescript-eslint does not support TS 7.0`. Com TS 7 o `npm run lint` deixa simplesmente de correr.
+- **ESLint 9.39.1, não 10.8.1.** O `eslint-config-next@16.3.1` traz um `eslint-plugin-react` incompatível com o ESLint 10 e rebenta com `contextOrFilename.getFilename is not a function` — apesar de o `peerDependency` declarar `>=9.0.0`.
+
+Reavaliar a cada major do Next.js.
+
+### Fontes: `next/font/local`, não `next/font/google`
+
+Decisão tomada durante a implementação, e é uma melhoria em três eixos: **uma origem terceira menos** (o objetivo de zero pedidos a terceiros no load inicial), **uma exposição RGPD menos** (o `fonts.googleapis.com` vê o IP de cada visitante), e um **build que não depende de rede externa**. Os ficheiros `.woff2` variáveis vêm dos pacotes `@fontsource-variable` do npm, subsetados a `latin` + `latin-ext` (necessário para o português), e estão versionados em `src/fonts/` — 240 KB no total.
 
 ### Mudanças do Next.js 16 que afetam este projeto
 
@@ -153,6 +169,14 @@ O `netlify.toml` completo está em `01_AUDITORIA_DEPLOY_NETLIFY.md`, secção 5.
 ---
 
 ## 4. Modelo de conteúdo
+
+> **⚠️ Esta secção foi substituída na implementação.** O cliente pediu explicitamente **JSON**, não MDX, e o que está construído é JSON. O guia real é `04_GUIA_DE_CONTEUDO.md`; o que se segue fica como registo da alternativa considerada.
+>
+> **O que está implementado:** um ficheiro `.json` por projeto em `content/projects/`, mais `site.json`, `taxonomy.json`, `showreel.json` e `about.json`. Validado por `scripts/validate.mjs` — **sem dependências**, propositadamente, para poder ser corrido dentro de dois anos. O Zod foi dispensado: o validador escrito à mão dá mensagens de erro em português que dizem o ficheiro, o campo e a correção, o que serve melhor um dono não-programador do que um stack trace de esquema.
+>
+> A taxonomia (categorias, subcategorias, papéis, software) vive num único ficheiro e os projetos referenciam slugs. O validador recusa um slug que não exista, o que impede rótulos inconsistentes e garante que tudo aparece traduzido nos dois idiomas sem ser escrito duas vezes.
+
+### Alternativa considerada (não implementada)
 
 **Um ficheiro MDX por projeto + uma pasta de imagens com o mesmo slug.** Frontmatter validado por um esquema Zod mínimo (~40 linhas) que corre no build.
 

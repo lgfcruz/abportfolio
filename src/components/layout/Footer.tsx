@@ -23,7 +23,7 @@ export async function Footer({ locale }: { locale: Locale }) {
           </div>
 
           {socials.length > 0 ? (
-            <nav aria-label="Social" className="flex flex-wrap gap-x-5 gap-y-2">
+            <nav aria-label={t('social')} className="flex flex-wrap gap-x-5 gap-y-2">
               {socials.map((s) => (
                 <a
                   key={s.kind}
@@ -40,7 +40,9 @@ export async function Footer({ locale }: { locale: Locale }) {
         </div>
 
         <div className="mt-10 flex flex-col gap-2 border-t border-(--color-border) pt-6 text-xs text-(--color-fg-muted) md:flex-row md:items-center md:justify-between">
-          <p>{t('rights', { year: new Date().getFullYear(), name: site.author.name })}</p>
+          {/* launchYear vem do JSON: `new Date()` numa pagina estatica congelaria
+              no ano do build e diria 2026 em 2028. */}
+          <p>{t('rights', { year: site.site.launchYear, name: site.author.name })}</p>
           <Link href="/privacy" className="hover:text-(--color-fg-2)">
             {t('privacy')}
           </Link>

@@ -1,3 +1,4 @@
+import { Suspense } from 'react';
 import type { Metadata } from 'next';
 import { getTranslations, setRequestLocale } from 'next-intl/server';
 import { projects, activeCategories, text, site } from '@/lib/content';
@@ -29,14 +30,18 @@ export default async function WorkPage({ params }: Props) {
   const cards = projects.map((p) => ({
     slug: p.slug,
     category: p.category,
-    node: <ProjectCard project={p} locale={locale} sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw" />,
+    node: <ProjectCard project={p} locale={locale} sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 400px" />,
   }));
 
   return (
     <div className="container-page py-16 md:py-24">
       <h1 className="text-4xl md:text-5xl">{t('title')}</h1>
       <p className="mt-4 mb-12 max-w-2xl text-lg text-(--color-fg-2)">{t('intro')}</p>
-      <WorkGrid options={options} cards={cards} />
+      {/* Suspense: o WorkGrid le ?cat= com useSearchParams. A pagina continua
+          pre-renderizada; o filtro do URL aplica-se na hidratacao. */}
+      <Suspense fallback={null}>
+        <WorkGrid options={options} cards={cards} />
+      </Suspense>
     </div>
   );
 }

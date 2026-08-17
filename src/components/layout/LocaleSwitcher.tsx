@@ -34,7 +34,7 @@ export function LocaleSwitcher({ locale }: { locale: Locale }) {
             href={pathname}
             locale={l}
             lang={l}
-            hrefLang={l}
+            hrefLang={l === 'pt' ? 'pt-PT' : 'en'}
             aria-current={active ? 'true' : undefined}
             aria-label={active ? undefined : t('switchTo', { language: t(l) })}
             onClick={() => remember(l)}

@@ -100,7 +100,7 @@ export default async function ProjectPage({ params }: Props) {
         <Picture
           image={hero}
           locale={locale}
-          sizes="(max-width: 1440px) 100vw, 1344px"
+          sizes="(max-width: 1424px) 100vw, 1264px"
           priority
           quality={90}
           className="h-auto w-full"
@@ -189,7 +189,7 @@ export default async function ProjectPage({ params }: Props) {
               height: project.poster.height,
               alt: text(project.poster.alt, locale),
             }}
-            sizes="(max-width: 1440px) 100vw, 1344px"
+            sizes="(max-width: 1424px) 100vw, 1264px"
           />
         </section>
       ) : null}
@@ -214,7 +214,11 @@ export default async function ProjectPage({ params }: Props) {
                       key={isVideo(m) ? m.id : m.src}
                       media={m}
                       locale={locale}
-                      sizes={step.media.length > 1 ? '(max-width: 640px) 100vw, 50vw' : '100vw'}
+                      sizes={
+                        step.media.length > 1
+                          ? '(max-width: 640px) 100vw, (max-width: 1424px) 50vw, 616px'
+                          : '(max-width: 1424px) 100vw, 1264px'
+                      }
                       priority={false}
                     />
                   ))}
@@ -233,7 +237,7 @@ export default async function ProjectPage({ params }: Props) {
           {galleryVideos.length > 0 ? (
             <div className="mt-4 space-y-4">
               {galleryVideos.map((m) => (
-                <MediaBlock key={m.id} media={m} locale={locale} sizes="100vw" />
+                <MediaBlock key={m.id} media={m} locale={locale} sizes="(max-width: 1424px) 100vw, 1264px" />
               ))}
             </div>
           ) : null}

@@ -14,13 +14,21 @@ export function Lightbox({ images }: { images: LightboxImage[] }) {
   const t = useTranslations('media');
   const dialog = useRef<HTMLDialogElement>(null);
   const trigger = useRef<HTMLElement | null>(null);
+  const closeBtn = useRef<HTMLButtonElement>(null);
   const [index, setIndex] = useState<number | null>(null);
 
   const open = useCallback((i: number, from: HTMLElement) => {
     trigger.current = from;
     setIndex(i);
-    dialog.current?.showModal();
   }, []);
+
+  // showModal() DEPOIS de o conteudo existir: chamado no mesmo tick do
+  // setIndex, o dialogo abriria vazio e o foco ficaria no proprio <dialog>.
+  useEffect(() => {
+    if (index === null) return;
+    if (!dialog.current?.open) dialog.current?.showModal();
+    closeBtn.current?.focus();
+  }, [index]);
 
   const close = useCallback(() => {
     dialog.current?.close();
@@ -67,7 +75,7 @@ export function Lightbox({ images }: { images: LightboxImage[] }) {
                 width={img.width}
                 height={img.height}
                 alt={img.alt}
-                sizes="(max-width: 640px) 100vw, 50vw"
+                sizes="(max-width: 640px) 100vw, (max-width: 1424px) 50vw, 616px"
                 quality={75}
                 loading="lazy"
                 className="h-auto w-full transition-transform duration-300 hover:scale-[1.02] motion-reduce:transform-none"
@@ -80,7 +88,7 @@ export function Lightbox({ images }: { images: LightboxImage[] }) {
 
       <dialog
         ref={dialog}
-        aria-label={t('openImage')}
+        aria-label={t('galleryViewer')}
         className="max-h-[100dvh] max-w-[100vw] bg-transparent backdrop:bg-black/90"
       >
         {current ? (
@@ -90,6 +98,7 @@ export function Lightbox({ images }: { images: LightboxImage[] }) {
                 {t('imageOf', { index: (index ?? 0) + 1, total: images.length })}
               </p>
               <button
+                ref={closeBtn}
                 type="button"
                 onClick={close}
                 className="min-h-11 min-w-11 cursor-pointer rounded border border-(--color-border-strong) px-3 text-(--color-fg)"

@@ -81,7 +81,7 @@ export default async function HomePage({ params }: Props) {
             height: showreel.poster.height,
             alt: text(showreel.poster.alt, locale),
           }}
-          sizes="100vw"
+          sizes="(max-width: 1424px) 100vw, 1264px"
           priority
         />
         <div className="mt-4 flex flex-wrap items-center justify-between gap-3">
@@ -112,7 +112,7 @@ export default async function HomePage({ params }: Props) {
         <ul className="space-y-16">
           {featuredProjects.slice(0, 1).map((p) => (
             <li key={p.slug} data-reveal>
-              <ProjectCard project={p} locale={locale} sizes="(max-width: 1024px) 100vw, 1200px" large />
+              <ProjectCard project={p} locale={locale} sizes="(max-width: 1424px) 100vw, 1264px" large />
             </li>
           ))}
         </ul>
@@ -120,7 +120,7 @@ export default async function HomePage({ params }: Props) {
         <ul className="mt-16 grid grid-cols-1 gap-x-8 gap-y-16 sm:grid-cols-2">
           {featuredProjects.slice(1, 5).map((p) => (
             <li key={p.slug} data-reveal>
-              <ProjectCard project={p} locale={locale} sizes="(max-width: 640px) 100vw, 50vw" />
+              <ProjectCard project={p} locale={locale} sizes="(max-width: 640px) 100vw, (max-width: 1424px) 50vw, 616px" />
             </li>
           ))}
         </ul>
@@ -147,7 +147,7 @@ export default async function HomePage({ params }: Props) {
             <Picture
               image={site.author.portrait}
               locale={locale}
-              sizes="(max-width: 768px) 100vw, 40vw"
+              sizes="(max-width: 768px) 100vw, 384px"
               className="h-auto w-full"
             />
           </div>

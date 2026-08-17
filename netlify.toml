@@ -13,8 +13,8 @@
   # Nao e preciso NPM_FLAGS="--include=dev": a Netlify nao define NODE_ENV, logo
   # as devDependencies (typescript, tailwind) instalam-se por omissao.
 
-[context.production.environment]
-  NEXT_PUBLIC_SITE_URL = "https://arthurbrabo.com"
+# NOTA: nao ha NEXT_PUBLIC_SITE_URL. O URL canonico vive em content/site.json
+# (site.url) — uma fonte de verdade so. Mudar de dominio e editar esse ficheiro.
 
 [context.deploy-preview.environment]
   NEXT_PUBLIC_NOINDEX = "true"
@@ -31,6 +31,9 @@
   [headers.values]
     X-Content-Type-Options = "nosniff"
     Referrer-Policy = "strict-origin-when-cross-origin"
+    # Necessario: o `frame-ancestors` abaixo esta em Report-Only, logo NAO impoe
+    # nada. Sem este cabecalho o site seria enquadravel hoje.
+    X-Frame-Options = "DENY"
     Permissions-Policy = "camera=(), microphone=(), geolocation=()"
     Strict-Transport-Security = "max-age=31536000; includeSubDomains; preload"
     # FASE 1: Report-Only durante ~1 mes. Ver as violacoes na consola do browser
@@ -40,13 +43,19 @@
     # img-src    : NAO inclui i.ytimg.com nem i.vimeocdn.com de proposito — os
     #              posters sao auto-hospedados (zero origens terceiras no load).
     #              O Netlify Image CDN e same-origin (/.netlify/images).
-    # script-src : plausible.io tem de estar aqui, senao a analitica nao carrega.
-    Content-Security-Policy-Report-Only = "default-src 'self'; base-uri 'self'; object-src 'none'; frame-ancestors 'none'; form-action 'self'; script-src 'self' 'unsafe-inline' https://plausible.io; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self'; media-src 'self' blob:; connect-src 'self' https://plausible.io https://*.vimeo.com https://*.youtube.com; frame-src https://www.youtube-nocookie.com https://player.vimeo.com; upgrade-insecure-requests"
+    # script-src : quando a analitica for activada (content/site.json ->
+    #              analytics.enabled), acrescentar https://plausible.io aqui E em
+    #              connect-src, senao o script e bloqueado em silencio.
+    Content-Security-Policy-Report-Only = "default-src 'self'; base-uri 'self'; object-src 'none'; frame-ancestors 'none'; form-action 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self'; media-src 'self' blob:; connect-src 'self' https://*.vimeo.com https://*.youtube.com; frame-src https://www.youtube-nocookie.com https://player.vimeo.com; upgrade-insecure-requests"
 
+# ATENCAO: /media/* NAO tem hash no nome do ficheiro. `immutable` de um ano
+# prenderia browsers e o Image CDN a imagem antiga durante um ano depois de a
+# substituir — exactamente o passo que este projeto tem de facilitar.
+# Um dia de cache, com revalidacao em segundo plano durante uma semana.
 [[headers]]
   for = "/media/*"
   [headers.values]
-    Cache-Control = "public, max-age=31536000, immutable"
+    Cache-Control = "public, max-age=86400, stale-while-revalidate=604800"
 
 [[headers]]
   for = "/docs/*"
