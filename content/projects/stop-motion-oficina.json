@@ -1,0 +1,62 @@
+{
+  "$comment": "DADOS FICTICIOS. Substituir pelos reais.",
+  "slug": "stop-motion-oficina",
+  "status": "published",
+  "featured": true,
+  "order": 3,
+  "surface": "mid",
+  "title": "A Oficina",
+  "subtitle": { "pt": "Curta de stop motion com puppet de armadura e set construído à mão", "en": "Stop motion short with an armature puppet and a hand-built set" },
+  "year": 2026,
+  "date": "2026-02-28",
+  "durationLabel": { "pt": "8 semanas", "en": "8 weeks" },
+  "author": "Arthur Brabo da Silva Cruz",
+  "context": "individual",
+  "institution": "Universidade Lusófona",
+  "team": null,
+  "category": "stop-motion",
+  "subcategories": ["puppet", "set-props", "object-animation"],
+  "roles": ["puppet-fabrication", "animation", "lighting", "editing", "sound"],
+  "software": ["dragonframe", "davinci", "reaper", "after-effects"],
+  "summary": {
+    "pt": "Plano de mesa de 40 segundos animado a 12 fps sobre 2, com puppet de armadura de alumínio e set de 40 cm. Captura em Dragonframe, som desenhado em Reaper.",
+    "en": "A 40-second tabletop shot animated on twos at 12 fps, with an aluminium armature puppet and a 40 cm set. Captured in Dragonframe, sound designed in Reaper."
+  },
+  "body": {
+    "en": [
+      { "heading": "Brief and constraints", "text": "One continuous tabletop shot, no cuts, told without dialogue. The constraint that mattered was physical: the set had to fit on a 40 cm board and the puppet had to survive 480 frames of handling without the armature loosening." },
+      { "heading": "The problem", "text": "The puppet's hand kept drifting between frames because the armature had no friction at the wrist. I replaced the wrist joint with a tie-down and animated the hand as a separate replacement piece for the three frames where it holds the tool." },
+      { "heading": "What I would do differently", "text": "Shoot a full lighting test on the final set before animating. I lost half a day to a flicker caused by a lamp on a dimmer circuit." }
+    ]
+  },
+  "cover": { "src": "/media/stop-motion-oficina/cover.jpg", "width": 1800, "height": 1200, "alt": { "pt": "Puppet numa bancada de oficina em miniatura, luz quente de lâmpada de trabalho.", "en": "Puppet at a miniature workshop bench, warm work-lamp light." } },
+  "hero": { "src": "/media/stop-motion-oficina/hero.jpg", "width": 2560, "height": 1440, "alt": { "pt": "Plano largo do set de stop motion com o puppet ao centro e ferramentas em miniatura.", "en": "Wide shot of the stop motion set with the puppet centred and miniature tools around it." } },
+  "og": "/media/stop-motion-oficina/og.jpg",
+  "video": { "provider": "youtube", "id": "3Mn6exLwp2w", "title": { "pt": "Curta completa", "en": "Full short" }, "durationSeconds": 40 },
+  "poster": { "src": "/media/stop-motion-oficina/poster.jpg", "width": 1920, "height": 1080, "alt": { "pt": "Fotograma de abertura da curta.", "en": "Opening frame of the short." } },
+  "specs": [
+    { "label": { "pt": "Frames animados", "en": "Animated frames" }, "value": "480" },
+    { "label": { "pt": "Cadência", "en": "Frame rate" }, "value": { "pt": "12 fps, sobre 2", "en": "12 fps, on twos" } },
+    { "label": { "pt": "Dimensão do set", "en": "Set size" }, "value": "40 × 30 cm" },
+    { "label": { "pt": "Armadura", "en": "Armature" }, "value": { "pt": "Alumínio 2 mm, 14 pontos", "en": "2 mm aluminium, 14 points" } }
+  ],
+  "breakdown": [
+    { "step": 1, "label": { "pt": "Construção do puppet", "en": "Puppet fabrication" }, "note": { "pt": "Armadura de alumínio de 2 mm, enchimento em espuma e pele em látex. Mãos substituíveis.", "en": "2 mm aluminium armature, foam bulk-up and latex skin. Replacement hands." }, "media": [{ "type": "image", "src": "/media/stop-motion-oficina/process-01-armature.jpg", "width": 2000, "height": 1125, "alt": { "pt": "Armadura de alumínio do puppet sobre bancada, antes do enchimento.", "en": "Aluminium puppet armature on a bench before bulk-up." } }] },
+    { "step": 2, "label": { "pt": "Set e props", "en": "Set and props" }, "note": { "pt": "Bancada em balsa, ferramentas em arame e resina. Escala 1:12.", "en": "Balsa bench, tools in wire and resin. 1:12 scale." }, "media": [{ "type": "image", "src": "/media/stop-motion-oficina/process-02-set.jpg", "width": 2000, "height": 1125, "alt": { "pt": "Set em construção com ferramentas em miniatura alinhadas.", "en": "Set under construction with miniature tools laid out." } }] },
+    { "step": 3, "label": { "pt": "Captura em Dragonframe", "en": "Capture in Dragonframe" }, "note": { "pt": "Onion skinning para manter o arco do braço. X-sheet planeado antes de tocar no puppet.", "en": "Onion skinning to hold the arm arc. X-sheet planned before touching the puppet." }, "media": [{ "type": "image", "src": "/media/stop-motion-oficina/process-03-dragonframe.jpg", "width": 2000, "height": 1125, "alt": { "pt": "Ecrã do Dragonframe com onion skinning sobre o plano em curso.", "en": "Dragonframe screen with onion skinning over the shot in progress." } }] },
+    { "step": 4, "label": { "pt": "Som e finalização", "en": "Sound and finishing" }, "note": { "pt": "Foley gravado em casa, misturado em Reaper. Correção de flicker e cor em DaVinci.", "en": "Foley recorded at home, mixed in Reaper. Flicker and colour correction in DaVinci." }, "media": [{ "type": "image", "src": "/media/stop-motion-oficina/process-04-grade.jpg", "width": 2000, "height": 1125, "alt": { "pt": "Comparação antes e depois da correção de cor.", "en": "Before and after colour grade comparison." } }] }
+  ],
+  "gallery": [
+    { "type": "image", "src": "/media/stop-motion-oficina/gallery-01.jpg", "width": 2560, "height": 1440, "alt": { "pt": "Puppet em close, mão a segurar uma ferramenta em miniatura.", "en": "Close-up of the puppet, hand holding a miniature tool." } },
+    { "type": "image", "src": "/media/stop-motion-oficina/gallery-02.jpg", "width": 2560, "height": 1440, "alt": { "pt": "Set iluminado visto de cima, com marcas de posição no chão.", "en": "Lit set seen from above, with position marks on the floor." } }
+  ],
+  "downloads": [
+    { "label": { "pt": "X-sheet e planificação (PDF)", "en": "X-sheet and planning (PDF)" }, "url": "https://drive.google.com/file/d/1MOCK-oficina-xsheet/view?usp=sharing", "host": "drive", "sizeMb": 4, "placeholder": true },
+    { "label": { "pt": "Curta em 1080p", "en": "1080p short" }, "url": "https://drive.google.com/file/d/1MOCK-oficina-1080p/view?usp=sharing", "host": "drive", "sizeMb": 210, "placeholder": true }
+  ],
+  "links": [{ "kind": "vimeo", "label": "Vimeo", "url": "https://vimeo.com/000000001", "placeholder": true }],
+  "seo": {
+    "title": { "pt": "A Oficina — curta de stop motion", "en": "A Oficina — stop motion short" },
+    "description": { "pt": "Curta de stop motion com puppet de armadura e set construído à mão. Dragonframe, DaVinci Resolve e Reaper.", "en": "Stop motion short with an armature puppet and hand-built set. Dragonframe, DaVinci Resolve and Reaper." }
+  }
+}

@@ -1,0 +1,65 @@
+# Fonte de verdade da configuracao de build. A UI do Netlify serve apenas para
+# segredos. Ver docs/01_AUDITORIA_DEPLOY_NETLIFY.md.
+
+[build]
+  # "validate" corre antes do build: se o conteudo estiver invalido o deploy
+  # falha e o deploy anterior mantem-se em producao.
+  command = "npm run validate && npm run build"
+  # SEM "publish": o adaptador OpenNext do Netlify define o output.
+  # SEM [[plugins]]: o adaptador e automatico e atualizado; fixa-lo e regressao.
+
+[build.environment]
+  NODE_VERSION = "22"
+  # Nao e preciso NPM_FLAGS="--include=dev": a Netlify nao define NODE_ENV, logo
+  # as devDependencies (typescript, tailwind) instalam-se por omissao.
+
+[context.production.environment]
+  NEXT_PUBLIC_SITE_URL = "https://arthurbrabo.com"
+
+[context.deploy-preview.environment]
+  NEXT_PUBLIC_NOINDEX = "true"
+
+[context.branch-deploy.environment]
+  NEXT_PUBLIC_NOINDEX = "true"
+
+# ---------------------------------------------------------------------------
+# Headers. Nota: headers e redirects sao GLOBAIS — nao aceitam contexto.
+# ---------------------------------------------------------------------------
+
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    Permissions-Policy = "camera=(), microphone=(), geolocation=()"
+    Strict-Transport-Security = "max-age=31536000; includeSubDomains; preload"
+    # FASE 1: Report-Only durante ~1 mes. Ver as violacoes na consola do browser
+    # e so depois renomear para Content-Security-Policy.
+    #
+    # frame-src  : iframes do YouTube e Vimeo, inseridos so DEPOIS de um clique
+    # img-src    : NAO inclui i.ytimg.com nem i.vimeocdn.com de proposito — os
+    #              posters sao auto-hospedados (zero origens terceiras no load).
+    #              O Netlify Image CDN e same-origin (/.netlify/images).
+    # script-src : plausible.io tem de estar aqui, senao a analitica nao carrega.
+    Content-Security-Policy-Report-Only = "default-src 'self'; base-uri 'self'; object-src 'none'; frame-ancestors 'none'; form-action 'self'; script-src 'self' 'unsafe-inline' https://plausible.io; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self'; media-src 'self' blob:; connect-src 'self' https://plausible.io https://*.vimeo.com https://*.youtube.com; frame-src https://www.youtube-nocookie.com https://player.vimeo.com; upgrade-insecure-requests"
+
+[[headers]]
+  for = "/media/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "/docs/*"
+  [headers.values]
+    Cache-Control = "public, max-age=604800, must-revalidate"
+
+# ---------------------------------------------------------------------------
+# Redirect do subdominio antigo. DESCOMENTAR so quando o dominio proprio estiver
+# a servir, senao o site fica inacessivel.
+# ---------------------------------------------------------------------------
+
+# [[redirects]]
+#   from = "https://arthurbrabo-portfolio.netlify.app/*"
+#   to = "https://arthurbrabo.com/:splat"
+#   status = 301
+#   force = true

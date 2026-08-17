@@ -1,0 +1,259 @@
+{
+  "$comment": "Configuracao global do site. Editar este ficheiro nao exige tocar em nenhum componente.",
+  "site": {
+    "url": "https://arthurbrabo.com",
+    "name": "Arthur Brabo",
+    "locales": [
+      "pt",
+      "en"
+    ],
+    "defaultLocale": "en",
+    "launchYear": 2026
+  },
+  "author": {
+    "name": "Arthur Brabo da Silva Cruz",
+    "shortName": "Arthur Brabo",
+    "jobTitle": {
+      "pt": "Animador — Animação 3D de Personagem e Stop Motion",
+      "en": "Animator — 3D Character & Stop Motion"
+    },
+    "tagline": {
+      "pt": "Animação 3D de personagem, criaturas e stop motion.",
+      "en": "3D character animation, creatures and stop motion."
+    },
+    "location": {
+      "pt": "Lisboa, Portugal",
+      "en": "Lisbon, Portugal"
+    },
+    "timezone": "Europe/Lisbon",
+    "email": "arthurbrabo5@gmail.com",
+    "phone": "+351933705296",
+    "phoneDisplay": "(+351) 933 705 296",
+    "portrait": {
+      "src": "/media/profile/arthur-brabo.jpg",
+      "width": 1600,
+      "height": 2000,
+      "alt": {
+        "pt": "Retrato de Arthur Brabo em fundo escuro.",
+        "en": "Portrait of Arthur Brabo against a dark background."
+      }
+    },
+    "availability": {
+      "open": true,
+      "label": {
+        "pt": "Disponível para estágio curricular",
+        "en": "Available for a curricular internship"
+      },
+      "from": "2026-09-01",
+      "detail": {
+        "pt": "Estágio curricular de 250 horas. Disponível em Lisboa e remoto; aberto a mobilidade na Europa.",
+        "en": "250-hour curricular internship. Available in Lisbon and remote; open to relocation within Europe."
+      },
+      "lookingFor": [
+        {
+          "pt": "Estágio curricular",
+          "en": "Curricular internship"
+        },
+        {
+          "pt": "Oportunidades de nível júnior",
+          "en": "Junior-level opportunities"
+        },
+        {
+          "pt": "Projetos freelance",
+          "en": "Freelance projects"
+        },
+        {
+          "pt": "Colaborações",
+          "en": "Collaborations"
+        }
+      ]
+    },
+    "languages": [
+      {
+        "code": "pt",
+        "name": {
+          "pt": "Português",
+          "en": "Portuguese"
+        },
+        "level": {
+          "pt": "Língua materna",
+          "en": "Native"
+        }
+      },
+      {
+        "code": "en",
+        "name": {
+          "pt": "Inglês",
+          "en": "English"
+        },
+        "level": {
+          "pt": "C1",
+          "en": "C1"
+        }
+      },
+      {
+        "code": "ja",
+        "name": {
+          "pt": "Japonês",
+          "en": "Japanese"
+        },
+        "level": {
+          "pt": "B1",
+          "en": "B1"
+        }
+      }
+    ]
+  },
+  "social": [
+    {
+      "kind": "artstation",
+      "label": "ArtStation",
+      "url": "https://www.artstation.com/arthurbrabo",
+      "primary": true,
+      "placeholder": true
+    },
+    {
+      "kind": "vimeo",
+      "label": "Vimeo",
+      "url": "https://vimeo.com/arthurbrabo",
+      "primary": true,
+      "placeholder": true
+    },
+    {
+      "kind": "youtube",
+      "label": "YouTube",
+      "url": "https://www.youtube.com/@4speedmain780",
+      "primary": true,
+      "placeholder": false
+    },
+    {
+      "kind": "linkedin",
+      "label": "LinkedIn",
+      "url": "https://www.linkedin.com/in/arthur-cruz-047a62180",
+      "primary": true,
+      "placeholder": false
+    },
+    {
+      "kind": "sketchfab",
+      "label": "Sketchfab",
+      "url": "https://sketchfab.com/arthurbrabo",
+      "primary": false,
+      "placeholder": true
+    },
+    {
+      "kind": "instagram",
+      "label": "Instagram",
+      "url": "https://www.instagram.com/arthurbrabo",
+      "primary": false,
+      "placeholder": true
+    }
+  ],
+  "cv": {
+    "pt": {
+      "url": "/docs/arthur-brabo-cv-pt.pdf",
+      "updated": "2026-08-01",
+      "sizeKb": 210,
+      "placeholder": true
+    },
+    "en": {
+      "url": "/docs/arthur-brabo-cv-en.pdf",
+      "updated": "2026-08-01",
+      "sizeKb": 205,
+      "placeholder": true
+    }
+  },
+  "analytics": {
+    "provider": "plausible",
+    "domain": "arthurbrabo.com",
+    "enabled": false
+  },
+  "seo": {
+    "defaultOgImage": {
+      "src": "/media/og/default.jpg",
+      "width": 1200,
+      "height": 630,
+      "alt": {
+        "pt": "Arthur Brabo — animador de personagem 3D e stop motion, Lisboa.",
+        "en": "Arthur Brabo — 3D character and stop motion animator, Lisbon."
+      }
+    },
+    "twitterHandle": null,
+    "keywords": {
+      "pt": [
+        "animação 3D",
+        "animador de personagem",
+        "stop motion",
+        "rigging",
+        "Maya",
+        "Lisboa"
+      ],
+      "en": [
+        "3D animation",
+        "character animator",
+        "stop motion",
+        "rigging",
+        "Maya",
+        "Lisbon"
+      ]
+    }
+  },
+  "education": [
+    {
+      "institution": "Universidade Lusófona",
+      "url": "https://www.ulusofona.pt/",
+      "location": {
+        "pt": "Lisboa",
+        "en": "Lisbon"
+      },
+      "degree": {
+        "pt": "Licenciatura em Animação Digital",
+        "en": "BA in Digital Animation"
+      },
+      "start": "2022",
+      "end": "2026",
+      "current": true
+    },
+    {
+      "institution": "Instituto de Línguas da Universidade Nova de Lisboa (ILNova)",
+      "location": {
+        "pt": "Lisboa",
+        "en": "Lisbon"
+      },
+      "degree": {
+        "pt": "Curso de Língua Japonesa — B1",
+        "en": "Japanese Language Course — B1"
+      },
+      "start": "2020",
+      "end": "2022",
+      "current": false
+    },
+    {
+      "institution": "Escola Secundária Camões",
+      "location": {
+        "pt": "Lisboa",
+        "en": "Lisbon"
+      },
+      "degree": {
+        "pt": "Ciências e Tecnologias",
+        "en": "Sciences and Technologies"
+      },
+      "start": "2019",
+      "end": "2022",
+      "current": false
+    },
+    {
+      "institution": "Oxford International Education Group",
+      "location": {
+        "pt": "—",
+        "en": "—"
+      },
+      "degree": {
+        "pt": "Certificado Internacional de Proficiência de Língua Inglesa — C1",
+        "en": "International English Language Proficiency Certificate — C1"
+      },
+      "start": "2018",
+      "end": "2018",
+      "current": false
+    }
+  ]
+}

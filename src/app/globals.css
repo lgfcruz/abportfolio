@@ -1,0 +1,206 @@
+@import 'tailwindcss';
+
+/* ---------------------------------------------------------------------------
+   Design tokens. Valores validados por calculo de contraste WCAG —
+   ver docs/03_ESPECIFICACAO_TECNICA.md, seccao 7. O script `npm run validate`
+   volta a verificar estes pares em cada build e falha se algum descer de AA.
+   --------------------------------------------------------------------------- */
+@theme {
+  --color-bg: #0a0a0b;
+  --color-surface: #131316;
+  --color-surface-up: #1b1b1f;
+
+  --color-border: rgb(255 255 255 / 0.07); /* apenas separadores decorativos */
+  --color-border-strong: #6f7582; /* qualquer componente funcional (3:1) */
+
+  --color-fg: #f5f7fa; /* 18.44:1 sobre bg */
+  --color-fg-2: #a6acb8; /* 8.68:1 */
+  --color-fg-muted: #8a91a0; /* 6.26:1 — corrigido de #6F7582, que falhava AA */
+
+  --color-accent: #ff6a3d; /* 6.96:1 sobre bg */
+  --color-accent-on: #0a0a0b; /* texto SOBRE o laranja. NUNCA branco (2.85:1) */
+  --color-accent-dim: #c2410c; /* variante para superficie clara */
+
+  --color-light-bg: #f2f1ee;
+  --color-light-fg: #16171a; /* 15.87:1 sobre light-bg */
+
+  --font-display: var(--font-archivo), system-ui, sans-serif;
+  --font-sans: var(--font-inter), system-ui, sans-serif;
+  --font-mono: var(--font-jetbrains), ui-monospace, monospace;
+
+  --spacing-section: 7rem;
+}
+
+/* Superficie por projeto: o involucro e sempre escuro, cada pagina de projeto
+   herda a luz que a obra pede. Os tres pares texto/fundo passam AAA. */
+[data-surface='dark'] {
+  --surface-bg: var(--color-bg);
+  --surface-fg: var(--color-fg);
+  --surface-fg-2: var(--color-fg-2);
+  --surface-accent: var(--color-accent);
+}
+[data-surface='mid'] {
+  --surface-bg: var(--color-surface-up);
+  --surface-fg: var(--color-fg);
+  --surface-fg-2: var(--color-fg-2);
+  --surface-accent: var(--color-accent);
+}
+[data-surface='light'] {
+  --surface-bg: var(--color-light-bg);
+  --surface-fg: var(--color-light-fg);
+  --surface-fg-2: #4a4d55;
+  --surface-accent: var(--color-accent-dim);
+}
+
+@layer base {
+  *,
+  ::before,
+  ::after {
+    border-color: var(--color-border);
+  }
+
+  html {
+    scroll-behavior: smooth;
+    /* Compensa o header fixo quando o foco salta para uma ancora (WCAG 2.4.11) */
+    scroll-padding-top: 6rem;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    background-color: var(--color-bg);
+    color: var(--color-fg);
+    font-family: var(--font-sans);
+    font-size: 1rem;
+    line-height: 1.65;
+    text-rendering: optimizeLegibility;
+  }
+
+  h1,
+  h2,
+  h3 {
+    font-family: var(--font-display);
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    line-height: 1.08;
+    text-wrap: balance;
+  }
+
+  p {
+    text-wrap: pretty;
+  }
+
+  /* Anel de foco visivel e consistente (WCAG 2.4.7 / 2.4.13) */
+  :focus-visible {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 2px;
+    border-radius: 2px;
+  }
+  [data-surface='light'] :focus-visible {
+    outline-color: var(--color-accent-dim);
+  }
+
+  ::selection {
+    background: var(--color-accent);
+    color: var(--color-accent-on);
+  }
+
+  img,
+  video {
+    max-width: 100%;
+    height: auto;
+  }
+
+  /* Sem movimento para quem o pediu (WCAG 2.3.3). Nao usar display:none:
+     os elementos entram JA VISIVEIS, so sem animacao. */
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+    *,
+    ::before,
+    ::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+    [data-reveal] {
+      opacity: 1 !important;
+      transform: none !important;
+    }
+  }
+}
+
+@layer components {
+  .container-page {
+    width: 100%;
+    max-width: 84rem;
+    margin-inline: auto;
+    padding-inline: 1.25rem;
+  }
+  @media (min-width: 768px) {
+    .container-page {
+      padding-inline: 2.5rem;
+    }
+  }
+
+  .meta {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--color-fg-muted);
+  }
+
+  .prose-body p {
+    max-width: 68ch;
+    margin-block: 1rem;
+  }
+  .prose-body h3 {
+    margin-top: 2.5rem;
+    font-size: 1.125rem;
+  }
+
+  /* Cartao inteiro clicavel com UM SO tab stop: o ::after vem do <a> dentro do
+     titulo e cobre o cartao. Evita div clicavel e evita link aninhado. */
+  .card-hit::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+  }
+
+  /* Reveal ao scroll, sem JavaScript */
+  @supports (animation-timeline: view()) {
+    @media (prefers-reduced-motion: no-preference) {
+      [data-reveal] {
+        animation: reveal linear both;
+        animation-timeline: view();
+        animation-range: entry 0% entry 55%;
+      }
+    }
+  }
+  @keyframes reveal {
+    from {
+      opacity: 0;
+      transform: translateY(14px);
+    }
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+}
+
+/* Utilitario de acessibilidade: visivel apenas para leitores de ecra */
+.sr-only:not(:focus):not(:active) {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
+}
